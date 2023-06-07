@@ -356,7 +356,7 @@
 #include <fpu_control.h>
 #endif /* LINUX */
 #ifdef TRILIBRARY
-#include "shewchuk_triangle.h"
+#include "shewchuk_triangle.hpp"
 #endif /* TRILIBRARY */
 
 /* A few forward declarations.                                               */

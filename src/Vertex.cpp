@@ -1,5 +1,7 @@
-#include <Vertex.h>
+#include <Vertex.hpp>
 #include <algorithm>
+
+using namespace SemantisedTriangleMesh;
 
 Vertex::Vertex()
 {
@@ -307,6 +309,10 @@ std::vector<std::shared_ptr<Triangle> > Vertex::getVT()
     std::vector<std::shared_ptr<Triangle> > vt;
     std::vector<std::shared_ptr<Edge>> ve = getVE();
     for(unsigned int i = 0; i < ve.size(); i++)
-        vt.push_back(ve.at(i)->getLeftTriangle(std::make_shared<Vertex>(*this)));
+    {
+        auto t = ve.at(i)->getLeftTriangle(std::make_shared<Vertex>(*this));
+        if(t != nullptr)
+            vt.push_back(t);
+    }
     return vt;
 }

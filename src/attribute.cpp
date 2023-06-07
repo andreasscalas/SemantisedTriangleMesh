@@ -1,6 +1,7 @@
-#include "attribute.h"
+#include "attribute.hpp"
 #include <iostream>
 
+using namespace SemantisedTriangleMesh;
 
 std::string Attribute::getKey() const
 {
@@ -48,9 +49,21 @@ void Attribute::setId(unsigned int value)
     id = value;
 }
 
+bool Attribute::isGeometric() const
+{
+    return geometric;
+}
+
+void Attribute::setIsGeometric(bool newGeometric)
+{
+    geometric = newGeometric;
+}
+
+
 void Attribute::print(std::ostream &os)
 {
     os << "id: " << id << ", name: " << key << std::endl;
+
 }
 
 void Attribute::printJson(rapidjson::PrettyWriter<rapidjson::StringBuffer> &writer)

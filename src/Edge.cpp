@@ -1,5 +1,9 @@
-#include "Edge.h"
+#include <memory>
+#include "Edge.hpp"
 #include <algorithm>
+#include <map>
+
+using namespace SemantisedTriangleMesh;
 
 Edge::Edge()
 {
@@ -156,10 +160,13 @@ std::shared_ptr<Triangle> Edge::getRightTriangle(std::shared_ptr<Vertex>  v)
 
 std::shared_ptr<Triangle> Edge::getOppositeTriangle(std::shared_ptr<Triangle> t)
 {
-    if(t->getId().compare( t1->getId()) == 0)
-        return t2;
-    if(t->getId().compare( t2->getId()) == 0)
-        return t1;
+    if(t != nullptr)
+    {
+        if(t1 != nullptr && t->getId().compare( t1->getId()) == 0)
+            return t2;
+        if(t2 != nullptr && t->getId().compare( t2->getId()) == 0)
+            return t1;
+    }
     return nullptr;
 }
 
@@ -198,14 +205,17 @@ void Edge::setT2(std::shared_ptr<Triangle> newT2)
 
 bool Edge::setTriangle(std::shared_ptr<Triangle> t, std::shared_ptr<Triangle> newT)
 {
-    if(t1 != nullptr && t1->getId().compare(t->getId()) == 0)
+    if(t != nullptr)
     {
-        setT1(newT);
-        return true;
-    } else if (t2 != nullptr && t2->getId().compare(t->getId()) == 0)
-    {
-        setT2(newT);
-        return true;
+        if(t1 != nullptr && t1->getId().compare(t->getId()) == 0)
+        {
+            setT1(newT);
+            return true;
+        } else if (t2 != nullptr && t2->getId().compare(t->getId()) == 0)
+        {
+            setT2(newT);
+            return true;
+        }
     }
     return false;
 }
@@ -225,7 +235,7 @@ int Edge::searchFlag(FlagType f)
 {
     std::vector<FlagType>::iterator it = std::find(associated_flags.begin(), associated_flags.end(), f);
     if(it != associated_flags.end())
-        return  it - associated_flags.begin();
+        return it - associated_flags.begin();
     return -1;
 }
 
@@ -311,6 +321,107 @@ void Edge::setId(std::string newId)
 double Edge::computeLength() const
 {
     return ((*v1) - (*v2)).norm();
+}
+
+void Edge::collapse()
+{
+    if(this->getId().compare("114") == 0)
+        std::cout << "a";
+
+    auto vv1 = this->getV1()->getVV();
+    auto vv2 = this->getV2()->getVV();
+    uint counter = 0;
+    for(auto v : vv1)
+    {
+        auto it = std::find_if(vv2.begin(), vv2.end(), [v](std::shared_ptr<Vertex> v_){ return v->getId().compare(v_->getId()) == 0; });
+        if(it != vv2.end())
+            counter++;
+    }
+    if(counter != 2)
+        return;
+
+
+    auto point = (*this->getV1() + *this->getV2()) / 2;
+    auto lt = this->getLeftTriangle(this->getV1());
+    auto rt = this->getRightTriangle(this->getV1());
+    auto vl = lt->getNextVertex(this->getV2());
+    auto vr = rt->getNextVertex(this->getV1());
+    auto e1 = this->getV2()->getCommonEdge(vl);
+    auto e2 = this->getV1()->getCommonEdge(vl);
+    auto e3 = this->getV2()->getCommonEdge(vr);
+    auto e4 = this->getV1()->getCommonEdge(vr);
+    auto e1ot = e1->getOppositeTriangle(lt);
+    auto e2ot = e2->getOppositeTriangle(lt);
+    auto e3ot = e3->getOppositeTriangle(rt);
+    auto e4ot = e4->getOppositeTriangle(rt);
+    auto vt1 = this->getV1()->getVT();
+    auto vt2 = this->getV2()->getVT();
+    std::map<std::shared_ptr<Triangle>, SemantisedTriangleMesh::Point> normals;
+    for(auto t : vt1)
+        if(normals.find(t) == normals.end())
+            normals.insert(std::make_pair(t, t->computeNormal()));
+
+    for(auto t : vt2)
+        if(normals.find(t) == normals.end())
+            normals.insert(std::make_pair(t, t->computeNormal()));
+
+    auto ve = v2->getVE();
+    for(auto e_ : ve)
+        if(e_->getId().compare(this->getId()) != 0)
+            e_->setVertex(this->getV2(), this->getV1());
+    if(e1ot != nullptr)
+        e1ot->setEdge(e1, e2);
+    if(e3ot != nullptr)
+        e3ot->setEdge(e3, e4);
+    e2->setTriangle(lt, e1ot);
+    e4->setTriangle(rt, e3ot);
+    auto v1olde0 = this->getV1()->getE0();
+    auto vlolde0 = vl->getE0();
+    auto vrolde0 = vr->getE0();
+    this->getV1()->setE0(e2);
+    vl->setE0(e2);
+    vr->setE0(e4);
+    //this->getV1()->setPosition(point);
+
+    bool triangleFlipped = false;
+
+    for(auto it = normals.begin(); it != normals.end(); it++)
+    {
+        auto t = it->first;
+        auto newNormal = t->computeNormal() ;
+        if(newNormal * it->second <= 0)
+        {
+            triangleFlipped = true;
+            break;
+        }
+    }
+
+    if(triangleFlipped)
+    {
+        vr->setE0(vrolde0);
+        vl->setE0(vlolde0);
+        this->getV1()->setE0(v1olde0);
+        e4->setTriangle(e3ot, rt);
+        e2->setTriangle(e1ot, lt);
+        if(e3ot != nullptr)
+            e3ot->setEdge(e4, e3);
+        if(e1ot != nullptr)
+            e1ot->setEdge(e2,e1);
+        for(auto e_ : ve)
+            if(e_->getId().compare(this->getId()) != 0)
+            {
+                e_->setVertex(this->getV1(), this->getV2());
+            }
+    } else
+    {
+        this->getV2()->addFlag(FlagType::TO_BE_REMOVED);
+        this->addFlag(FlagType::TO_BE_REMOVED);
+        e1->addFlag(FlagType::TO_BE_REMOVED);
+        e3->addFlag(FlagType::TO_BE_REMOVED);
+        lt->addFlag(FlagType::TO_BE_REMOVED);
+        rt->addFlag(FlagType::TO_BE_REMOVED);
+    }
+
 }
 
 void Edge::print(std::ostream &stream)

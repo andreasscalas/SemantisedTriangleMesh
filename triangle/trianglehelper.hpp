@@ -9,9 +9,10 @@ namespace TriHelper {
     class TriangleHelper
     {
     public:
-        TriangleHelper(std::vector<double*> boundary, std::vector<std::vector<double*> > holes, std::vector<double*> constraints_vertices, std::vector<std::pair<unsigned int, unsigned int> > segments, bool boundQuality = false);
+        TriangleHelper(std::vector<double*> points, std::vector<std::vector<unsigned int> > polylines, std::vector<double*> holes, bool boundQuality = false, bool constrainBorders = true);
 
         ~TriangleHelper();
+        const std::vector<double*> &getPoints() const;
         const std::vector<unsigned int> &getTriangles() const;
 
 
@@ -19,13 +20,12 @@ namespace TriHelper {
 
 
     private:
-        std::vector<double*> boundary;
-        std::vector<std::vector<double*> > holes;
-        std::vector<double*>  constraints_vertices;
-        std::vector<std::pair<unsigned int, unsigned int> > constraints_segments;
+        std::vector<double*> points;
+        std::vector<std::vector<unsigned int> > polylines;
+        std::vector<double*> holes;
         std::vector<double*> addedPoints;
         std::vector<unsigned int> triangles;
-        bool boundQuality;
+        bool boundQuality, constrainBorders;
         const std::string filename = "tmp";
         void launchTriangle();
     };

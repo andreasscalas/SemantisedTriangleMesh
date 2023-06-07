@@ -3,12 +3,14 @@
  * Author: Andrea Repetto
  * All rights reserved
  ********************************************/
-#include "facet.h"
+#include "facet.hpp"
 
 #include <iostream>
 #include <fstream>
 #include <regex>
 #include <string>
+
+using namespace SemantisedTriangleMesh;
 
 FacetReader::FacetReader()
 {
@@ -85,18 +87,6 @@ void FacetReader::readFacet(std::fstream &fs)
     readExact(fs, "");
 
     m_facets.push_back(facet);
-}
-
-std::string trim(const std::string &str)
-{
-    if(str.empty())
-        return str;
-
-    std::size_t firstScan = str.find_first_not_of(' ');
-    std::size_t first     = firstScan == std::string::npos ? str.length() : firstScan;
-    std::size_t last      = str.find_last_not_of(' ');
-    return str.substr(first, last-first+1);
-
 }
 
 std::string FacetReader::readField(std::istream &fs, const std::string &regex, int matchIndex)

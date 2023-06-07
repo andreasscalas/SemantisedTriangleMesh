@@ -1,5 +1,7 @@
-#include <Triangle.h>
+#include "Triangle.hpp"
 #include <algorithm>
+
+using namespace SemantisedTriangleMesh;
 
 Triangle::Triangle()
 {
@@ -76,6 +78,11 @@ bool Triangle::setEdge(std::shared_ptr<Edge> e, std::shared_ptr<Edge> newE)
         e2 = newE;
         return true;
     }
+    if(e3->getId().compare(e->getId()) == 0)
+    {
+        e3 = newE;
+        return true;
+    }
     return false;
 
 }
@@ -94,12 +101,15 @@ std::shared_ptr<Vertex> Triangle::getPreviousVertex(std::shared_ptr<Vertex> v)
 
 std::shared_ptr<Vertex> Triangle::getNextVertex(std::shared_ptr<Vertex> v)
 {
-    if(getV1()->getId().compare( v->getId()) == 0)
-        return getV2();
-    if(getV2()->getId().compare( v->getId()) == 0)
-        return getV3();
-    if(getV3()->getId().compare( v->getId()) == 0)
-        return getV1();
+    auto v1 = getV1();
+    auto v2 = getV2();
+    auto v3 = getV3();
+    if(v1->getId().compare( v->getId()) == 0)
+        return v2;
+    if(v2->getId().compare( v->getId()) == 0)
+        return v3;
+    if(v3->getId().compare( v->getId()) == 0)
+        return v1;
     return nullptr;
 }
 
@@ -319,6 +329,11 @@ void Triangle::orient()
     auto e = this->e2;
     this->e2 = this->e3;
     this->e3 = e;
+}
+
+double Triangle::computeArea()
+{
+    return ((*this->getV2()) - (*this->getV1()) & (*this->getV3()) - (*this->getV1())).norm();
 }
 
 

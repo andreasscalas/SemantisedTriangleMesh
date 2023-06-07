@@ -1,10 +1,14 @@
-#include "geometricattribute.h"
+#include "geometricattribute.hpp"
 #include <algorithm>
 #include <iostream>
 
-GeometricAttribute::GeometricAttribute()
+using namespace SemantisedTriangleMesh;
+
+GeometricAttribute::GeometricAttribute() : Attribute()
 {
+
 }
+
 
 GeometricAttribute::~GeometricAttribute()
 {
@@ -14,6 +18,30 @@ void GeometricAttribute::print(std::ostream &writer)
 {
 
     Attribute::print(writer);
+    switch(type)
+    {
+    case GeometricAttributeType::EUCLIDEAN_MEASURE:
+    {
+        writer << "Attribute type : EUCLIDEAN" << std::endl;
+        break;
+    }
+    case GeometricAttributeType::GEODESIC_MEASURE:
+    {
+        writer << "Attribute type : GEODESIC" << std::endl;
+        break;
+    }
+    case GeometricAttributeType::BOUNDING_MEASURE:
+    {
+        writer << "Attribute type : BOUNDING" << std::endl;
+        break;
+    }
+    default:
+    {
+        writer << "Attribute type : UNKNOWN" << std::endl;
+        break;
+    }
+    }
+
     writer << "measure : " << *static_cast<double*>(value) << std::endl;
 
     writer << "measure points: [" << std::endl;
@@ -61,4 +89,14 @@ void GeometricAttribute::removeMeasurePointID(const unsigned int value)
 void GeometricAttribute::clearMeasurePointsID()
 {
     measurePointsID.clear();
+}
+
+GeometricAttributeType GeometricAttribute::getType() const
+{
+    return type;
+}
+
+void GeometricAttribute::setType(GeometricAttributeType newType)
+{
+    type = newType;
 }

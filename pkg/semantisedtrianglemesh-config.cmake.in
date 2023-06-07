@@ -3,9 +3,9 @@ get_filename_component(_dir "${CMAKE_CURRENT_LIST_FILE}" PATH)
 get_filename_component(_prefix "${_dir}/../.." ABSOLUTE)
 
 # Import the targets.
-include("${_prefix}/lib/TriangleMesh-@version@/TriangleMesh-targets.cmake")
+include("${_prefix}/lib/SemantisedTriangleMesh-@version@/SemantisedTriangleMesh-targets.cmake")
 
 # Report other information.
-set(TriangleMesh_INCLUDE_DIRS "${_prefix}/include/TriangleMesh-@version@")
+set(SemantisedTriangleMesh_INCLUDE_DIRS "${_prefix}/include/SemantisedTriangleMesh-@version@")
 
-file(GLOB TriangleMesh_LIBRARIES "${_prefix}/lib/TriangleMesh-@version@/lib*")
+file(GLOB SemantisedTriangleMesh_LIBRARIES "${_prefix}/lib/SemantisedTriangleMesh-@version@/lib*")

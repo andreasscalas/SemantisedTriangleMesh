@@ -1,4 +1,6 @@
-#include <annotation.h>
+#include "annotation.hpp"
+
+using namespace SemantisedTriangleMesh;
 
 void Annotation::print(std::ostream &os)
 {
@@ -18,7 +20,7 @@ void Annotation::print(std::ostream &os)
 void Annotation::printJson(rapidjson::PrettyWriter<rapidjson::StringBuffer> &writer)
 {
     writer.Key("id");
-    writer.Uint(id);
+    writer.Uint(std::stoi(id));
     writer.Key("tag");
     writer.String(tag.c_str());
 

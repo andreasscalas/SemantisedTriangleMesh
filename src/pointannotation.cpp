@@ -1,5 +1,7 @@
-#include "pointannotation.h"
+#include "pointannotation.hpp"
 #include <eigen3/Eigen/Dense>
+
+using namespace SemantisedTriangleMesh;
 
 PointAnnotation::PointAnnotation()
 {

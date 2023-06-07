@@ -1,9 +1,10 @@
-#include "surfaceannotation.h"
+#include "surfaceannotation.hpp"
 #include <rapidjson/writer.h>
 #include <eigen3/Eigen/Dense>
 #include <queue>
 
 using namespace std;
+using namespace SemantisedTriangleMesh;
 
 SurfaceAnnotation::SurfaceAnnotation()
 {
@@ -68,11 +69,10 @@ void SurfaceAnnotation::printJson(rapidjson::PrettyWriter<rapidjson::StringBuffe
 
 bool SurfaceAnnotation::isPointInAnnotation(std::shared_ptr<Vertex>p)
 {
-    vector<std::shared_ptr<Vertex>> involved = getInvolvedVertices();
-    return isPointOnBorder(p) || isPointInsideAnnotation(p);
+    return isPointInsideAnnotation(p) || isPointOnBorder(p);
 }
 
-bool SurfaceAnnotation::isPointInsideAnnotation(std::shared_ptr<Vertex>p)
+bool SurfaceAnnotation::isPointInsideAnnotation(std::shared_ptr<Vertex> p)
 {
     vector<std::shared_ptr<Vertex>> involved = getInnerVertices();
     for(unsigned int i = 0; i < involved.size(); i++){
@@ -152,6 +152,130 @@ bool SurfaceAnnotation::checkAdjacency(SurfaceAnnotation *a)
     return false;
 }
 
+//Annotation *SurfaceAnnotation::transfer(TriangleMesh *otherMesh, short metric)
+//{
+//    SurfaceAnnotation* otherAnnotation = new SurfaceAnnotation(); //The transferred annotation
+//    std::shared_ptr<Vertex> v, initialVertex;                      //Some support variable
+
+//    sphereRay = otherMesh->getAABBDiagonalLength() / BBOX_SPHERE_RATIO;
+//    for(uint i = 0; i < this->getMesh()->getVerticesNumber(); i++)
+//        this->mesh->getVertex(i)->setInfo(nullptr);
+
+
+//    for(vector<vector<std::shared_ptr<Vertex> > >::iterator oit = outlines.begin(); oit != outlines.end(); oit++){
+
+//        std::vector<std::shared_ptr<Vertex> > otherOutline;              //The outline of the transferred annotation
+
+//        if(oit->size() != 0)
+//        {
+//            bool alreadyUsed = true;
+//            vector<std::shared_ptr<Vertex> > outline = static_cast<vector<std::shared_ptr<Vertex> > >(*oit);
+//            std::vector<std::shared_ptr<Vertex> >::iterator vit = outline.begin();
+//            std::shared_ptr<Vertex>  v1, *v2;
+
+//            outline.pop_back();
+
+//            do{
+//                v = static_cast<std::shared_ptr<Vertex> >(*vit);
+//                auto neighbors = otherMesh->getNearestNeighbours(*v, sphereRay);
+//                vector<Triangle*> toCheckTriangles;
+//                Utilities::findFaces(toCheckTriangles, neighbors);
+//                v1 = Utilities::findCorrespondingVertex(v, toCheckTriangles);
+//                if(v1 == nullptr)
+//                    sphereRay *= 2;
+//            }while(v1 == nullptr);
+//            sphereRay = otherMesh->bboxLongestDiagonal() / BBOX_SPHERE_RATIO;
+//            initialVertex = v1;
+//            //v1->info = &alreadyUsed;
+
+//            for(; vit != outline.end(); vit++){
+//                do{
+//                    v = static_cast<Vertex*>(*vit);
+//                    vector<Vertex*> neighbors = otherMesh->getNeighboursInSphere(*v, sphereRay);
+//                    vector<Triangle*> toCheckTriangles;
+//                    Utilities::findFaces(toCheckTriangles, neighbors);
+//                    v2 = Utilities::findCorrespondingVertex(v, toCheckTriangles);
+//                    if(v2 == nullptr)
+//                        sphereRay *= 2;
+//                    if(sphereRay > otherMesh->bboxLongestDiagonal())
+//                    {
+//                        std::cerr << "Isolated vertex" << std::endl;
+//                        std::cerr << "(" << v1->x << "," << v1->y << "," << v1->z << ")" << std::endl;
+//                        exit(9);
+//                    }
+
+//                }while(v2 == nullptr);
+
+//                sphereRay = otherMesh->bboxLongestDiagonal() / BBOX_SPHERE_RATIO;
+//                if(v2->info == nullptr || !(*static_cast<bool*>(v2->info))){
+//                    vector<Vertex*> path = Utilities::dijkstra(v1, v2, metric, !POST_PROCESSING);
+//                    for (vector<Vertex*>::iterator pit = path.begin(); pit != path.end(); pit++)
+//                        (*pit)->info = &alreadyUsed;
+
+//                    otherOutline.insert(otherOutline.end(), path.begin(), path.end());
+//                    v1 = v2;
+//                }
+//            }
+
+//            v2 = initialVertex;
+//            initialVertex->info = nullptr;
+//            vector<Vertex*> path = Utilities::dijkstra(v1, v2, metric, false);
+//            otherOutline.insert(otherOutline.end(), path.begin(), path.end());
+
+//            for(unsigned int i = 0; i < otherOutline.size(); i++)
+//                otherOutline[i]->info = nullptr;
+
+
+//            while((otherOutline[0] == otherOutline[otherOutline.size() - 1]) && (otherOutline[1] == otherOutline[otherOutline.size() - 2])){
+//                otherOutline.erase(otherOutline.begin());
+//                otherOutline.erase(otherOutline.begin() + static_cast<long>(otherOutline.size()) - 1);
+//            }
+
+
+//            if(POST_PROCESSING){
+//                v = otherOutline[0];
+//                otherOutline.erase(otherOutline.begin());
+//                std::vector<Vertex*> crossedVertices;
+
+//                for(vector<Vertex*>::iterator vit1 = otherOutline.begin(); vit1 != otherOutline.end(); vit1++){
+//                    v1 = static_cast<Vertex*>(*vit1);
+//                    if(std::find(crossedVertices.begin(), crossedVertices.end(), v1) == crossedVertices.end())
+//                        crossedVertices.push_back(v1);
+//                    else
+//                        for(vector<Vertex*>::iterator vit2 = vit1 - 1; vit2 != otherOutline.begin(); vit2--){
+//                            v2 = static_cast<Vertex*>(*vit2);
+
+//                            if(v2 == v1){
+//                                otherOutline.erase(vit2, vit1);
+//                                vit1 = vit2;
+//                                break;
+//                            }
+//                        }
+//                }
+
+//                otherOutline.insert(otherOutline.begin(), v);
+//            }
+
+//            outline.push_back(*outline.begin());
+//            otherOutline.push_back(*otherOutline.begin());
+//        }
+
+//        otherAnnotation->addOutline(otherOutline);  //The new annotation outline is computed
+//    }
+
+//    //The Outline and inner vertex have been found, the tag and color are the same, so the process ends.
+//    otherAnnotation->setId(this->id);
+//    otherAnnotation->setMesh(otherMesh);
+//    otherAnnotation->setTag(this->tag);
+//    otherAnnotation->setColor(this->color);
+//    otherAnnotation->setAttributes(this->attributes);
+//    otherAnnotation->setHierarchyLevel(this->hierarchyLevel);
+//    for(Node* n = otherMesh->V.head(); n != nullptr; n=n->next())
+//        static_cast<Vertex*>(n->data)->info = nullptr;
+
+//    return otherAnnotation;
+//}
+
 vector<vector<std::shared_ptr<Vertex>> > SurfaceAnnotation::getOutlines() const{
     return outlines;
 }
@@ -176,6 +300,25 @@ vector<std::shared_ptr<Triangle>> SurfaceAnnotation::getTriangles(){
         annotationTriangles = regionGrowing(outlines);
 
     return annotationTriangles;
+}
+
+std::vector<std::string> SurfaceAnnotation::getTrianglesIds()
+{
+
+    vector<std::string> annotationTrianglesIds;
+    if(outlines.size() == 0){
+        for(unsigned int i = 0; i < mesh->getTrianglesNumber(); i++){
+            std::shared_ptr<Triangle> t = mesh->getTriangle(i);
+            annotationTrianglesIds.push_back(t->getId());
+        }
+    } else
+    {
+        auto annotationTriangles = regionGrowing(outlines);
+        for(auto t : annotationTriangles)
+            annotationTrianglesIds.push_back(t->getId());
+    }
+
+    return annotationTrianglesIds;
 }
 
 Point *SurfaceAnnotation::getCenter()
@@ -496,3 +639,5 @@ std::vector<std::shared_ptr<Vertex>> SurfaceAnnotation::getInnerVertices()
     return vertices;
 
 }
+
+

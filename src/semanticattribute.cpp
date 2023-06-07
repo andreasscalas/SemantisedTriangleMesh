@@ -1,5 +1,7 @@
-#include "semanticattribute.h"
+#include "semanticattribute.hpp"
 #include <iostream>
+
+using namespace SemantisedTriangleMesh;
 
 SemanticAttribute::SemanticAttribute(){
 

@@ -1,7 +1,8 @@
-#include "lineannotation.h"
+#include "lineannotation.hpp"
 #include <eigen3/Eigen/Dense>
 
 using namespace std;
+using namespace SemantisedTriangleMesh;
 
 LineAnnotation::LineAnnotation()
 {

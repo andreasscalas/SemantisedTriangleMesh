@@ -1,4 +1,4 @@
-#include "trianglehelper.h"
+#include "trianglehelper.hpp"
 
 #ifndef ANSI_DECLARATORS
 #define ANSI_DECLARATORS
@@ -12,39 +12,39 @@
 #ifndef VOID
 #define VOID void
 #endif
-#include "shewchuk_triangle.h"
+#include "shewchuk_triangle.hpp"
 
 #include <map>
 using namespace std;
 using namespace TriHelper;
+#include <algorithm>
 #include <fstream>
+#include <sstream>
 #include <iostream>
+#include <memory>
+#include <string>
+#include <array>
 
-TriangleHelper::TriangleHelper(std::vector<double*> boundary, std::vector<std::vector<double*> > holes, std::vector<double *> constraints_vertices, std::vector<std::pair<unsigned int, unsigned int> > constraints_segments, bool boundQuality){
+TriangleHelper::TriangleHelper(std::vector<double *> points, std::vector<std::vector<unsigned int> > polylines, std::vector<double *> holes, bool boundQuality, bool constrainBorders){
 
-    this->boundary.insert(this->boundary.end(), boundary.begin(), boundary.end());
+    this->points.insert(this->points.end(), points.begin(), points.end());
+    this->polylines.insert(this->polylines.end(), polylines.begin(), polylines.end());
     this->holes.insert(this->holes.end(), holes.begin(), holes.end());
-    this->constraints_vertices.insert(this->constraints_vertices.end(), constraints_vertices.begin(), constraints_vertices.end());
-    this->constraints_segments.insert(this->constraints_segments.end(), constraints_segments.begin(), constraints_segments.end());
     this->boundQuality = boundQuality;
+    this->constrainBorders = constrainBorders;
     launchTriangle();
 }
 
 TriangleHelper::~TriangleHelper()
 {
-    for(unsigned int i = 0; i < boundary.size(); i++)
-        if(boundary[i] != nullptr)
-            delete boundary[i];
-    for(unsigned int i = 0; i < holes.size(); i++)
-        for(unsigned int j = 0; j < holes[i].size(); j++)
-            if(holes[i][j] != nullptr)
-                delete holes[i][j];
-    for(unsigned int i = 0; i < constraints_vertices.size(); i++)
-        if(constraints_vertices[i] != nullptr)
-            delete constraints_vertices[i];
-    for(unsigned int i = 0; i < addedPoints.size(); i++)
-        if(addedPoints[i] != nullptr)
-            delete addedPoints[i];
+    for(unsigned int i = 0; i < points.size(); i++)
+        if(points[i] != nullptr)
+            delete points[i];
+}
+
+const std::vector<double*> &TriangleHelper::getPoints() const
+{
+    return points;
 }
 
 const std::vector<unsigned int> &TriangleHelper::getTriangles() const
@@ -57,225 +57,234 @@ const std::vector<double *> &TriangleHelper::getAddedPoints() const
     return addedPoints;
 }
 
+
+std::string exec(const char* cmd) {
+    std::array<char, 128> buffer;
+    std::string result;
+    std::unique_ptr<FILE, decltype(&pclose)> pipe(popen(cmd, "r"), pclose);
+    if (!pipe) {
+        throw std::runtime_error("popen() failed!");
+    }
+    while (fgets(buffer.data(), buffer.size(), pipe.get()) != nullptr) {
+        result += buffer.data();
+    }
+    return result;
+}
+
 void TriangleHelper::launchTriangle(){
 
-//    std::ofstream outStream("polyin.poly");
-//    if(outStream.is_open())
+    std::ofstream outStream("polyin.poly");
+    unsigned int vertices_number = 0;
+    if(outStream.is_open())
+    {
+        outStream.precision(15);
+        unsigned int segments_number = 0;
+        unsigned int vert_id = 0;
+        unsigned int seg_id = 0;
+        vertices_number = points.size();
+
+        outStream << vertices_number << " 2 1 1" << std::endl;
+        for(unsigned int i = 0; i < points.size(); i++)
+            outStream << vert_id++ << " " << points[i][0] << " " << points[i][1] << " " << points[i][2] << " 1" << std::endl;
+        for(unsigned int i = 0; i < polylines.size(); i++)
+            for(unsigned int j = 1; j < polylines.at(i).size(); j++)
+                segments_number++;
+        outStream << segments_number << " 1" << std::endl;
+        for(unsigned int i = 0; i < polylines.size(); i++)
+            for(unsigned int j = 1; j < polylines.at(i).size(); j++)
+                outStream << seg_id++ << " " << polylines.at(i).at(j - 1) << " " << polylines.at(i).at(j)<< " 1" << std::endl;
+
+        outStream << holes.size() << std::endl;
+        for(unsigned int hid = 0; hid < holes.size(); ++hid)
+            outStream << hid << " " << holes.at(hid)[0] << " " << holes.at(hid)[1] << std::endl;
+
+        outStream.close();
+
+    }
+
+
+    std::string command = "/home/andreas/Documenti/Progetti/triangle/triangle ";
+    std::string flags = "-pzBQ";
+    if(boundQuality)
+        flags.append("q");
+    if(constrainBorders)
+        flags.append("Y");
+    command.append(flags);
+    command.append(" ./polyin.poly");
+    exec(command.c_str());
+
+    std::ifstream nodes_file("polyin.1.node");
+
+    std::string line;
+    unsigned int out_nodes_number;
+    std::getline(nodes_file, line);
+    std::stringstream ss;
+    ss.str(line);
+    ss >> out_nodes_number;
+    ss.clear();
+
+    points.clear();
+    while(std::getline(nodes_file, line))
+    {
+        if(line[0] == '#')
+            continue;
+        unsigned int point_id;
+        size_t start = line.find_first_not_of(' ');
+        if(start != std::string::npos) line = line.substr(start);
+        std::string::iterator new_end = std::unique(line.begin(), line.end(), [](char l, char r){ return l == r && l == ' ';});
+        line.erase(new_end, line.end());
+        std::stringstream ss;
+        ss.str(line);
+        ss >> point_id;
+        points.push_back(new double(3));
+        ss >> points.back()[0];
+        ss >> points.back()[1];
+        ss >> points.back()[2];
+        if(points.size() > vertices_number)
+            addedPoints.push_back(points.back());
+    }
+
+//    if(out_nodes_number > points.size())
 //    {
-//        outStream.precision(15);
-//        unsigned int vertices_number = 0;
-//        unsigned int segments_number = 0;
-//        unsigned int vert_id = 1;
-//        unsigned int seg_id = 1;
-//        for(unsigned int i = 0; i < boundary.size(); i++)
+//        for(unsigned int i = 0; i < points.size() && std::getline(nodes_file, line); i++); //Just ignoring already known nodes
+//        while(std::getline(nodes_file, line))
 //        {
-//            vertices_number++;
-//            segments_number++;
+//            if(line[0] == '#')
+//                continue;
+//            long point_id;
+//            size_t start = line.find_first_not_of(' ');
+//            if(start != std::string::npos) line = line.substr(start);
+//            std::string::iterator new_end = std::unique(line.begin(), line.end(), [](char l, char r){ return l == r && l == ' ';});
+//            line.erase(new_end, line.end());
+//            std::stringstream ss;
+//            ss.str(line);
+//            ss >> point_id;
+//            addedPoints.push_back(new double(2));
+//            ss >> addedPoints.back()[0];
+//            ss >> addedPoints.back()[1];
 //        }
-//        for(unsigned int i = 0; i < holes.size(); i++)
-//            for(unsigned int j = 0; j < holes[i].size(); j++)
-//            {
-//                vertices_number++;
-//                segments_number++;
-//            }
-//        vertices_number += constraints_vertices.size();
-//        segments_number += constraints_segments.size();
-
-//        outStream << vertices_number << " 2 1 0" << std::endl;
-//        for(unsigned int i = 0; i < boundary.size(); i++)
-//            outStream << vert_id++ << " " << boundary[i][0] << " " << boundary[i][1] << std::endl;
-//        for(unsigned int i = 0; i < holes.size(); i++)
-//            for(unsigned int j = 0; j < holes[i].size(); j++)
-//                outStream << vert_id++  << " " << holes[i][j][0] << " " << holes[i][j][1] << std::endl;
-//        for(unsigned int i = 0; i < constraints_vertices.size(); i++)
-//                outStream << vert_id++ << " "  << constraints_vertices[i][0] << " " << constraints_vertices[i][1] << std::endl;
-
-//        outStream << segments_number << " 1" << std::endl;
-//        unsigned int reached_id = 1;
-//        for(unsigned int i = 2; i < boundary.size() + 1; i++)
-//            outStream <<  seg_id++ << " " << i - 1 << " " << i << " 1" << std::endl;
-//        outStream <<  seg_id++ << " " << boundary.size() << " 1 1" << std::endl;
-//        reached_id = boundary.size() + 1;
-//        for(unsigned int i = 0; i < holes.size(); i++)
-//        {
-//            for(unsigned int j = 1; j < holes[i].size(); j++)
-//                outStream <<  seg_id++ << " " << reached_id + j - 1 << " " << reached_id + j << " 1" << std::endl;
-//            outStream <<  seg_id++ << " " << reached_id + holes[i].size() - 1 << " " << reached_id << " 1" << std::endl;
-//            reached_id += holes[i].size();
-
-//        }
-//        for(unsigned int i = 0; i < constraints_segments.size(); i++)
-//        {
-//            outStream <<  seg_id++ << " " << constraints_segments[i].first + 1 << " " << constraints_segments[i].second + 1 << " 0" << std::endl;
-//        }
-
-//        outStream << holes.size() << std::endl;
-//        for(unsigned int hid = 0; hid < holes.size(); ++hid){
-
-//            vector<double*> outline = holes[hid];
-
-//            double v[2] = {(outline[1][0] - outline[0][0]) * 1E-2, (outline[1][1] - outline[0][1]) * 1E-2};
-//            double vec[2] = {-v[1], v[0]};
-//            double middle[2] = {(outline[1][0] + outline[0][0]) / 2, (outline[1][1] + outline[0][1]) / 2};
-//            double innerpoint[2] = {vec[0] + middle[0], vec[1] + middle[1]};
-//            double turningSign =    (outline[1][1] - outline[0][1]) * (innerpoint[0] - outline[0][0]) -
-//                                    (outline[1][0] - outline[0][0]) * (innerpoint[1] - outline[0][1]);
-//            if(turningSign < 0){
-//                innerpoint[0] = -vec[0] + middle[0];
-//                innerpoint[1] = -vec[1] + middle[1];
-//            }
-
-//            outStream << hid + 1 << " " << innerpoint[0] << " " << innerpoint[1] << std::endl;
-//        }
-
-//        outStream.close();
-
 //    }
 
-//    return;
-    triangulateio in, out;
-
-    vector<pair<unsigned int, unsigned int> > segments;
-    vector<bool> onBoundary;
-
-    int numberOfPoints = static_cast<int>(boundary.size());
-
-    numberOfPoints += constraints_vertices.size();
-
-    for(unsigned int i = 0; i < holes.size(); i++)
-        numberOfPoints += holes[i].size();
-
-    in.numberofpoints = numberOfPoints;
-    in.pointlist      = static_cast<double*>(calloc(static_cast<size_t>(2 * in.numberofpoints), sizeof(double)));
-    in.numberofpointattributes = 0;
-    in.pointmarkerlist  = static_cast<int*>(calloc(static_cast<size_t>(in.numberofpoints), sizeof(int)));
-    for(int vid = 0; vid < in.numberofpoints; vid++)
-       in.pointmarkerlist[vid] = 1;
-
-    unsigned int reachedID;
-    for(unsigned int vid = 0; vid < static_cast<unsigned int>(boundary.size()); vid++){
-
-        in.pointlist[vid * 2  ]     = boundary[vid][0];
-        in.pointlist[vid * 2 + 1]   = boundary[vid][1];
-        if(vid > 0)
+    nodes_file.close();
+    //exec("rm -r ./polyin.1.node");
+    std::ifstream triangulation_file("polyin.1.ele");
+    if(triangulation_file.is_open())
+    {
+        std::getline(triangulation_file, line);
+        ss.str(line);
+        unsigned int out_triangles_number, triangle_id = 0;
+        ss >> out_triangles_number;
+        while(std::getline(triangulation_file, line) && triangle_id < out_triangles_number)
         {
-            segments.push_back(make_pair(vid - 1, vid));
-            onBoundary.push_back(true);
+            if(line[0] == '#')
+                continue;
+            size_t start = line.find_first_not_of(' ');
+            if(start != std::string::npos) line = line.substr(start);
+            std::string::iterator new_end = std::unique(line.begin(), line.end(), [](char l, char r){ return l == r && l == ' ';});
+            line.erase(new_end, line.end());
+            std::stringstream ss;
+            ss.str(line);
+            ss >> triangle_id;
+            long v1, v2, v3;
+            ss >> v1;
+            ss >> v2;
+            ss >> v3;
+            triangles.push_back(v1);
+            triangles.push_back(v2);
+            triangles.push_back(v3);
+            ss.clear();
         }
-        reachedID = vid;
     }
+    triangulation_file.close();
+    //exec("rm -r ./polyin.1.ele");
+    //exec("rm -r ./polyin.1.poly");
 
-    segments.push_back(make_pair(reachedID, 0));
-    onBoundary.push_back(true);
-    reachedID++;
+    return;
+//    triangulateio in, out;
 
-    for(vector<vector<double*> >::iterator bit = holes.begin(); bit != holes.end(); bit++){
-        unsigned int vid = reachedID;
-        vector<double*> outline = (*bit);
-        for(vector<double*>::iterator vit = outline.begin(); vit != outline.end(); vit++){
-            in.pointlist[vid * 2  ]     = (*vit)[0];
-            in.pointlist[vid * 2 + 1]   = (*vit)[1];
-            if(vid > reachedID)
-            {
-                segments.push_back(make_pair(vid - 1, vid));
-                onBoundary.push_back(true);
-            }
+//    vector<pair<unsigned int, unsigned int> > segments;
+//    vector<bool> onBoundary;
 
-            vid++;
-        }
-        segments.push_back(make_pair(vid - 1, reachedID));
-        onBoundary.push_back(true);
-        reachedID = vid;
-    }
+//    in.numberofpoints = static_cast<int>(points.size());
+//    in.pointlist      = static_cast<double*>(calloc(static_cast<size_t>(2 * in.numberofpoints), sizeof(double)));
+//    in.numberofpointattributes = 0;
+//    in.pointmarkerlist  = static_cast<int*>(calloc(static_cast<size_t>(in.numberofpoints), sizeof(int)));
+//    for(int vid = 0; vid < in.numberofpoints; vid++)
+//       in.pointmarkerlist[vid] = 1;
 
+//    for(unsigned int i = 0; i < static_cast<unsigned int>(points.size()); i++)
+//    {
+//        in.pointlist[i * 2  ]     = points.at(i)[0];
+//        in.pointlist[i * 2 + 1]   = points.at(i)[1];
+//    }
+//    for(unsigned int i = 0; i < static_cast<unsigned int>(polylines.size()); i++)
+//        for(unsigned int j = 1; j < polylines.at(i).size(); j++)
+//        {
+//            segments.push_back(make_pair(polylines.at(i).at(j - 1), polylines.at(i).at(j)));
+//            onBoundary.push_back(true);
 
-    in.numberofsegments = static_cast<int>(segments.size() + constraints_segments.size());
-    in.segmentlist      = static_cast<int*>(calloc(static_cast<size_t>(2 * in.numberofsegments), sizeof(int)));
+//        }
 
-    for(unsigned int i = 0; i < segments.size(); i ++)
-    {
-        in.segmentlist[i * 2] = static_cast<int>(segments[i].first);
-        in.segmentlist[i * 2 + 1] = static_cast<int>(segments[i].second);
-        onBoundary.push_back(true);
-    }
+//    in.numberofsegments = static_cast<int>(segments.size());
+//    in.segmentlist      = static_cast<int*>(calloc(static_cast<size_t>(2 * in.numberofsegments), sizeof(int)));
 
-    for(vector<double*> ::iterator cit = constraints_vertices.begin(); cit != constraints_vertices.end(); cit++){
-        in.pointlist[reachedID * 2  ]     = (*cit)[0];
-        in.pointlist[reachedID * 2 + 1]   = (*cit)[1];
-        reachedID++;
-    }
-    for(unsigned int i = 0; i < constraints_segments.size(); i++)
-    {
-        in.segmentlist[(segments.size() + i) * 2] = static_cast<int>(constraints_segments[i].first);
-        in.segmentlist[(segments.size() + i) * 2 + 1] = static_cast<int>(constraints_segments[i].second);
-        onBoundary.push_back(false);
-    }
+//    for(unsigned int i = 0; i < segments.size(); i++)
+//    {
+//        in.segmentlist[i * 2] = static_cast<int>(segments[i].first);
+//        in.segmentlist[i * 2 + 1] = static_cast<int>(segments[i].second);
+//        onBoundary.push_back(true);
+//    }
 
-    in.segmentmarkerlist = static_cast<int*>(calloc(static_cast<size_t>(onBoundary.size()), sizeof(int)));
-    for(unsigned int i = 0; i < onBoundary.size(); i++)
-        in.segmentmarkerlist[i] = onBoundary[i];
+//    in.segmentmarkerlist = nullptr;/*static_cast<int*>(calloc(static_cast<size_t>(onBoundary.size()), sizeof(int)));
+//    for(unsigned int i = 0; i < onBoundary.size(); i++)
+//        in.segmentmarkerlist[i] = onBoundary[i];*/
 
-    in.numberofholes = static_cast<int>(holes.size());
-    in.holelist      = static_cast<double*>(calloc(static_cast<size_t>(2 * in.numberofholes), sizeof(double)));
+//    in.numberofholes = static_cast<int>(holes.size());
+//    in.holelist      = static_cast<double*>(calloc(static_cast<size_t>(2 * in.numberofholes), sizeof(double)));
 
-    for(unsigned int hid = 0; hid < static_cast<unsigned int>(in.numberofholes); ++hid){
+//    for(unsigned int i = 0; i < static_cast<unsigned int>(in.numberofholes); ++i)
+//    {
 
-        vector<double*> outline = holes[hid];
+//        in.holelist[i * 2  ]      = holes.at(i)[0];
+//        in.holelist[i * 2 + 1]    = holes.at(i)[1];
+//    }
 
-        double v[2] = {(outline[1][0] - outline[0][0]) * 1E-2, (outline[1][1] - outline[0][1]) * 1E-2};
-        double vec[2] = {-v[1], v[0]};
-        double middle[2] = {(outline[1][0] + outline[0][0]) / 2, (outline[1][1] + outline[0][1]) / 2};
-        double innerpoint[2] = {vec[0] + middle[0], vec[1] + middle[1]};
-        double turningSign =    (outline[1][1] - outline[0][1]) * (innerpoint[0] - outline[0][0]) -
-                                (outline[1][0] - outline[0][0]) * (innerpoint[1] - outline[0][1]);
-        if(turningSign < 0){
-            innerpoint[0] = -vec[0] + middle[0];
-            innerpoint[1] = -vec[1] + middle[1];
-        }
+//    in.numberoftriangles          = 0;
+//    in.numberofcorners            = 0;
+//    in.numberoftriangleattributes = 0;
+//    in.trianglelist               = nullptr;
+//    in.triangleattributelist      = nullptr;
+//    in.numberofregions = 0;
 
-        in.holelist[hid * 2  ]      = innerpoint[0];
-        in.holelist[hid * 2 + 1]    = innerpoint[1];
-    }
+//    out.pointlist      = nullptr;
+//    out.trianglelist   = nullptr;
+//    out.segmentlist    = nullptr;
 
-    in.numberoftriangles          = 0;
-    in.numberofcorners            = 0;
-    in.numberoftriangleattributes = 0;
-    in.trianglelist               = nullptr;
-    in.triangleattributelist      = nullptr;
-    in.numberofregions = 0;
+//    std::string s = "pzB";
+//    if(boundQuality)
+//        s = "pzqBQ";
 
-    out.pointlist      = nullptr;
-    out.trianglelist   = nullptr;
-    out.segmentlist    = nullptr;
+//    triangulate(const_cast<char*>(s.c_str()), &in, &out, nullptr);
 
-    std::string s = "pzBQ";
-    if(boundQuality)
-        s = "pzqBQ";
+//    for(int tid = 0; tid < out.numberoftriangles; tid++){
+//        triangles.push_back(static_cast<unsigned int >(out.trianglelist[tid * 3]));
+//        triangles.push_back(static_cast<unsigned int >(out.trianglelist[tid * 3 + 1]));
+//        triangles.push_back(static_cast<unsigned int >(out.trianglelist[tid * 3 + 2]));
+//    }
 
-
-    triangulate(const_cast<char*>(s.c_str()), &in, &out, nullptr);
-
-
-
-    for(int tid = 0; tid < out.numberoftriangles; tid++){
-        triangles.push_back(out.trianglelist[tid * 3]);
-        triangles.push_back(out.trianglelist[tid * 3 + 1]);
-        triangles.push_back(out.trianglelist[tid * 3 + 2]);
-    }
-
-    if(out.numberofpoints > in.numberofpoints)
-        for(int vid = 0; vid < out.numberofpoints - in.numberofpoints; vid++){
-            addedPoints.push_back(new double(2));
-            addedPoints.at(vid)[0] = out.pointlist[(in.numberofpoints + vid) * 2];
-            addedPoints.at(vid)[1] = out.pointlist[(in.numberofpoints + vid) * 2 + 1];
-        }
-    free(in.pointlist);
-    free(in.pointmarkerlist);
-    free(in.segmentlist);
-    free(in.holelist);
-    free(out.pointlist);
-    free(out.trianglelist);
-    free(out.segmentlist);
+//    if(out.numberofpoints > in.numberofpoints)
+//        for(int vid = 0; vid < out.numberofpoints - in.numberofpoints; vid++){
+//            addedPoints.push_back(new double(2));
+//            addedPoints.at(static_cast<unsigned int >(vid))[0] = out.pointlist[(in.numberofpoints + vid) * 2];
+//            addedPoints.at(static_cast<unsigned int >(vid))[1] = out.pointlist[(in.numberofpoints + vid) * 2 + 1];
+//        }
+//    free(in.pointlist);
+//    free(in.pointmarkerlist);
+//    free(in.segmentlist);
+//    free(in.holelist);
+//    free(out.pointlist);
+//    free(out.trianglelist);
+//    free(out.segmentlist);
 
 }
 

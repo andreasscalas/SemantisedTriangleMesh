@@ -1,17 +1,23 @@
-#include "TriangleMesh.h"
+#include "TriangleMesh.hpp"
+#include "surfaceannotation.hpp"
+#include "pointannotation.hpp"
+#include "lineannotation.hpp"
+#include "trianglehelper.hpp"
 #include <fstream>
 #include <sstream>
 #include <map>
-#include <trianglehelper1.h>
 #include <exception>
-#include <surfaceannotation.h>
-#include <pointannotation.h>
-#include <lineannotation.h>
 #include <queue>
+#include <set>
+
+
+using namespace SemantisedTriangleMesh;
 
 TriangleMesh::TriangleMesh()
 {
-
+    relationshipsGraph = std::make_shared<GraphTemplate::Graph<std::shared_ptr<Annotation> > >();
+    minEdgeLength = std::numeric_limits<double>::max();
+    maxEdgeLength = -std::numeric_limits<double>::max();
 }
 
 TriangleMesh::TriangleMesh(const std::shared_ptr<TriangleMesh> other)
@@ -42,8 +48,11 @@ TriangleMesh::TriangleMesh(const std::shared_ptr<TriangleMesh> other)
     for(uint i = 0; i < other->getVerticesNumber(); i++)
     {
         auto v = other->getVertex(i);
-        auto newV = this->getVertex(i);
-        newV->setE0(this->getEdge(v->getE0()->getId()));
+        if(v->getE0() != nullptr)
+        {
+            auto newV = this->getVertex(i);
+            newV->setE0(this->getEdge(v->getE0()->getId()));
+        }
     }
 
     for(uint i = 0; i < other->getTrianglesNumber(); i++)
@@ -102,6 +111,8 @@ TriangleMesh::TriangleMesh(const std::shared_ptr<TriangleMesh> other)
         }
 
     }
+    minEdgeLength = other->getMinEdgeLength();
+    maxEdgeLength = other->getMaxEdgeLength();
 
 }
 
@@ -155,7 +166,13 @@ std::shared_ptr<Vertex> TriangleMesh::addNewVertex(Point p)
 
 std::shared_ptr<Vertex> TriangleMesh::addNewVertex(std::shared_ptr<Vertex> v)
 {
-    auto it = std::find_if(vertices.begin(), vertices.end(), [v](std::shared_ptr<Vertex> v1){ auto p1 = *v; auto p2 = *v1; p1.setZ(0); p2.setZ(0); return p1 == p2;});
+    auto it = std::find_if(vertices.begin(), vertices.end(), [v](std::shared_ptr<Vertex> v1){
+            auto p1 = *v;
+            auto p2 = *v1;
+            p1.setZ(0);
+            p2.setZ(0);
+            return p1 == p2;
+    });
     if(it != vertices.end()) //La gestione delle strade che intersecano boundary interni dati da unione di edifici è lasciata da parte
     {
         return *it;
@@ -174,6 +191,38 @@ std::shared_ptr<Vertex> TriangleMesh::getVertex(unsigned int pos)
 std::shared_ptr<Vertex> TriangleMesh::getVertex(std::string id)
 {
     return getVertex(stoi(id));
+}
+
+void TriangleMesh::removeFlaggedVertices()
+{
+    std::vector<std::shared_ptr<Vertex> > newVertices;
+    for(auto it = vertices.begin(); it != vertices.end(); it++)
+        if((*it)->searchFlag(FlagType::TO_BE_REMOVED) < 0)
+        {
+            newVertices.push_back((*it));
+        }
+    vertices.clear();
+    vertices = newVertices;
+}
+
+bool TriangleMesh::removeVertex(uint pos)
+{
+    if(pos >= vertices.size())
+        return false;
+
+    vertices.erase(vertices.begin() + pos);
+    return true;
+}
+
+bool TriangleMesh::removeVertex(std::string vid)
+{
+    for(auto vit = vertices.begin(); vit != vertices.end(); vit++)
+        if((*vit)->getId().compare(vid) == 0)
+        {
+            vit = vertices.erase(vit);
+            return true;
+        }
+    return true;
 }
 
 std::shared_ptr<Edge> TriangleMesh::getEdge(unsigned int pos)
@@ -200,6 +249,28 @@ std::shared_ptr<Triangle> TriangleMesh::getTriangle(std::string id)
     return getTriangle(stoi(id));
 }
 
+std::vector<std::shared_ptr<Triangle> > TriangleMesh::getTriangles(std::vector<std::shared_ptr<Vertex> > vertices)
+{
+    std::vector<std::shared_ptr<Triangle> > correspondingTriangles;
+    for(auto t : triangles)
+        t->removeFlag(FlagType::USED);
+
+    for(auto v : vertices)
+    {
+        auto vt = v->getVT();
+        for(auto t : vt)
+            if(t->searchFlag(FlagType::USED) == -1)
+            {
+                triangles.push_back(t);
+                t->addFlag(FlagType::USED);
+            }
+    }
+    for(auto t : triangles)
+        t->removeFlag(FlagType::USED);
+
+    return triangles;
+}
+
 std::shared_ptr<Edge> TriangleMesh::addNewEdge()
 {
     edges.push_back(std::make_shared<Edge>());
@@ -216,6 +287,38 @@ std::shared_ptr<Edge> TriangleMesh::addNewEdge(std::shared_ptr<Edge> e)
 {
     edges.push_back(std::make_shared<Edge>(e));
     return edges.back();
+}
+
+void TriangleMesh::removeFlaggedEdges()
+{
+    std::vector<std::shared_ptr<Edge> > newEdges;
+    for(auto it = edges.begin(); it != edges.end(); it++)
+        if((*it)->searchFlag(FlagType::TO_BE_REMOVED) < 0)
+        {
+            newEdges.push_back((*it));
+        }
+    edges.clear();
+    edges = newEdges;
+}
+
+bool TriangleMesh::removeEdge(uint pos)
+{
+    if(pos >= edges.size())
+        return false;
+
+    edges.erase(edges.begin() + pos);
+    return true;
+}
+
+bool TriangleMesh::removeEdge(std::string eid)
+{
+    for(auto eit = edges.begin(); eit != edges.end(); eit++)
+        if((*eit)->getId().compare(eid) == 0)
+        {
+            eit = edges.erase(eit);
+            return true;
+        }
+    return false;
 }
 
 std::shared_ptr<Triangle> TriangleMesh::addNewTriangle()
@@ -236,13 +339,16 @@ std::shared_ptr<Triangle> TriangleMesh::addNewTriangle(std::shared_ptr<Triangle>
     return triangles.back();
 }
 
+bool TriangleMesh::removeTriangle(uint pos)
+{
+        if(pos > triangles.size())
+            return false;
+        triangles.erase(triangles.begin() + pos);
+        return true;
+}
+
 bool TriangleMesh::removeTriangle(std::string tid)
 {
-//    uint pos = stoi(tid);
-//    if(pos > triangles.size())
-//        return false;
-//    auto it = triangles.erase(triangles.begin() + pos);
-//    return true;
     for(auto tit = triangles.begin(); tit != triangles.end(); tit++)
         if((*tit)->getId().compare(tid) == 0)
         {
@@ -264,12 +370,56 @@ void TriangleMesh::removeFlaggedTriangles()
     triangles = newTriangles;
 }
 
+bool TriangleMesh::addAnnotationsRelationship(std::shared_ptr<Annotation> a1, std::shared_ptr<Annotation> a2, std::string relationshipType, bool directed)
+{
+
+    auto n1 = relationshipsGraph->getNodeFromData(a1);
+    auto n2 = relationshipsGraph->getNodeFromData(a2);
+    char* relType = new char[relationshipType.length() + 1];
+    strcpy(relType, relationshipType.c_str());
+    auto a = new GraphTemplate::Arc<std::shared_ptr<Annotation> >(
+                n1, n2, 1, directed, static_cast<unsigned int>(relationshipsGraph->getArcs().size()), relType);
+    relationshipsGraph->addArc(a);
+    return true;
+}
+
+bool TriangleMesh::removeRelationship(std::shared_ptr<Annotation> a1, std::shared_ptr<Annotation> a2, std::string type)
+{
+    auto n1 = relationshipsGraph->getNodeFromData(a1);
+    auto n2 = relationshipsGraph->getNodeFromData(a2);
+    if(n1 == nullptr || n2 == nullptr)
+        return false;
+    auto rels = relationshipsGraph->getArcsFromEndpoints(n1, n2, type);
+    for(auto rel : rels)
+        relationshipsGraph->removeArc(rel);
+    return true;
+}
+
+const std::shared_ptr<GraphTemplate::Graph<std::shared_ptr<Annotation> > > &TriangleMesh::getRelationshipsGraph() const
+{
+    return relationshipsGraph;
+}
+
+void TriangleMesh::setRelationshipsGraph(const std::shared_ptr<GraphTemplate::Graph<std::shared_ptr<Annotation> > > &newRelationshipsGraph)
+{
+    relationshipsGraph = newRelationshipsGraph;
+}
+
+void TriangleMesh::clearRelationships()
+{
+    relationshipsGraph->clearArcs();
+}
+
 
 int TriangleMesh::load(std::string filename)
 {
     int retValue = loadPLY(filename);
     if(retValue == 0)
+    {
         orientTrianglesCoherently();
+        computeProperties();
+        initialiseKDTree();
+    }
 
     return retValue;
 }
@@ -278,7 +428,7 @@ int TriangleMesh::save(std::string filename, unsigned int precision)
 {
 
     orientTrianglesCoherently();
-    std::cout << "Saving mesh on " << filename  << std::endl;
+    std::cout << "Saving " << filename  << std::endl;
     int return_code;
     std::ofstream meshStream(filename);
     std::string format = filename.substr(filename.find(".") + 1);
@@ -287,6 +437,7 @@ int TriangleMesh::save(std::string filename, unsigned int precision)
     {
         if(format.compare("ply") == 0)
         {
+            std::cout << "Writing as PLY" << std::endl;
             meshStream << "ply" << std::endl;
             meshStream << "format ascii 1.0" << std::endl;
             meshStream << "element vertex " << getVerticesNumber() << std::endl;
@@ -318,8 +469,17 @@ int TriangleMesh::save(std::string filename, unsigned int precision)
             }
             std::cout << "Ended! Written " << getTrianglesNumber() << " triangles." << std::endl;
             return_code = 0;
-        } else
+        } else if(format.compare("xyz") == 0)
+        {
+            std::cout << "Writing as XYZ" << std::endl;
+
+            for(uint i = 0; i < getVerticesNumber(); i++)
+                meshStream << getVertex(i)->getX() << " " << getVertex(i)->getY() << " " << getVertex(i)->getZ() << std::endl;
+            std::cout << "Ended! Written " << getVerticesNumber() << " points" << std::endl;
+            return_code = 0;
+        }else
             return_code = 1;
+
 
         meshStream.close();
     } else
@@ -329,17 +489,26 @@ int TriangleMesh::save(std::string filename, unsigned int precision)
 
 unsigned int TriangleMesh::removeIsolatedVertices()
 {
-    unsigned int removed = 0;
-    std::vector<std::shared_ptr<Vertex> > cleant_vertices;
-    for(unsigned int i = 0; i < vertices.size(); i++)
-    {
-        if(vertices.at(i)->getE0() != nullptr)
+//    unsigned int removed = 0;
+//    std::vector<std::shared_ptr<Vertex> > cleant_vertices;
+//    for(unsigned int i = 0; i < vertices.size(); i++)
+//    {
+//        if(vertices.at(i)->getE0() != nullptr)
+//        {
+//            cleant_vertices.push_back(vertices.at(i));
+//        }
+//    }
+//    removed = vertices.size() - cleant_vertices.size();
+//    vertices = cleant_vertices;
+//    return removed;
+    uint removed = 0;
+    for(uint i = 0; i < vertices.size(); i++)
+        if(vertices.at(i)->getE0() == nullptr)
         {
-            cleant_vertices.push_back(vertices.at(i));
+            removed++;
+            vertices.erase(vertices.begin() + i);
+            i--;
         }
-    }
-    removed = vertices.size() - cleant_vertices.size();
-    vertices = cleant_vertices;
     return removed;
 }
 
@@ -350,6 +519,138 @@ std::shared_ptr<Edge> TriangleMesh::searchEdgeContainingVertex(std::vector<std::
             return list.at(i);
 
     return nullptr;
+}
+
+uint TriangleMesh::extractNearestVertex(std::vector<uint> &frontier, std::map<uint, double> distances)
+{
+
+    double minDist = std::numeric_limits<double>::max();
+    int minPos = -1;
+    for(unsigned int i = 0; i < frontier.size(); i++){
+        if(distances.at(frontier.at(i)) < minDist){
+            minPos = i;
+            minDist = distances.at(frontier.at(i));
+        }
+    }
+
+    if(minPos == -1)
+        return minPos;
+
+    uint nearest = frontier.at(minPos);
+
+    frontier.erase(frontier.begin() + minPos);
+
+    return nearest;
+
+}
+
+uint TriangleMesh::extractStraightestVertex(std::vector<uint> &frontier, std::shared_ptr<Vertex> start, Vector direction)
+{
+    double minAngle = std::numeric_limits<double>::max();
+    int minPos = -1;
+    direction.normalise();
+    for(unsigned int i = 0; i < frontier.size(); i++){
+        auto newDirection = (*vertices.at(frontier.at(i)) ) - (*start);
+        newDirection.normalise();
+        double angle = direction.computeAngle(newDirection);
+        if(angle < minAngle)
+        {
+            minAngle = angle;
+            minPos = i;
+        }
+    }
+
+    if(minPos == -1)
+        return minPos;
+
+    uint nearest = frontier.at(minPos);
+
+    frontier.erase(frontier.begin() + minPos);
+
+    return nearest;
+}
+
+std::vector<std::shared_ptr<Vertex> > TriangleMesh::computeShortestPath(std::shared_ptr<Vertex> v1, std::shared_ptr<Vertex> v2, const DistanceType metric, const bool directed, const bool avoidUsed)
+{
+    std::vector<uint> frontier;
+    std::map<uint, double> distances = {{std::stoi(v1->getId()), 0}};
+    std::map<uint, std::shared_ptr<Vertex> > predecessors = {{std::stoi(v1->getId()), nullptr}};
+    std::set<uint> v21RingNeighbors;
+    std::vector<std::shared_ptr<Vertex> > shortestPath;
+    std::shared_ptr<Vertex> v = nullptr;
+    bool v2visited = false;
+
+    if(((*v1) - (*v2)).norm() == 0.0){
+        return shortestPath;
+    }
+
+    frontier.push_back(std::stoi(v1->getId()));
+
+    do {
+        uint vid;
+        if(directed && v != nullptr)
+            vid = extractStraightestVertex(frontier, v, (*v2) - (*v));
+        else
+            vid = extractNearestVertex(frontier, distances);
+
+        if(vid == -1)
+        {
+            return shortestPath;
+        }
+
+        v = this->getVertex(vid);
+        if(v == nullptr)
+        {
+            return shortestPath;
+        }
+
+        auto neighbors = v->getVV();
+        for(auto n : neighbors){
+
+            auto vit = v21RingNeighbors.find(std::stoi(v->getId()));
+            if(n->getId().compare(v2->getId()) == 0 && vit == v21RingNeighbors.end())
+                v21RingNeighbors.insert(std::stoi(v->getId()));
+
+            auto pit = predecessors.find(std::stoi(n->getId()));
+            double distanceVX;
+            if(!avoidUsed || n->searchFlag(FlagType::USED) == -1){
+                switch(metric){
+                    case DistanceType::SEGMENT_DISTANCE:
+                        distanceVX = distances.at(std::stoi(v->getId())) + n->computePointSegmentDistance(*v1, *v2);
+                        break;
+                    case DistanceType::COMBINED_DISTANCE:
+                        distanceVX = distances.at(std::stoi(v->getId())) + (*n - *v).norm() + n->computePointSegmentDistance(*v1, *v2);
+                        break;
+                    default:
+                        distanceVX = distances.at(std::stoi(v->getId())) + (*n - *v).norm();
+                }
+            } else
+                distanceVX = std::numeric_limits<double>::max();
+
+            if(pit != predecessors.end()){
+                if(distances.at(std::stoi(n->getId())) > distanceVX){
+                    distances.at(std::stoi(n->getId())) = distanceVX;
+                    predecessors.at(std::stoi(n->getId())) = v;
+                }
+            } else {
+                distances.insert(std::make_pair(std::stoi(n->getId()), distanceVX));
+                predecessors.insert(std::make_pair(std::stoi(n->getId()), v));
+                frontier.push_back(std::stoi(n->getId()));
+            }
+        }
+        if(v == v2)
+            v2visited = true;
+
+    } while(!v2visited);
+
+    shortestPath.push_back(v2);
+    v = predecessors.at(std::stoi(v2->getId()));
+    while(v != v1){
+        shortestPath.insert(shortestPath.begin(), v);
+        v = predecessors.at(std::stoi(v->getId()));
+    }
+
+    return shortestPath;
 }
 
 const std::vector<std::shared_ptr<Annotation> > &TriangleMesh::getAnnotations() const
@@ -365,11 +666,29 @@ void TriangleMesh::clearAnnotations()
 void TriangleMesh::setAnnotations(const std::vector<std::shared_ptr<Annotation> > &newAnnotations)
 {
     annotations = newAnnotations;
+    for(auto ann : annotations)
+        relationshipsGraph->addNode(ann);
 }
 
-bool TriangleMesh::addAnnotation(const std::shared_ptr<Annotation> &newAnnotation)
+bool TriangleMesh::addAnnotation(const std::shared_ptr<Annotation> newAnnotation)
 {
-    annotations.push_back(newAnnotation);
+    if(newAnnotation == nullptr)
+        return false;
+    auto id = newAnnotation->getId();
+    try {
+        uint pos = std::stoi(id);
+        annotations.insert(annotations.begin() + pos, newAnnotation);
+    } catch (std::exception &err) {
+        annotations.push_back(newAnnotation);
+    }
+
+    try {
+        relationshipsGraph->addNode(newAnnotation);
+    } catch (std::exception &err)
+    {
+        std::cout << err.what() << std::endl;
+    }
+
     return true;
 }
 
@@ -382,7 +701,20 @@ std::shared_ptr<Annotation> TriangleMesh::getAnnotation(unsigned int id)
 
 bool TriangleMesh::removeAnnotation(unsigned int id)
 {
+    auto a = annotations.at(id);
     annotations.erase(annotations.begin() + id);
+    auto n = relationshipsGraph->getNodeFromData(a);
+    auto outgoingRelationships = relationshipsGraph->getArcsFromFletching(n);
+    auto incomingRelationships = relationshipsGraph->getArcsFromTip(n);
+    outgoingRelationships.insert(outgoingRelationships.end(), incomingRelationships.begin(), incomingRelationships.end());
+    for(auto r : outgoingRelationships)
+    {
+        relationshipsGraph->removeArc(r);
+        delete r;
+    }
+
+    relationshipsGraph->removeNode(n);
+    delete n;
     return true;
 }
 
@@ -421,6 +753,312 @@ void TriangleMesh::orientTrianglesCoherently()
         triangles[i]->removeFlag(FlagType::VISITED);
 
 }
+
+void TriangleMesh::resetIds()
+{
+    for(uint i = 0; i < getVerticesNumber(); i++)
+        getVertex(i)->setId(std::to_string(i));
+    for(uint i = 0; i < getEdgesNumber(); i++)
+        getEdge(i)->setId(std::to_string(i));
+    for(uint i = 0; i < getTrianglesNumber(); i++)
+        getTriangle(i)->setId(std::to_string(i));
+}
+
+void TriangleMesh::computeProperties()
+{
+
+    min.setX(std::numeric_limits<double>::max());
+    min.setY(std::numeric_limits<double>::max());
+    min.setZ(std::numeric_limits<double>::max());
+    max.setX(-std::numeric_limits<double>::max());
+    max.setY(-std::numeric_limits<double>::max());
+    max.setZ(-std::numeric_limits<double>::max());
+
+    for(auto v : vertices)
+    {
+        if(v->getX() < min.getX())
+            min.setX(v->getX());
+        if(v->getY() < min.getY())
+            min.setY(v->getY());
+        if(v->getZ() < min.getZ())
+            min.setZ(v->getZ());
+        if(v->getX() > max.getX())
+            max.setX(v->getX());
+        if(v->getY() > max.getY())
+            max.setY(v->getY());
+        if(v->getZ() > max.getZ())
+            max.setZ(v->getZ());
+    }
+
+    for(auto e : edges)
+    {
+        double length = e->computeLength();
+        if(length < minEdgeLength)
+            minEdgeLength = length;
+        if(length > maxEdgeLength)
+            maxEdgeLength = length;
+    }
+
+
+}
+
+double TriangleMesh::getAABBDiagonalLength()
+{
+    return (min - max).norm();
+}
+
+double TriangleMesh::getMinEdgeLength()
+{
+    return minEdgeLength;
+}
+
+double TriangleMesh::getMaxEdgeLength()
+{
+    return maxEdgeLength;
+}
+
+std::vector<std::shared_ptr<Vertex> > TriangleMesh::getNearestNeighbours(Point queryPt, uint maxNumber, double radius)
+{
+    std::vector<double> point = {queryPt.getX(), queryPt.getY(), queryPt.getZ()};
+    std::vector<std::pair<size_t, double> > neighbors_distances;
+    std::vector<std::shared_ptr<Vertex> > neighbors;
+
+    neighbors_distances.clear();
+    std::vector<size_t> neighbors_indices = kdtree->neighborhood_indices(point, radius);
+    for(auto it = neighbors_indices.begin(); it != neighbors_indices.end(); it++){
+        neighbors.push_back(vertices.at(*it));
+    }
+
+    return neighbors;
+
+}
+
+std::shared_ptr<Vertex> TriangleMesh::getClosestPoint(Point queryPt)
+{
+    std::vector<double> point = {queryPt.getX(), queryPt.getY(), queryPt.getZ()};
+    auto index = kdtree->nearest_index(point);
+    return vertices.at(index);
+}
+
+std::vector<std::shared_ptr<Triangle> > TriangleMesh::regionGrowing(std::vector<std::shared_ptr<Vertex> > contour, std::shared_ptr<Triangle> seed)
+{
+
+    std::queue<std::shared_ptr<Triangle> > neighbors;
+    std::vector<std::shared_ptr<Triangle> > internalTriangles;
+
+    neighbors.push(seed);
+
+    for(unsigned int i = 1; i <= static_cast<unsigned int>(contour.size()); i++){
+
+        std::shared_ptr<Vertex> v1, v2;
+        if(i < contour.size()){
+            v1 = contour[i - 1];
+            v2 = contour[i];
+        }else{
+            v1 = contour[i - 1];
+            v2 = contour[0];
+        }
+
+        auto e = v1->getCommonEdge(v2);
+        if(e != nullptr)
+            e->addFlag(FlagType::ON_BOUNDARY);
+    }
+
+
+    while(neighbors.size() > 0){
+        auto t = neighbors.front();
+        neighbors.pop();
+        auto e = t->getE1();
+        for(int i = 0; i < 3; i++){
+            if(e->searchFlag(FlagType::ON_BOUNDARY) == -1){
+                auto t_ = e->getOppositeTriangle(t);
+                if(t_->searchFlag(FlagType::USED) == -1){
+                    internalTriangles.push_back(t_);
+                    t_->addFlag(FlagType::USED);
+                    neighbors.push(t_);
+                }
+            }
+            e = t->getNextEdge(e);
+        }
+    }
+
+    for(unsigned int i = 1; i <= static_cast<unsigned int>(contour.size()); i++){
+
+        std::shared_ptr<Vertex> v1, v2;
+        if(i < contour.size()){
+            v1 = contour[i - 1];
+            v2 = contour[i];
+        }else{
+            v1 = contour[i - 1];
+            v2 = contour[0];
+        }
+
+        auto e = v1->getCommonEdge(v2);
+        if(e != nullptr)
+            e->removeFlag(FlagType::ON_BOUNDARY);
+    }
+
+    for(auto it = internalTriangles.begin(); it != internalTriangles.end(); it++)
+        (*it)->removeFlag(FlagType::USED);
+
+
+    return internalTriangles;
+
+}
+
+std::vector<std::vector<std::shared_ptr<Vertex> > > TriangleMesh::getOutlines(std::vector<std::shared_ptr<Triangle> > set)
+{
+
+    std::vector<std::pair<std::shared_ptr<Vertex>, std::shared_ptr<Vertex> > > setOutlineEdges;
+    std::vector<std::vector<std::shared_ptr<Vertex> > > outlines;
+    std::shared_ptr<Vertex> v, v_;
+
+    for(auto tit = set.begin(); tit != set.end(); tit++)
+        (*tit)->addFlag(FlagType::INSIDE);
+
+    for(auto tit = set.begin(); tit != set.end(); tit++){
+        auto t = *tit;
+        auto e = t->getE1();
+        for(int i = 0; i < 3; i++){
+            auto t_ = e->getOppositeTriangle(t);
+            if(t_->searchFlag(FlagType::INSIDE) == -1){
+                auto e_ = t->getPreviousEdge(e);
+                v = e_->getCommonVertex(e);
+                setOutlineEdges.push_back(std::make_pair(v, e->getOppositeVertex(v)));
+            }
+            e = t->getNextEdge(e);
+        }
+    }
+
+    while(setOutlineEdges.size() != 0){
+
+        std::vector<std::shared_ptr<Vertex> > outline;
+        v = setOutlineEdges[0].first;
+        auto initialVertex = v;
+
+        std::pair<std::shared_ptr<Vertex>, std::shared_ptr<Vertex> > pPrev = std::make_pair(nullptr, nullptr);
+        do{
+            outline.push_back(v);
+            for(auto v_ : v->getVV()){
+                auto p = std::make_pair(v, v_);
+                for(auto pit = setOutlineEdges.begin(); pit != setOutlineEdges.end(); pit++){
+                    auto tmp = *pit;
+                    if(p != pPrev &&
+                       ((p.first == tmp.second && p.second == tmp.first) ||
+                       (p.first == tmp.second && p.second == tmp.first)) ){
+                        v = v_;
+                        pPrev = p;
+                        setOutlineEdges.erase(pit);
+                        break;
+                    }
+                }
+
+                if(v == v_)
+                    break;
+            }
+        }while(v != initialVertex);
+        outline.push_back(outline[0]);
+        outlines.push_back(outline);
+    }
+
+    for(auto oit = outlines.begin(); oit != outlines.end(); oit++){
+        auto outline = *oit;
+        std::shared_ptr<Triangle> t = nullptr;
+        for (unsigned int i = 1; i < outline.size(); i++) {
+            t = outline[i - 1]->getCommonEdge(outline[i])->getLeftTriangle(outline[i - 1]);
+            if(t != nullptr)
+                break;
+        }
+        if(t == nullptr || std::find(set.begin(), set.end(), t) == set.end())
+            std::reverse(oit->begin(), oit->end());
+    }
+
+    for(auto tit = set.begin(); tit != set.end(); tit++){
+        (*tit)->removeFlag(FlagType::INSIDE);
+    }
+
+    return outlines;
+
+}
+
+double cotan(const Point& a, const Point& b)
+{
+    return (a * b) / (EPSILON + (a & b).norm());
+}
+
+double compute_cotan_weight(std::shared_ptr<Vertex> vi, std::shared_ptr<Vertex> vj)
+{
+    auto e = vi->getCommonEdge(vj);
+    auto t1 = e->getLeftTriangle(vi);
+    auto t2 = e->getRightTriangle(vi);
+    std::shared_ptr<Vertex> next, prev;
+    Point v1, v2, v3, v4;
+    double cotan_alpha = 0.0, cotan_beta = 0.0;
+    if(t1 != nullptr)
+    {
+        next = t1->getNextVertex(vj);
+        v3 = (*vi) - (*next);
+        v4 = (*vj) - (*next);
+        cotan_beta = cotan(v3, v4);
+    }
+    if(t2 != nullptr)
+    {
+        prev = t2->getNextVertex(vi);
+        v1 = (*vi) - (*prev);
+        v2 = (*vj) - (*prev);
+        cotan_alpha = cotan(v1, v2);
+    }
+
+
+    double wij = cotan_alpha + cotan_beta;
+    if(isnan(wij))
+        wij = 0.0;
+    double cotan_max = cos(EPSILON) / sin(EPSILON);
+    wij = std::clamp(wij, -cotan_max, cotan_max);
+    return wij;
+}
+
+void TriangleMesh::smooth(WeightType type, uint k, double t)
+{
+    for(uint i = 0; i < k; i++)
+    {
+        std::vector<Point> newPositions;
+        for(auto vi : vertices)
+        {
+            std::vector<double> edges_weights;
+            double area = 0.0, weights_sum = 0.0;
+            auto vv = vi->getVV();
+            Point laplacian(0,0,0);
+            for(auto vj : vv)
+            {
+                double wij = 1.0;
+                if(type == WeightType::Cotangent)
+                    wij = compute_cotan_weight(vi, vj);
+
+                edges_weights.push_back(wij);
+                laplacian += *vj * wij;
+                weights_sum += wij;
+            }
+
+            newPositions.push_back((laplacian / weights_sum) * t + *vi * (1.0 - t));
+        }
+
+        for(uint i = 0; i < vertices.size(); i++)
+            vertices[i]->setPosition(newPositions[i]);
+    }
+
+}
+
+Point TriangleMesh::getMin() const
+{
+    return min;
+}
+
+Point TriangleMesh::getMax() const
+{
+    return max;
+}
+
 
 int TriangleMesh::triangulate(std::vector<std::vector<std::vector<std::shared_ptr<Point> > > > &boundaries, std::vector<std::vector<std::shared_ptr<Point> > > &constraints)
 {
@@ -671,6 +1309,7 @@ int TriangleMesh::triangulate(std::vector<std::vector<std::vector<std::shared_pt
     std::vector<double*> holes_seeds;
 
 
+    std::cout << "Fixing repeated nodes" << std::endl;
     for(unsigned int i = 1; i < boundaries.size(); i++)
     {
         std::vector<std::shared_ptr<Vertex> > outline = boundaries.at(i).at(0);
@@ -774,6 +1413,7 @@ int TriangleMesh::triangulate(std::vector<std::vector<std::vector<std::shared_pt
         vertices_edges.insert(std::make_pair(v, incident));
         points.push_back(v->toDoubleArray());
     }
+    std::cout << "Ended" << std::endl;
     uint noDEMPointsNumber = points.size();
     std::cout << "Starting triangulation " << std::endl;
     TriHelper::TriangleHelper helper(points, polylines, holes_seeds, true);
@@ -877,33 +1517,68 @@ int TriangleMesh::loadPLY(std::string filename)
         std::string line;
         std::getline(fileStream, line);
         if(line.compare("ply") != 0)
+        {
+            std::cerr << "Current implementation only deals with PLY file format!" << std::endl;
             return 1;
+        }
         std::getline(fileStream, line);
         if(line.compare("format ascii 1.0") == 0)
         {
             while(std::getline(fileStream, line) && line.substr(0, 7).compare("comment") == 0); //removing all comments
             if(line.substr(0, 14).compare("element vertex") != 0)
+            {
+                std::cerr << "File has to start with vertices specification!" << std::endl;
                 return 2;
+            }
             vertices_number = stoi(line.substr(15, line.size() - 15));
             while(std::getline(fileStream, line) && line.substr(0, 7).compare("comment") == 0); //removing all comments
             if(line.substr(0, 8).compare("property") != 0)
+            {
+                std::cerr << "X coordinate format needs to be specified!" << std::endl;
                 return 3;
+            }
             while(std::getline(fileStream, line) && line.substr(0, 7).compare("comment") == 0); //removing all comments
             if(line.substr(0, 8).compare("property") != 0)
+            {
+                std::cerr << "Y coordinate format needs to be specified!" << std::endl;
                 return 3;
+            }
             while(std::getline(fileStream, line) && line.substr(0, 7).compare("comment") == 0); //removing all comments
             if(line.substr(0, 8).compare("property") != 0)
+            {
+                std::cerr << "Z coordinate format needs to be specified!" << std::endl;
                 return 3;
-            while(std::getline(fileStream, line) && line.substr(0, 7).compare("comment") == 0); //removing all comments
+            }
+            while(std::getline(fileStream, line) &&
+                  (line.substr(0, 7).compare("comment") == 0 ||
+                   line.compare("property uchar red") == 0 ||
+                   line.compare("property uchar green") == 0 ||
+                   line.compare("property uchar blue") == 0 ||
+                   line.compare("property uchar alpha") == 0)); //removing all comments and unuseful things
             if(line.substr(0, 12).compare("element face") != 0)
+            {
+                std::cerr << "After vertices specification there must be faces specification!" << std::endl;
                 return 4;
+            }
             triangles_number = stoi(line.substr(13, line.size() - 13));
             while(std::getline(fileStream, line) && line.substr(0, 7).compare("comment") == 0); //removing all comments
             if(line.compare("property list uchar int vertex_indices") != 0)
+            {
+                std::cerr << "Current implementation only manages faces defined as \"property list uchar int vertex_indices\"" << std::endl;
                 return 5;
-            while(std::getline(fileStream, line) && line.substr(0, 7).compare("comment") == 0); //removing all comments
+            }
+            while(std::getline(fileStream, line) &&
+                  (line.substr(0, 7).compare("comment") == 0 ||
+                   line.compare("property list uchar float texcoord") == 0 ||
+                   line.compare("property uchar red") == 0 ||
+                   line.compare("property uchar green") == 0 ||
+                   line.compare("property uchar blue") == 0 ||
+                   line.compare("property uchar alpha") == 0)); //removing all comments
             if(line.compare("end_header") != 0)
+            {
+                std::cerr << "At this point the header must be closed." << std::endl;
                 return 6;
+            }
             std::cout << "Loading vertices: " << std::endl;
             for(unsigned int i = 0; i < vertices_number; i++)
             {
@@ -925,7 +1600,10 @@ int TriangleMesh::loadPLY(std::string filename)
             for(unsigned int i = 0; i < triangles_number; i++)
             {
                 if(!std::getline(fileStream, line))
+                {
+                    std::cerr << "Unexpected end of file." << std::endl;
                     return 8;
+                }
                 std::stringstream sstream(line);
                 unsigned int polyVertNum;
                 unsigned int v1, v2, v3;
@@ -1003,4 +1681,17 @@ int TriangleMesh::loadPLY(std::string filename)
     else
         return -1;
 
+}
+
+void TriangleMesh::initialiseKDTree()
+{
+    if(kdtree != nullptr)
+        kdtree.reset();
+    std::vector<std::vector<double> > pointsVector;
+    for(auto v : vertices)
+    {
+        std::vector<double> point = {v->getX(), v->getY(), v->getZ()};
+        pointsVector.push_back(point);
+    }
+    kdtree = std::make_shared<KDTree>(pointsVector);
 }
