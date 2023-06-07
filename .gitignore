@@ -1,0 +1,3 @@
+/build-minSizeRelease/*
+/build-debug/*
+*.user
