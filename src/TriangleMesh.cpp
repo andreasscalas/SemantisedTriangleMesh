@@ -699,6 +699,19 @@ std::shared_ptr<Annotation> TriangleMesh::getAnnotation(unsigned int id)
     return annotations.at(id);
 }
 
+std::shared_ptr<Annotation> TriangleMesh::getAnnotation(std::string id)
+{
+    try {
+        uint pos = std::stoi(id);
+        return annotations.at(pos);
+    } catch (std::exception e) {
+        for(auto a : annotations)
+            if(a->getId().compare(id) == 0)
+                return a;
+    }
+    return nullptr;
+}
+
 bool TriangleMesh::removeAnnotation(unsigned int id)
 {
     auto a = annotations.at(id);
