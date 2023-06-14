@@ -714,6 +714,8 @@ std::shared_ptr<Annotation> TriangleMesh::getAnnotation(std::string id)
 
 bool TriangleMesh::removeAnnotation(unsigned int id)
 {
+    if(id >= annotations.size())
+        return false;
     auto a = annotations.at(id);
     annotations.erase(annotations.begin() + id);
     auto n = relationshipsGraph->getNodeFromData(a);
@@ -729,6 +731,24 @@ bool TriangleMesh::removeAnnotation(unsigned int id)
     relationshipsGraph->removeNode(n);
     delete n;
     return true;
+}
+
+bool TriangleMesh::removeAnnotation(std::string id)
+{
+    try {
+        uint pos = std::stoi(id);
+        removeAnnotation(pos);
+        return true;
+    } catch (std::exception e) {
+        for(uint i = 0; i < annotations.size(); i++)
+        {
+            auto a = annotations.at(i);
+            if(a->getId().compare(id) == 0)
+                removeAnnotation(i);
+            return true;
+        }
+    }
+    return false;
 }
 
 void TriangleMesh::orientTrianglesCoherently()

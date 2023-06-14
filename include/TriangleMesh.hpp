@@ -82,6 +82,7 @@ namespace SemantisedTriangleMesh {
         std::shared_ptr<Annotation> getAnnotation(unsigned int);
         std::shared_ptr<Annotation> getAnnotation(std::string);
         bool removeAnnotation(unsigned int);
+        bool removeAnnotation(std::string);
 
         void orientTrianglesCoherently();
         void resetIds();
