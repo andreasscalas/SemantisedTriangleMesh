@@ -701,14 +701,9 @@ std::shared_ptr<Annotation> TriangleMesh::getAnnotation(unsigned int id)
 
 std::shared_ptr<Annotation> TriangleMesh::getAnnotation(std::string id)
 {
-    try {
-        uint pos = std::stoi(id);
-        return annotations.at(pos);
-    } catch (std::exception e) {
-        for(auto a : annotations)
-            if(a->getId().compare(id) == 0)
-                return a;
-    }
+    for(auto a : annotations)
+        if(a->getId().compare(id) == 0)
+            return a;
     return nullptr;
 }
 
@@ -735,19 +730,14 @@ bool TriangleMesh::removeAnnotation(unsigned int id)
 
 bool TriangleMesh::removeAnnotation(std::string id)
 {
-    try {
-        uint pos = std::stoi(id);
-        removeAnnotation(pos);
+    for(uint i = 0; i < annotations.size(); i++)
+    {
+        auto a = annotations.at(i);
+        if(a->getId().compare(id) == 0)
+            removeAnnotation(i);
         return true;
-    } catch (std::exception e) {
-        for(uint i = 0; i < annotations.size(); i++)
-        {
-            auto a = annotations.at(i);
-            if(a->getId().compare(id) == 0)
-                removeAnnotation(i);
-            return true;
-        }
     }
+
     return false;
 }
 
