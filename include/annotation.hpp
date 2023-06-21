@@ -38,6 +38,7 @@ namespace SemantisedTriangleMesh {
                 hierarchyLevel = other->getHierarchyLevel();
                 auto otherAttributes = other->getAttributes();
                 attributes.insert(attributes.end(), otherAttributes.begin(), otherAttributes.end());
+                color = static_cast<unsigned char*>(std::malloc(3 * sizeof(unsigned char)));
                 setColor(other->getColor());
             };
 
