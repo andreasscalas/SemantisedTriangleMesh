@@ -1,8 +1,0 @@
-<map id="SemantisedTriangleMesh::Attribute" name="SemantisedTriangleMesh::Attribute">
-<area shape="rect" id="node1" title=" " alt="" coords="324,5,511,332"/>
-<area shape="rect" id="node2" href="$classSemantisedTriangleMesh_1_1GeometricAttribute.html" title=" " alt="" coords="209,380,409,648"/>
-<area shape="rect" id="node6" href="$classSemantisedTriangleMesh_1_1SemanticAttribute.html" title=" " alt="" coords="433,453,620,575"/>
-<area shape="rect" id="node3" href="$classSemantisedTriangleMesh_1_1BoundingMeasure.html" title=" " alt="" coords="5,696,192,949"/>
-<area shape="rect" id="node4" href="$classSemantisedTriangleMesh_1_1EuclideanMeasure.html" title=" " alt="" coords="216,718,403,927"/>
-<area shape="rect" id="node5" href="$classSemantisedTriangleMesh_1_1GeodesicMeasure.html" title=" " alt="" coords="427,747,613,898"/>
-</map>
