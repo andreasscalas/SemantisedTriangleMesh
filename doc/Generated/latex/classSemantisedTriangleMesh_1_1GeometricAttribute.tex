@@ -1,0 +1,172 @@
+\hypertarget{classSemantisedTriangleMesh_1_1GeometricAttribute}{}\doxysection{Semantised\+Triangle\+Mesh\+::Geometric\+Attribute Class Reference}
+\label{classSemantisedTriangleMesh_1_1GeometricAttribute}\index{SemantisedTriangleMesh::GeometricAttribute@{SemantisedTriangleMesh::GeometricAttribute}}
+
+
+{\ttfamily \#include $<$geometricattribute.\+hpp$>$}
+
+
+
+Inheritance diagram for Semantised\+Triangle\+Mesh\+::Geometric\+Attribute\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classSemantisedTriangleMesh_1_1GeometricAttribute__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Semantised\+Triangle\+Mesh\+::Geometric\+Attribute\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classSemantisedTriangleMesh_1_1GeometricAttribute__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classSemantisedTriangleMesh_1_1GeometricAttribute_a42b4103f3930f63113c8dc7d0b108545}{Geometric\+Attribute}} ()
+\item 
+\mbox{\hyperlink{classSemantisedTriangleMesh_1_1GeometricAttribute_ade6a2aef6be5edd48ef08041679f4735}{Geometric\+Attribute}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classSemantisedTriangleMesh_1_1GeometricAttribute}{Geometric\+Attribute}} $>$)
+\item 
+virtual \mbox{\hyperlink{classSemantisedTriangleMesh_1_1GeometricAttribute_a036b93d74caf9087e6e7e9792e6142e6}{$\sim$\+Geometric\+Attribute}} () override
+\item 
+virtual void \mbox{\hyperlink{classSemantisedTriangleMesh_1_1GeometricAttribute_a957b5072891b9dffb1bc554ae88f0a70}{print}} (std\+::ostream \&) override
+\item 
+virtual void \mbox{\hyperlink{classSemantisedTriangleMesh_1_1GeometricAttribute_a1532e35e5e50f3a96dcb9bee5e2efd94}{print\+Json}} (rapidjson\+::\+Pretty\+Writer$<$ rapidjson\+::\+String\+Buffer $>$ \&) override
+\item 
+std\+::vector$<$ unsigned int $>$ \mbox{\hyperlink{classSemantisedTriangleMesh_1_1GeometricAttribute_ad6966f37dc4f3cedc7dd58625afb4ca6}{get\+Measure\+Points\+ID}} () const
+\item 
+void \mbox{\hyperlink{classSemantisedTriangleMesh_1_1GeometricAttribute_adb176676e2c4c41db0f86d0f60ecb0d9}{set\+Measure\+Points\+ID}} (const std\+::vector$<$ unsigned int $>$ \&\mbox{\hyperlink{classSemantisedTriangleMesh_1_1Attribute_ac6ed0b74c7b08429e5d61430f9e85212}{value}})
+\item 
+void \mbox{\hyperlink{classSemantisedTriangleMesh_1_1GeometricAttribute_ae45d21db4fd33cc10484fa1b24217e57}{add\+Measure\+Point\+ID}} (const unsigned int \&\mbox{\hyperlink{classSemantisedTriangleMesh_1_1Attribute_ac6ed0b74c7b08429e5d61430f9e85212}{value}})
+\item 
+void \mbox{\hyperlink{classSemantisedTriangleMesh_1_1GeometricAttribute_adae59c92a0f2d932eb9cd773175afdaa}{remove\+Measure\+Point\+ID}} (const unsigned int \mbox{\hyperlink{classSemantisedTriangleMesh_1_1Attribute_ac6ed0b74c7b08429e5d61430f9e85212}{value}})
+\item 
+void \mbox{\hyperlink{classSemantisedTriangleMesh_1_1GeometricAttribute_ac0519ccfeb835521f69e1bbd75bdbcc3}{clear\+Measure\+Points\+ID}} ()
+\item 
+\mbox{\hyperlink{namespaceSemantisedTriangleMesh_a0f8fc8db7baf642f7e22806b8e8ff8b8}{Geometric\+Attribute\+Type}} \mbox{\hyperlink{classSemantisedTriangleMesh_1_1GeometricAttribute_a6d25a4d9880977d30a9b7b735971a40a}{get\+Type}} () const
+\item 
+void \mbox{\hyperlink{classSemantisedTriangleMesh_1_1GeometricAttribute_ac64a4b6f9cfbf72e209d62c4dff7538a}{set\+Type}} (\mbox{\hyperlink{namespaceSemantisedTriangleMesh_a0f8fc8db7baf642f7e22806b8e8ff8b8}{Geometric\+Attribute\+Type}} new\+Type)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ unsigned int $>$ \mbox{\hyperlink{classSemantisedTriangleMesh_1_1GeometricAttribute_a44f243726376bfb6fe81a028533fc5a9}{measure\+Points\+ID}}
+\item 
+\mbox{\hyperlink{namespaceSemantisedTriangleMesh_a0f8fc8db7baf642f7e22806b8e8ff8b8}{Geometric\+Attribute\+Type}} \mbox{\hyperlink{classSemantisedTriangleMesh_1_1GeometricAttribute_a4dbe4e7bb8d18f765f80e46862ca32a2}{type}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classSemantisedTriangleMesh_1_1GeometricAttribute_a42b4103f3930f63113c8dc7d0b108545}\label{classSemantisedTriangleMesh_1_1GeometricAttribute_a42b4103f3930f63113c8dc7d0b108545}} 
+\index{SemantisedTriangleMesh::GeometricAttribute@{SemantisedTriangleMesh::GeometricAttribute}!GeometricAttribute@{GeometricAttribute}}
+\index{GeometricAttribute@{GeometricAttribute}!SemantisedTriangleMesh::GeometricAttribute@{SemantisedTriangleMesh::GeometricAttribute}}
+\doxysubsubsection{\texorpdfstring{GeometricAttribute()}{GeometricAttribute()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Semantised\+Triangle\+Mesh\+::\+Geometric\+Attribute\+::\+Geometric\+Attribute (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classSemantisedTriangleMesh_1_1GeometricAttribute_ade6a2aef6be5edd48ef08041679f4735}\label{classSemantisedTriangleMesh_1_1GeometricAttribute_ade6a2aef6be5edd48ef08041679f4735}} 
+\index{SemantisedTriangleMesh::GeometricAttribute@{SemantisedTriangleMesh::GeometricAttribute}!GeometricAttribute@{GeometricAttribute}}
+\index{GeometricAttribute@{GeometricAttribute}!SemantisedTriangleMesh::GeometricAttribute@{SemantisedTriangleMesh::GeometricAttribute}}
+\doxysubsubsection{\texorpdfstring{GeometricAttribute()}{GeometricAttribute()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Semantised\+Triangle\+Mesh\+::\+Geometric\+Attribute\+::\+Geometric\+Attribute (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classSemantisedTriangleMesh_1_1GeometricAttribute}{Geometric\+Attribute}} $>$}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classSemantisedTriangleMesh_1_1GeometricAttribute_a036b93d74caf9087e6e7e9792e6142e6}\label{classSemantisedTriangleMesh_1_1GeometricAttribute_a036b93d74caf9087e6e7e9792e6142e6}} 
+\index{SemantisedTriangleMesh::GeometricAttribute@{SemantisedTriangleMesh::GeometricAttribute}!````~GeometricAttribute@{$\sim$GeometricAttribute}}
+\index{````~GeometricAttribute@{$\sim$GeometricAttribute}!SemantisedTriangleMesh::GeometricAttribute@{SemantisedTriangleMesh::GeometricAttribute}}
+\doxysubsubsection{\texorpdfstring{$\sim$GeometricAttribute()}{~GeometricAttribute()}}
+{\footnotesize\ttfamily virtual Semantised\+Triangle\+Mesh\+::\+Geometric\+Attribute\+::$\sim$\+Geometric\+Attribute (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classSemantisedTriangleMesh_1_1GeometricAttribute_ae45d21db4fd33cc10484fa1b24217e57}\label{classSemantisedTriangleMesh_1_1GeometricAttribute_ae45d21db4fd33cc10484fa1b24217e57}} 
+\index{SemantisedTriangleMesh::GeometricAttribute@{SemantisedTriangleMesh::GeometricAttribute}!addMeasurePointID@{addMeasurePointID}}
+\index{addMeasurePointID@{addMeasurePointID}!SemantisedTriangleMesh::GeometricAttribute@{SemantisedTriangleMesh::GeometricAttribute}}
+\doxysubsubsection{\texorpdfstring{addMeasurePointID()}{addMeasurePointID()}}
+{\footnotesize\ttfamily void Semantised\+Triangle\+Mesh\+::\+Geometric\+Attribute\+::add\+Measure\+Point\+ID (\begin{DoxyParamCaption}\item[{const unsigned int \&}]{value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classSemantisedTriangleMesh_1_1GeometricAttribute_ac0519ccfeb835521f69e1bbd75bdbcc3}\label{classSemantisedTriangleMesh_1_1GeometricAttribute_ac0519ccfeb835521f69e1bbd75bdbcc3}} 
+\index{SemantisedTriangleMesh::GeometricAttribute@{SemantisedTriangleMesh::GeometricAttribute}!clearMeasurePointsID@{clearMeasurePointsID}}
+\index{clearMeasurePointsID@{clearMeasurePointsID}!SemantisedTriangleMesh::GeometricAttribute@{SemantisedTriangleMesh::GeometricAttribute}}
+\doxysubsubsection{\texorpdfstring{clearMeasurePointsID()}{clearMeasurePointsID()}}
+{\footnotesize\ttfamily void Semantised\+Triangle\+Mesh\+::\+Geometric\+Attribute\+::clear\+Measure\+Points\+ID (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classSemantisedTriangleMesh_1_1GeometricAttribute_ad6966f37dc4f3cedc7dd58625afb4ca6}\label{classSemantisedTriangleMesh_1_1GeometricAttribute_ad6966f37dc4f3cedc7dd58625afb4ca6}} 
+\index{SemantisedTriangleMesh::GeometricAttribute@{SemantisedTriangleMesh::GeometricAttribute}!getMeasurePointsID@{getMeasurePointsID}}
+\index{getMeasurePointsID@{getMeasurePointsID}!SemantisedTriangleMesh::GeometricAttribute@{SemantisedTriangleMesh::GeometricAttribute}}
+\doxysubsubsection{\texorpdfstring{getMeasurePointsID()}{getMeasurePointsID()}}
+{\footnotesize\ttfamily std\+::vector$<$unsigned int$>$ Semantised\+Triangle\+Mesh\+::\+Geometric\+Attribute\+::get\+Measure\+Points\+ID (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classSemantisedTriangleMesh_1_1GeometricAttribute_a6d25a4d9880977d30a9b7b735971a40a}\label{classSemantisedTriangleMesh_1_1GeometricAttribute_a6d25a4d9880977d30a9b7b735971a40a}} 
+\index{SemantisedTriangleMesh::GeometricAttribute@{SemantisedTriangleMesh::GeometricAttribute}!getType@{getType}}
+\index{getType@{getType}!SemantisedTriangleMesh::GeometricAttribute@{SemantisedTriangleMesh::GeometricAttribute}}
+\doxysubsubsection{\texorpdfstring{getType()}{getType()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespaceSemantisedTriangleMesh_a0f8fc8db7baf642f7e22806b8e8ff8b8}{Geometric\+Attribute\+Type}} Semantised\+Triangle\+Mesh\+::\+Geometric\+Attribute\+::get\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classSemantisedTriangleMesh_1_1GeometricAttribute_a957b5072891b9dffb1bc554ae88f0a70}\label{classSemantisedTriangleMesh_1_1GeometricAttribute_a957b5072891b9dffb1bc554ae88f0a70}} 
+\index{SemantisedTriangleMesh::GeometricAttribute@{SemantisedTriangleMesh::GeometricAttribute}!print@{print}}
+\index{print@{print}!SemantisedTriangleMesh::GeometricAttribute@{SemantisedTriangleMesh::GeometricAttribute}}
+\doxysubsubsection{\texorpdfstring{print()}{print()}}
+{\footnotesize\ttfamily virtual void Semantised\+Triangle\+Mesh\+::\+Geometric\+Attribute\+::print (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classSemantisedTriangleMesh_1_1Attribute_a8372ecdf28b2ed9d0f934aaa585b7946}{Semantised\+Triangle\+Mesh\+::\+Attribute}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{classSemantisedTriangleMesh_1_1GeodesicMeasure_a28d1c096630cf2117b57379ebde7e2dd}{Semantised\+Triangle\+Mesh\+::\+Geodesic\+Measure}}, \mbox{\hyperlink{classSemantisedTriangleMesh_1_1EuclideanMeasure_a1a87e076b0fa6bcf77c9612df38fd735}{Semantised\+Triangle\+Mesh\+::\+Euclidean\+Measure}}, and \mbox{\hyperlink{classSemantisedTriangleMesh_1_1BoundingMeasure_a78dbc326b0856cf7c654ebafa2e536be}{Semantised\+Triangle\+Mesh\+::\+Bounding\+Measure}}.
+
+\mbox{\Hypertarget{classSemantisedTriangleMesh_1_1GeometricAttribute_a1532e35e5e50f3a96dcb9bee5e2efd94}\label{classSemantisedTriangleMesh_1_1GeometricAttribute_a1532e35e5e50f3a96dcb9bee5e2efd94}} 
+\index{SemantisedTriangleMesh::GeometricAttribute@{SemantisedTriangleMesh::GeometricAttribute}!printJson@{printJson}}
+\index{printJson@{printJson}!SemantisedTriangleMesh::GeometricAttribute@{SemantisedTriangleMesh::GeometricAttribute}}
+\doxysubsubsection{\texorpdfstring{printJson()}{printJson()}}
+{\footnotesize\ttfamily virtual void Semantised\+Triangle\+Mesh\+::\+Geometric\+Attribute\+::print\+Json (\begin{DoxyParamCaption}\item[{rapidjson\+::\+Pretty\+Writer$<$ rapidjson\+::\+String\+Buffer $>$ \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classSemantisedTriangleMesh_1_1Attribute_a393ff305e6f16303f0410b187980548e}{Semantised\+Triangle\+Mesh\+::\+Attribute}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{classSemantisedTriangleMesh_1_1GeodesicMeasure_a5a9b33b0630ddc0feafd388d78ddc13c}{Semantised\+Triangle\+Mesh\+::\+Geodesic\+Measure}}, \mbox{\hyperlink{classSemantisedTriangleMesh_1_1EuclideanMeasure_a405e63fa04ac7ac6b2434fe2cd90ace8}{Semantised\+Triangle\+Mesh\+::\+Euclidean\+Measure}}, and \mbox{\hyperlink{classSemantisedTriangleMesh_1_1BoundingMeasure_ab903953f90afc9e5697f28162ae4590f}{Semantised\+Triangle\+Mesh\+::\+Bounding\+Measure}}.
+
+\mbox{\Hypertarget{classSemantisedTriangleMesh_1_1GeometricAttribute_adae59c92a0f2d932eb9cd773175afdaa}\label{classSemantisedTriangleMesh_1_1GeometricAttribute_adae59c92a0f2d932eb9cd773175afdaa}} 
+\index{SemantisedTriangleMesh::GeometricAttribute@{SemantisedTriangleMesh::GeometricAttribute}!removeMeasurePointID@{removeMeasurePointID}}
+\index{removeMeasurePointID@{removeMeasurePointID}!SemantisedTriangleMesh::GeometricAttribute@{SemantisedTriangleMesh::GeometricAttribute}}
+\doxysubsubsection{\texorpdfstring{removeMeasurePointID()}{removeMeasurePointID()}}
+{\footnotesize\ttfamily void Semantised\+Triangle\+Mesh\+::\+Geometric\+Attribute\+::remove\+Measure\+Point\+ID (\begin{DoxyParamCaption}\item[{const unsigned int}]{value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classSemantisedTriangleMesh_1_1GeometricAttribute_adb176676e2c4c41db0f86d0f60ecb0d9}\label{classSemantisedTriangleMesh_1_1GeometricAttribute_adb176676e2c4c41db0f86d0f60ecb0d9}} 
+\index{SemantisedTriangleMesh::GeometricAttribute@{SemantisedTriangleMesh::GeometricAttribute}!setMeasurePointsID@{setMeasurePointsID}}
+\index{setMeasurePointsID@{setMeasurePointsID}!SemantisedTriangleMesh::GeometricAttribute@{SemantisedTriangleMesh::GeometricAttribute}}
+\doxysubsubsection{\texorpdfstring{setMeasurePointsID()}{setMeasurePointsID()}}
+{\footnotesize\ttfamily void Semantised\+Triangle\+Mesh\+::\+Geometric\+Attribute\+::set\+Measure\+Points\+ID (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ unsigned int $>$ \&}]{value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classSemantisedTriangleMesh_1_1GeometricAttribute_ac64a4b6f9cfbf72e209d62c4dff7538a}\label{classSemantisedTriangleMesh_1_1GeometricAttribute_ac64a4b6f9cfbf72e209d62c4dff7538a}} 
+\index{SemantisedTriangleMesh::GeometricAttribute@{SemantisedTriangleMesh::GeometricAttribute}!setType@{setType}}
+\index{setType@{setType}!SemantisedTriangleMesh::GeometricAttribute@{SemantisedTriangleMesh::GeometricAttribute}}
+\doxysubsubsection{\texorpdfstring{setType()}{setType()}}
+{\footnotesize\ttfamily void Semantised\+Triangle\+Mesh\+::\+Geometric\+Attribute\+::set\+Type (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespaceSemantisedTriangleMesh_a0f8fc8db7baf642f7e22806b8e8ff8b8}{Geometric\+Attribute\+Type}}}]{new\+Type }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classSemantisedTriangleMesh_1_1GeometricAttribute_a44f243726376bfb6fe81a028533fc5a9}\label{classSemantisedTriangleMesh_1_1GeometricAttribute_a44f243726376bfb6fe81a028533fc5a9}} 
+\index{SemantisedTriangleMesh::GeometricAttribute@{SemantisedTriangleMesh::GeometricAttribute}!measurePointsID@{measurePointsID}}
+\index{measurePointsID@{measurePointsID}!SemantisedTriangleMesh::GeometricAttribute@{SemantisedTriangleMesh::GeometricAttribute}}
+\doxysubsubsection{\texorpdfstring{measurePointsID}{measurePointsID}}
+{\footnotesize\ttfamily std\+::vector$<$unsigned int$>$ Semantised\+Triangle\+Mesh\+::\+Geometric\+Attribute\+::measure\+Points\+ID\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classSemantisedTriangleMesh_1_1GeometricAttribute_a4dbe4e7bb8d18f765f80e46862ca32a2}\label{classSemantisedTriangleMesh_1_1GeometricAttribute_a4dbe4e7bb8d18f765f80e46862ca32a2}} 
+\index{SemantisedTriangleMesh::GeometricAttribute@{SemantisedTriangleMesh::GeometricAttribute}!type@{type}}
+\index{type@{type}!SemantisedTriangleMesh::GeometricAttribute@{SemantisedTriangleMesh::GeometricAttribute}}
+\doxysubsubsection{\texorpdfstring{type}{type}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespaceSemantisedTriangleMesh_a0f8fc8db7baf642f7e22806b8e8ff8b8}{Geometric\+Attribute\+Type}} Semantised\+Triangle\+Mesh\+::\+Geometric\+Attribute\+::type\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/andreas/\+Documenti/\+Progetti/\+Semantised\+Triangle\+Mesh/include/\mbox{\hyperlink{geometricattribute_8hpp}{geometricattribute.\+hpp}}\end{DoxyCompactItemize}

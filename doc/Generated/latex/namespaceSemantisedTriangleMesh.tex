@@ -1,0 +1,278 @@
+\hypertarget{namespaceSemantisedTriangleMesh}{}\doxysection{Semantised\+Triangle\+Mesh Namespace Reference}
+\label{namespaceSemantisedTriangleMesh}\index{SemantisedTriangleMesh@{SemantisedTriangleMesh}}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classSemantisedTriangleMesh_1_1Annotation}{Annotation}}
+\item 
+class \mbox{\hyperlink{classSemantisedTriangleMesh_1_1AnnotationFileManager}{Annotation\+File\+Manager}}
+\item 
+class \mbox{\hyperlink{classSemantisedTriangleMesh_1_1Attribute}{Attribute}}
+\item 
+class \mbox{\hyperlink{classSemantisedTriangleMesh_1_1BoundingMeasure}{Bounding\+Measure}}
+\item 
+class \mbox{\hyperlink{classSemantisedTriangleMesh_1_1Edge}{Edge}}
+\item 
+class \mbox{\hyperlink{classSemantisedTriangleMesh_1_1EuclideanMeasure}{Euclidean\+Measure}}
+\item 
+class \mbox{\hyperlink{classSemantisedTriangleMesh_1_1fct__parse__error}{fct\+\_\+parse\+\_\+error}}
+\item 
+class \mbox{\hyperlink{classSemantisedTriangleMesh_1_1fct__write__error}{fct\+\_\+write\+\_\+error}}
+\item 
+struct \mbox{\hyperlink{structSemantisedTriangleMesh_1_1Facet}{Facet}}
+\item 
+class \mbox{\hyperlink{classSemantisedTriangleMesh_1_1FacetReader}{Facet\+Reader}}
+\item 
+class \mbox{\hyperlink{classSemantisedTriangleMesh_1_1FacetWriter}{Facet\+Writer}}
+\item 
+class \mbox{\hyperlink{classSemantisedTriangleMesh_1_1GeodesicMeasure}{Geodesic\+Measure}}
+\item 
+class \mbox{\hyperlink{classSemantisedTriangleMesh_1_1GeometricAttribute}{Geometric\+Attribute}}
+\item 
+class \mbox{\hyperlink{classSemantisedTriangleMesh_1_1LineAnnotation}{Line\+Annotation}}
+\item 
+class \mbox{\hyperlink{classSemantisedTriangleMesh_1_1Point}{Point}}
+\item 
+class \mbox{\hyperlink{classSemantisedTriangleMesh_1_1PointAnnotation}{Point\+Annotation}}
+\item 
+class \mbox{\hyperlink{classSemantisedTriangleMesh_1_1Node}{Node}}
+\item 
+class \mbox{\hyperlink{classSemantisedTriangleMesh_1_1QuadTree}{Quad\+Tree}}
+\item 
+class \mbox{\hyperlink{classSemantisedTriangleMesh_1_1Relationship}{Relationship}}
+\item 
+class \mbox{\hyperlink{classSemantisedTriangleMesh_1_1SemanticAttribute}{Semantic\+Attribute}}
+\item 
+class \mbox{\hyperlink{classSemantisedTriangleMesh_1_1SurfaceAnnotation}{Surface\+Annotation}}
+\item 
+class \mbox{\hyperlink{classSemantisedTriangleMesh_1_1Triangle}{Triangle}}
+\item 
+class \mbox{\hyperlink{classSemantisedTriangleMesh_1_1TriangleMesh}{Triangle\+Mesh}}
+\begin{DoxyCompactList}\small\item\em The \mbox{\hyperlink{classSemantisedTriangleMesh_1_1TriangleMesh}{Triangle\+Mesh}} class allows to manage 3D triangle meshes. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classSemantisedTriangleMesh_1_1Vertex}{Vertex}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef \mbox{\hyperlink{classSemantisedTriangleMesh_1_1Point}{Point}} \mbox{\hyperlink{namespaceSemantisedTriangleMesh_a86ffe034c275142b311dd49213c863a9}{Vector}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum class \mbox{\hyperlink{namespaceSemantisedTriangleMesh_a7c62c3a0129d89a2d9220cb7ba09f602}{Annotation\+Type}} \{ \mbox{\hyperlink{namespaceSemantisedTriangleMesh_a7c62c3a0129d89a2d9220cb7ba09f602abd7a9717d29c5ddcab1bc175eda1e298}{Volume}}
+, \mbox{\hyperlink{namespaceSemantisedTriangleMesh_a7c62c3a0129d89a2d9220cb7ba09f602aaa0d528ba11ea1485d466dfe1ea40819}{Surface}}
+, \mbox{\hyperlink{namespaceSemantisedTriangleMesh_a7c62c3a0129d89a2d9220cb7ba09f602a4803e6b9e63dabf04de980788d6a13c4}{Line}}
+, \mbox{\hyperlink{namespaceSemantisedTriangleMesh_a7c62c3a0129d89a2d9220cb7ba09f602a2a3cd5946cfd317eb99c3d32e35e2d4c}{Point}}
+ \}
+\item 
+enum class \mbox{\hyperlink{namespaceSemantisedTriangleMesh_a71d4253c3c05f81393efffb64a149a1a}{Flag\+Type}} \{ \newline
+\mbox{\hyperlink{namespaceSemantisedTriangleMesh_a71d4253c3c05f81393efffb64a149a1aaa6ec08e871b6a4151dc143082d826cd2}{VISITED}}
+, \mbox{\hyperlink{namespaceSemantisedTriangleMesh_a71d4253c3c05f81393efffb64a149a1aad725ec4321dfa3a30ec3b096511be30e}{USED}}
+, \mbox{\hyperlink{namespaceSemantisedTriangleMesh_a71d4253c3c05f81393efffb64a149a1aa580786e006a9676faea3d51edc773842}{ON\+\_\+\+BOUNDARY}}
+, \mbox{\hyperlink{namespaceSemantisedTriangleMesh_a71d4253c3c05f81393efffb64a149a1aa3407c045aadeefa07aab564f6dbe9ff2}{ON\+\_\+\+HOLE}}
+, \newline
+\mbox{\hyperlink{namespaceSemantisedTriangleMesh_a71d4253c3c05f81393efffb64a149a1aa554a7418c4c0dafd902ebd377b87c80c}{INSIDE}}
+, \mbox{\hyperlink{namespaceSemantisedTriangleMesh_a71d4253c3c05f81393efffb64a149a1aa93da25bafef6761717afc6b25c17ea16}{OUTSIDE}}
+, \mbox{\hyperlink{namespaceSemantisedTriangleMesh_a71d4253c3c05f81393efffb64a149a1aaf4141fc7f9ae9314d8e2f02595249088}{TO\+\_\+\+BE\+\_\+\+REMOVED}}
+, \mbox{\hyperlink{namespaceSemantisedTriangleMesh_a71d4253c3c05f81393efffb64a149a1aac841881b7f65d9e69aa9c932ca4427c8}{SELECTED}}
+ \}
+\item 
+enum class \mbox{\hyperlink{namespaceSemantisedTriangleMesh_a0f8fc8db7baf642f7e22806b8e8ff8b8}{Geometric\+Attribute\+Type}} \{ \mbox{\hyperlink{namespaceSemantisedTriangleMesh_a0f8fc8db7baf642f7e22806b8e8ff8b8a0652b609318277d2ad636f227773609b}{EUCLIDEAN\+\_\+\+MEASURE}}
+, \mbox{\hyperlink{namespaceSemantisedTriangleMesh_a0f8fc8db7baf642f7e22806b8e8ff8b8af5b453b40ad71a5339cb1db5fadf5a68}{GEODESIC\+\_\+\+MEASURE}}
+, \mbox{\hyperlink{namespaceSemantisedTriangleMesh_a0f8fc8db7baf642f7e22806b8e8ff8b8a6e1b059b3d57e60b3f61b571bd4edea0}{BOUNDING\+\_\+\+MEASURE}}
+ \}
+\item 
+enum class \mbox{\hyperlink{namespaceSemantisedTriangleMesh_a2c127b78013bc43d2596e5b53ab18a80}{Brackets\+Type}} \{ \mbox{\hyperlink{namespaceSemantisedTriangleMesh_a2c127b78013bc43d2596e5b53ab18a80a2ea77cf582892014b30e6fa7e558350d}{ROUND}}
+, \mbox{\hyperlink{namespaceSemantisedTriangleMesh_a2c127b78013bc43d2596e5b53ab18a80a12dec4e1f7ec620651b2b95c440ffac0}{SQUARE}}
+, \mbox{\hyperlink{namespaceSemantisedTriangleMesh_a2c127b78013bc43d2596e5b53ab18a80ab50339a10e1de285ac99d4c3990b8693}{NONE}}
+ \}
+\item 
+enum class \mbox{\hyperlink{namespaceSemantisedTriangleMesh_a64d4892a1ac2b46f9dc600e466d267f5}{Distance\+Type}} \{ \mbox{\hyperlink{namespaceSemantisedTriangleMesh_a64d4892a1ac2b46f9dc600e466d267f5a7b3cab76b6bf63f5d8ae55cf83aa1355}{SEGMENT\+\_\+\+DISTANCE}}
+, \mbox{\hyperlink{namespaceSemantisedTriangleMesh_a64d4892a1ac2b46f9dc600e466d267f5a09c4cc88c81793b8ec7e38c58ef9d012}{EUCLIDEAN\+\_\+\+DISTANCE}}
+, \mbox{\hyperlink{namespaceSemantisedTriangleMesh_a64d4892a1ac2b46f9dc600e466d267f5a0229b1fb0a3f805799a2136db732fb44}{COMBINED\+\_\+\+DISTANCE}}
+ \}
+\item 
+enum class \mbox{\hyperlink{namespaceSemantisedTriangleMesh_a83ce816497eeaaebbcf249f4befa3ad0}{Weight\+Type}} \{ \mbox{\hyperlink{namespaceSemantisedTriangleMesh_a83ce816497eeaaebbcf249f4befa3ad0a32a843da6ea40ab3b17a3421ccdf671b}{Linear}}
+, \mbox{\hyperlink{namespaceSemantisedTriangleMesh_a83ce816497eeaaebbcf249f4befa3ad0ad3888682c3a478ad2449a9f9377f59a7}{Cotangent}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{namespaceSemantisedTriangleMesh_aecc765853239dcbae6324150fe0c18bc}{trim}} (const std\+::string \&str)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const double \mbox{\hyperlink{namespaceSemantisedTriangleMesh_ad46551e18c6f459b07eea07ac7faf83f}{EPSILON}} = 1\mbox{\hyperlink{triangle_8cpp_a75d32ef639129a5b2056196ac924adbb}{e}}-\/6
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{namespaceSemantisedTriangleMesh_a86ffe034c275142b311dd49213c863a9}\label{namespaceSemantisedTriangleMesh_a86ffe034c275142b311dd49213c863a9}} 
+\index{SemantisedTriangleMesh@{SemantisedTriangleMesh}!Vector@{Vector}}
+\index{Vector@{Vector}!SemantisedTriangleMesh@{SemantisedTriangleMesh}}
+\doxysubsubsection{\texorpdfstring{Vector}{Vector}}
+{\footnotesize\ttfamily typedef \mbox{\hyperlink{classSemantisedTriangleMesh_1_1Point}{Point}} \mbox{\hyperlink{namespaceSemantisedTriangleMesh_a86ffe034c275142b311dd49213c863a9}{Semantised\+Triangle\+Mesh\+::\+Vector}}}
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{namespaceSemantisedTriangleMesh_a7c62c3a0129d89a2d9220cb7ba09f602}\label{namespaceSemantisedTriangleMesh_a7c62c3a0129d89a2d9220cb7ba09f602}} 
+\index{SemantisedTriangleMesh@{SemantisedTriangleMesh}!AnnotationType@{AnnotationType}}
+\index{AnnotationType@{AnnotationType}!SemantisedTriangleMesh@{SemantisedTriangleMesh}}
+\doxysubsubsection{\texorpdfstring{AnnotationType}{AnnotationType}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{namespaceSemantisedTriangleMesh_a7c62c3a0129d89a2d9220cb7ba09f602}{Semantised\+Triangle\+Mesh\+::\+Annotation\+Type}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Volume@{Volume}!SemantisedTriangleMesh@{SemantisedTriangleMesh}}\index{SemantisedTriangleMesh@{SemantisedTriangleMesh}!Volume@{Volume}}}\mbox{\Hypertarget{namespaceSemantisedTriangleMesh_a7c62c3a0129d89a2d9220cb7ba09f602abd7a9717d29c5ddcab1bc175eda1e298}\label{namespaceSemantisedTriangleMesh_a7c62c3a0129d89a2d9220cb7ba09f602abd7a9717d29c5ddcab1bc175eda1e298}} 
+Volume&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Surface@{Surface}!SemantisedTriangleMesh@{SemantisedTriangleMesh}}\index{SemantisedTriangleMesh@{SemantisedTriangleMesh}!Surface@{Surface}}}\mbox{\Hypertarget{namespaceSemantisedTriangleMesh_a7c62c3a0129d89a2d9220cb7ba09f602aaa0d528ba11ea1485d466dfe1ea40819}\label{namespaceSemantisedTriangleMesh_a7c62c3a0129d89a2d9220cb7ba09f602aaa0d528ba11ea1485d466dfe1ea40819}} 
+Surface&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Line@{Line}!SemantisedTriangleMesh@{SemantisedTriangleMesh}}\index{SemantisedTriangleMesh@{SemantisedTriangleMesh}!Line@{Line}}}\mbox{\Hypertarget{namespaceSemantisedTriangleMesh_a7c62c3a0129d89a2d9220cb7ba09f602a4803e6b9e63dabf04de980788d6a13c4}\label{namespaceSemantisedTriangleMesh_a7c62c3a0129d89a2d9220cb7ba09f602a4803e6b9e63dabf04de980788d6a13c4}} 
+Line&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Point@{Point}!SemantisedTriangleMesh@{SemantisedTriangleMesh}}\index{SemantisedTriangleMesh@{SemantisedTriangleMesh}!Point@{Point}}}\mbox{\Hypertarget{namespaceSemantisedTriangleMesh_a7c62c3a0129d89a2d9220cb7ba09f602a2a3cd5946cfd317eb99c3d32e35e2d4c}\label{namespaceSemantisedTriangleMesh_a7c62c3a0129d89a2d9220cb7ba09f602a2a3cd5946cfd317eb99c3d32e35e2d4c}} 
+Point&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{namespaceSemantisedTriangleMesh_a2c127b78013bc43d2596e5b53ab18a80}\label{namespaceSemantisedTriangleMesh_a2c127b78013bc43d2596e5b53ab18a80}} 
+\index{SemantisedTriangleMesh@{SemantisedTriangleMesh}!BracketsType@{BracketsType}}
+\index{BracketsType@{BracketsType}!SemantisedTriangleMesh@{SemantisedTriangleMesh}}
+\doxysubsubsection{\texorpdfstring{BracketsType}{BracketsType}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{namespaceSemantisedTriangleMesh_a2c127b78013bc43d2596e5b53ab18a80}{Semantised\+Triangle\+Mesh\+::\+Brackets\+Type}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ROUND@{ROUND}!SemantisedTriangleMesh@{SemantisedTriangleMesh}}\index{SemantisedTriangleMesh@{SemantisedTriangleMesh}!ROUND@{ROUND}}}\mbox{\Hypertarget{namespaceSemantisedTriangleMesh_a2c127b78013bc43d2596e5b53ab18a80a2ea77cf582892014b30e6fa7e558350d}\label{namespaceSemantisedTriangleMesh_a2c127b78013bc43d2596e5b53ab18a80a2ea77cf582892014b30e6fa7e558350d}} 
+ROUND&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SQUARE@{SQUARE}!SemantisedTriangleMesh@{SemantisedTriangleMesh}}\index{SemantisedTriangleMesh@{SemantisedTriangleMesh}!SQUARE@{SQUARE}}}\mbox{\Hypertarget{namespaceSemantisedTriangleMesh_a2c127b78013bc43d2596e5b53ab18a80a12dec4e1f7ec620651b2b95c440ffac0}\label{namespaceSemantisedTriangleMesh_a2c127b78013bc43d2596e5b53ab18a80a12dec4e1f7ec620651b2b95c440ffac0}} 
+SQUARE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NONE@{NONE}!SemantisedTriangleMesh@{SemantisedTriangleMesh}}\index{SemantisedTriangleMesh@{SemantisedTriangleMesh}!NONE@{NONE}}}\mbox{\Hypertarget{namespaceSemantisedTriangleMesh_a2c127b78013bc43d2596e5b53ab18a80ab50339a10e1de285ac99d4c3990b8693}\label{namespaceSemantisedTriangleMesh_a2c127b78013bc43d2596e5b53ab18a80ab50339a10e1de285ac99d4c3990b8693}} 
+NONE&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{namespaceSemantisedTriangleMesh_a64d4892a1ac2b46f9dc600e466d267f5}\label{namespaceSemantisedTriangleMesh_a64d4892a1ac2b46f9dc600e466d267f5}} 
+\index{SemantisedTriangleMesh@{SemantisedTriangleMesh}!DistanceType@{DistanceType}}
+\index{DistanceType@{DistanceType}!SemantisedTriangleMesh@{SemantisedTriangleMesh}}
+\doxysubsubsection{\texorpdfstring{DistanceType}{DistanceType}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{namespaceSemantisedTriangleMesh_a64d4892a1ac2b46f9dc600e466d267f5}{Semantised\+Triangle\+Mesh\+::\+Distance\+Type}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SEGMENT\_DISTANCE@{SEGMENT\_DISTANCE}!SemantisedTriangleMesh@{SemantisedTriangleMesh}}\index{SemantisedTriangleMesh@{SemantisedTriangleMesh}!SEGMENT\_DISTANCE@{SEGMENT\_DISTANCE}}}\mbox{\Hypertarget{namespaceSemantisedTriangleMesh_a64d4892a1ac2b46f9dc600e466d267f5a7b3cab76b6bf63f5d8ae55cf83aa1355}\label{namespaceSemantisedTriangleMesh_a64d4892a1ac2b46f9dc600e466d267f5a7b3cab76b6bf63f5d8ae55cf83aa1355}} 
+SEGMENT\+\_\+\+DISTANCE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EUCLIDEAN\_DISTANCE@{EUCLIDEAN\_DISTANCE}!SemantisedTriangleMesh@{SemantisedTriangleMesh}}\index{SemantisedTriangleMesh@{SemantisedTriangleMesh}!EUCLIDEAN\_DISTANCE@{EUCLIDEAN\_DISTANCE}}}\mbox{\Hypertarget{namespaceSemantisedTriangleMesh_a64d4892a1ac2b46f9dc600e466d267f5a09c4cc88c81793b8ec7e38c58ef9d012}\label{namespaceSemantisedTriangleMesh_a64d4892a1ac2b46f9dc600e466d267f5a09c4cc88c81793b8ec7e38c58ef9d012}} 
+EUCLIDEAN\+\_\+\+DISTANCE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{COMBINED\_DISTANCE@{COMBINED\_DISTANCE}!SemantisedTriangleMesh@{SemantisedTriangleMesh}}\index{SemantisedTriangleMesh@{SemantisedTriangleMesh}!COMBINED\_DISTANCE@{COMBINED\_DISTANCE}}}\mbox{\Hypertarget{namespaceSemantisedTriangleMesh_a64d4892a1ac2b46f9dc600e466d267f5a0229b1fb0a3f805799a2136db732fb44}\label{namespaceSemantisedTriangleMesh_a64d4892a1ac2b46f9dc600e466d267f5a0229b1fb0a3f805799a2136db732fb44}} 
+COMBINED\+\_\+\+DISTANCE&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{namespaceSemantisedTriangleMesh_a71d4253c3c05f81393efffb64a149a1a}\label{namespaceSemantisedTriangleMesh_a71d4253c3c05f81393efffb64a149a1a}} 
+\index{SemantisedTriangleMesh@{SemantisedTriangleMesh}!FlagType@{FlagType}}
+\index{FlagType@{FlagType}!SemantisedTriangleMesh@{SemantisedTriangleMesh}}
+\doxysubsubsection{\texorpdfstring{FlagType}{FlagType}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{namespaceSemantisedTriangleMesh_a71d4253c3c05f81393efffb64a149a1a}{Semantised\+Triangle\+Mesh\+::\+Flag\+Type}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VISITED@{VISITED}!SemantisedTriangleMesh@{SemantisedTriangleMesh}}\index{SemantisedTriangleMesh@{SemantisedTriangleMesh}!VISITED@{VISITED}}}\mbox{\Hypertarget{namespaceSemantisedTriangleMesh_a71d4253c3c05f81393efffb64a149a1aaa6ec08e871b6a4151dc143082d826cd2}\label{namespaceSemantisedTriangleMesh_a71d4253c3c05f81393efffb64a149a1aaa6ec08e871b6a4151dc143082d826cd2}} 
+VISITED&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{USED@{USED}!SemantisedTriangleMesh@{SemantisedTriangleMesh}}\index{SemantisedTriangleMesh@{SemantisedTriangleMesh}!USED@{USED}}}\mbox{\Hypertarget{namespaceSemantisedTriangleMesh_a71d4253c3c05f81393efffb64a149a1aad725ec4321dfa3a30ec3b096511be30e}\label{namespaceSemantisedTriangleMesh_a71d4253c3c05f81393efffb64a149a1aad725ec4321dfa3a30ec3b096511be30e}} 
+USED&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ON\_BOUNDARY@{ON\_BOUNDARY}!SemantisedTriangleMesh@{SemantisedTriangleMesh}}\index{SemantisedTriangleMesh@{SemantisedTriangleMesh}!ON\_BOUNDARY@{ON\_BOUNDARY}}}\mbox{\Hypertarget{namespaceSemantisedTriangleMesh_a71d4253c3c05f81393efffb64a149a1aa580786e006a9676faea3d51edc773842}\label{namespaceSemantisedTriangleMesh_a71d4253c3c05f81393efffb64a149a1aa580786e006a9676faea3d51edc773842}} 
+ON\+\_\+\+BOUNDARY&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ON\_HOLE@{ON\_HOLE}!SemantisedTriangleMesh@{SemantisedTriangleMesh}}\index{SemantisedTriangleMesh@{SemantisedTriangleMesh}!ON\_HOLE@{ON\_HOLE}}}\mbox{\Hypertarget{namespaceSemantisedTriangleMesh_a71d4253c3c05f81393efffb64a149a1aa3407c045aadeefa07aab564f6dbe9ff2}\label{namespaceSemantisedTriangleMesh_a71d4253c3c05f81393efffb64a149a1aa3407c045aadeefa07aab564f6dbe9ff2}} 
+ON\+\_\+\+HOLE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{INSIDE@{INSIDE}!SemantisedTriangleMesh@{SemantisedTriangleMesh}}\index{SemantisedTriangleMesh@{SemantisedTriangleMesh}!INSIDE@{INSIDE}}}\mbox{\Hypertarget{namespaceSemantisedTriangleMesh_a71d4253c3c05f81393efffb64a149a1aa554a7418c4c0dafd902ebd377b87c80c}\label{namespaceSemantisedTriangleMesh_a71d4253c3c05f81393efffb64a149a1aa554a7418c4c0dafd902ebd377b87c80c}} 
+INSIDE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OUTSIDE@{OUTSIDE}!SemantisedTriangleMesh@{SemantisedTriangleMesh}}\index{SemantisedTriangleMesh@{SemantisedTriangleMesh}!OUTSIDE@{OUTSIDE}}}\mbox{\Hypertarget{namespaceSemantisedTriangleMesh_a71d4253c3c05f81393efffb64a149a1aa93da25bafef6761717afc6b25c17ea16}\label{namespaceSemantisedTriangleMesh_a71d4253c3c05f81393efffb64a149a1aa93da25bafef6761717afc6b25c17ea16}} 
+OUTSIDE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TO\_BE\_REMOVED@{TO\_BE\_REMOVED}!SemantisedTriangleMesh@{SemantisedTriangleMesh}}\index{SemantisedTriangleMesh@{SemantisedTriangleMesh}!TO\_BE\_REMOVED@{TO\_BE\_REMOVED}}}\mbox{\Hypertarget{namespaceSemantisedTriangleMesh_a71d4253c3c05f81393efffb64a149a1aaf4141fc7f9ae9314d8e2f02595249088}\label{namespaceSemantisedTriangleMesh_a71d4253c3c05f81393efffb64a149a1aaf4141fc7f9ae9314d8e2f02595249088}} 
+TO\+\_\+\+BE\+\_\+\+REMOVED&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SELECTED@{SELECTED}!SemantisedTriangleMesh@{SemantisedTriangleMesh}}\index{SemantisedTriangleMesh@{SemantisedTriangleMesh}!SELECTED@{SELECTED}}}\mbox{\Hypertarget{namespaceSemantisedTriangleMesh_a71d4253c3c05f81393efffb64a149a1aac841881b7f65d9e69aa9c932ca4427c8}\label{namespaceSemantisedTriangleMesh_a71d4253c3c05f81393efffb64a149a1aac841881b7f65d9e69aa9c932ca4427c8}} 
+SELECTED&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{namespaceSemantisedTriangleMesh_a0f8fc8db7baf642f7e22806b8e8ff8b8}\label{namespaceSemantisedTriangleMesh_a0f8fc8db7baf642f7e22806b8e8ff8b8}} 
+\index{SemantisedTriangleMesh@{SemantisedTriangleMesh}!GeometricAttributeType@{GeometricAttributeType}}
+\index{GeometricAttributeType@{GeometricAttributeType}!SemantisedTriangleMesh@{SemantisedTriangleMesh}}
+\doxysubsubsection{\texorpdfstring{GeometricAttributeType}{GeometricAttributeType}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{namespaceSemantisedTriangleMesh_a0f8fc8db7baf642f7e22806b8e8ff8b8}{Semantised\+Triangle\+Mesh\+::\+Geometric\+Attribute\+Type}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EUCLIDEAN\_MEASURE@{EUCLIDEAN\_MEASURE}!SemantisedTriangleMesh@{SemantisedTriangleMesh}}\index{SemantisedTriangleMesh@{SemantisedTriangleMesh}!EUCLIDEAN\_MEASURE@{EUCLIDEAN\_MEASURE}}}\mbox{\Hypertarget{namespaceSemantisedTriangleMesh_a0f8fc8db7baf642f7e22806b8e8ff8b8a0652b609318277d2ad636f227773609b}\label{namespaceSemantisedTriangleMesh_a0f8fc8db7baf642f7e22806b8e8ff8b8a0652b609318277d2ad636f227773609b}} 
+EUCLIDEAN\+\_\+\+MEASURE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{GEODESIC\_MEASURE@{GEODESIC\_MEASURE}!SemantisedTriangleMesh@{SemantisedTriangleMesh}}\index{SemantisedTriangleMesh@{SemantisedTriangleMesh}!GEODESIC\_MEASURE@{GEODESIC\_MEASURE}}}\mbox{\Hypertarget{namespaceSemantisedTriangleMesh_a0f8fc8db7baf642f7e22806b8e8ff8b8af5b453b40ad71a5339cb1db5fadf5a68}\label{namespaceSemantisedTriangleMesh_a0f8fc8db7baf642f7e22806b8e8ff8b8af5b453b40ad71a5339cb1db5fadf5a68}} 
+GEODESIC\+\_\+\+MEASURE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BOUNDING\_MEASURE@{BOUNDING\_MEASURE}!SemantisedTriangleMesh@{SemantisedTriangleMesh}}\index{SemantisedTriangleMesh@{SemantisedTriangleMesh}!BOUNDING\_MEASURE@{BOUNDING\_MEASURE}}}\mbox{\Hypertarget{namespaceSemantisedTriangleMesh_a0f8fc8db7baf642f7e22806b8e8ff8b8a6e1b059b3d57e60b3f61b571bd4edea0}\label{namespaceSemantisedTriangleMesh_a0f8fc8db7baf642f7e22806b8e8ff8b8a6e1b059b3d57e60b3f61b571bd4edea0}} 
+BOUNDING\+\_\+\+MEASURE&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{namespaceSemantisedTriangleMesh_a83ce816497eeaaebbcf249f4befa3ad0}\label{namespaceSemantisedTriangleMesh_a83ce816497eeaaebbcf249f4befa3ad0}} 
+\index{SemantisedTriangleMesh@{SemantisedTriangleMesh}!WeightType@{WeightType}}
+\index{WeightType@{WeightType}!SemantisedTriangleMesh@{SemantisedTriangleMesh}}
+\doxysubsubsection{\texorpdfstring{WeightType}{WeightType}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{namespaceSemantisedTriangleMesh_a83ce816497eeaaebbcf249f4befa3ad0}{Semantised\+Triangle\+Mesh\+::\+Weight\+Type}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Linear@{Linear}!SemantisedTriangleMesh@{SemantisedTriangleMesh}}\index{SemantisedTriangleMesh@{SemantisedTriangleMesh}!Linear@{Linear}}}\mbox{\Hypertarget{namespaceSemantisedTriangleMesh_a83ce816497eeaaebbcf249f4befa3ad0a32a843da6ea40ab3b17a3421ccdf671b}\label{namespaceSemantisedTriangleMesh_a83ce816497eeaaebbcf249f4befa3ad0a32a843da6ea40ab3b17a3421ccdf671b}} 
+Linear&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Cotangent@{Cotangent}!SemantisedTriangleMesh@{SemantisedTriangleMesh}}\index{SemantisedTriangleMesh@{SemantisedTriangleMesh}!Cotangent@{Cotangent}}}\mbox{\Hypertarget{namespaceSemantisedTriangleMesh_a83ce816497eeaaebbcf249f4befa3ad0ad3888682c3a478ad2449a9f9377f59a7}\label{namespaceSemantisedTriangleMesh_a83ce816497eeaaebbcf249f4befa3ad0ad3888682c3a478ad2449a9f9377f59a7}} 
+Cotangent&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespaceSemantisedTriangleMesh_aecc765853239dcbae6324150fe0c18bc}\label{namespaceSemantisedTriangleMesh_aecc765853239dcbae6324150fe0c18bc}} 
+\index{SemantisedTriangleMesh@{SemantisedTriangleMesh}!trim@{trim}}
+\index{trim@{trim}!SemantisedTriangleMesh@{SemantisedTriangleMesh}}
+\doxysubsubsection{\texorpdfstring{trim()}{trim()}}
+{\footnotesize\ttfamily std\+::string Semantised\+Triangle\+Mesh\+::trim (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{str }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{namespaceSemantisedTriangleMesh_ad46551e18c6f459b07eea07ac7faf83f}\label{namespaceSemantisedTriangleMesh_ad46551e18c6f459b07eea07ac7faf83f}} 
+\index{SemantisedTriangleMesh@{SemantisedTriangleMesh}!EPSILON@{EPSILON}}
+\index{EPSILON@{EPSILON}!SemantisedTriangleMesh@{SemantisedTriangleMesh}}
+\doxysubsubsection{\texorpdfstring{EPSILON}{EPSILON}}
+{\footnotesize\ttfamily const double Semantised\+Triangle\+Mesh\+::\+EPSILON = 1\mbox{\hyperlink{triangle_8cpp_a75d32ef639129a5b2056196ac924adbb}{e}}-\/6}
+

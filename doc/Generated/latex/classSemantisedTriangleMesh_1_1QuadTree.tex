@@ -1,0 +1,218 @@
+\hypertarget{classSemantisedTriangleMesh_1_1QuadTree}{}\doxysection{Semantised\+Triangle\+Mesh\+::Quad\+Tree$<$ T $>$ Class Template Reference}
+\label{classSemantisedTriangleMesh_1_1QuadTree}\index{SemantisedTriangleMesh::QuadTree$<$ T $>$@{SemantisedTriangleMesh::QuadTree$<$ T $>$}}
+
+
+{\ttfamily \#include $<$quadtree.\+hpp$>$}
+
+
+
+Collaboration diagram for Semantised\+Triangle\+Mesh\+::Quad\+Tree$<$ T $>$\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=220pt]{classSemantisedTriangleMesh_1_1QuadTree__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classSemantisedTriangleMesh_1_1QuadTree_a26d0d00178ae42366b44cb6e75a3b33a}{Quad\+Tree}} ()
+\item 
+\mbox{\hyperlink{classSemantisedTriangleMesh_1_1QuadTree_a889878f97db2d08a5d387bf20bcbc1b9}{$\sim$\+Quad\+Tree}} ()
+\item 
+\mbox{\hyperlink{classSemantisedTriangleMesh_1_1Point}{Point}} \mbox{\hyperlink{classSemantisedTriangleMesh_1_1QuadTree_a39118c6d8f8e2695f8512c197ebf112f}{get\+Top\+Left}} () const
+\item 
+void \mbox{\hyperlink{classSemantisedTriangleMesh_1_1QuadTree_a838e7c2dd4cfaff8d600d979af596953}{set\+Top\+Left}} (\mbox{\hyperlink{classSemantisedTriangleMesh_1_1Point}{Point}} new\+Top\+Left)
+\item 
+double \mbox{\hyperlink{classSemantisedTriangleMesh_1_1QuadTree_ae8259fd9fc973d67030a746df11fa551}{get\+Width}} () const
+\item 
+void \mbox{\hyperlink{classSemantisedTriangleMesh_1_1QuadTree_a815b8c8f0cdeabcc1ea9e4f2e3d150fe}{set\+Width}} (double new\+Width)
+\item 
+double \mbox{\hyperlink{classSemantisedTriangleMesh_1_1QuadTree_ad185e896362bcfe92702355b4aa30701}{get\+Height}} () const
+\item 
+void \mbox{\hyperlink{classSemantisedTriangleMesh_1_1QuadTree_af9e266fb4921b71a64eb5ebd0bcb3862}{set\+Height}} (double new\+Height)
+\item 
+const std\+::vector$<$ \mbox{\hyperlink{classSemantisedTriangleMesh_1_1Node}{Node}}$<$ T $>$ $\ast$ $>$ \& \mbox{\hyperlink{classSemantisedTriangleMesh_1_1QuadTree_ad886cba692a76dc7c1570789d8d555bf}{get\+Nodes}} () const
+\item 
+void \mbox{\hyperlink{classSemantisedTriangleMesh_1_1QuadTree_a989f43952c8aff66e0cd5616fa310346}{set\+Nodes}} (const std\+::vector$<$ \mbox{\hyperlink{classSemantisedTriangleMesh_1_1Node}{Node}}$<$ T $>$ $\ast$ $>$ \&new\+Nodes)
+\item 
+int \mbox{\hyperlink{classSemantisedTriangleMesh_1_1QuadTree_aa31060cf21006b5fc7bcd93eb862174e}{get\+Max\+Nodes}} () const
+\item 
+void \mbox{\hyperlink{classSemantisedTriangleMesh_1_1QuadTree_ad334104782216b5b6efcbcae6ee87bcf}{set\+Max\+Nodes}} (int new\+Max\+Nodes)
+\item 
+std\+::vector$<$ \mbox{\hyperlink{classSemantisedTriangleMesh_1_1QuadTree}{Quad\+Tree}} $\ast$ $>$ \mbox{\hyperlink{classSemantisedTriangleMesh_1_1QuadTree_a3288245a614166b9edef4e81fa68b513}{get\+Sub\+Trees}} ()
+\item 
+\mbox{\hyperlink{classSemantisedTriangleMesh_1_1QuadTree}{Quad\+Tree}} $\ast$ \mbox{\hyperlink{classSemantisedTriangleMesh_1_1QuadTree_a16116e09cd72426232cb6c0104f78518}{get\+Father}} () const
+\item 
+void \mbox{\hyperlink{classSemantisedTriangleMesh_1_1QuadTree_ae489d1fc4e6e0b08b1062d831b0d7e16}{set\+Father}} (\mbox{\hyperlink{classSemantisedTriangleMesh_1_1QuadTree}{Quad\+Tree}} $\ast$new\+Father)
+\item 
+bool \mbox{\hyperlink{classSemantisedTriangleMesh_1_1QuadTree_a0a3b49b61ef904c9d1112d6cd821a915}{is\+Leaf}} ()
+\item 
+void \mbox{\hyperlink{classSemantisedTriangleMesh_1_1QuadTree_a889ae093ee6ab606b1f43b52fb00dcbc}{subdivide}} ()
+\item 
+bool \mbox{\hyperlink{classSemantisedTriangleMesh_1_1QuadTree_a87fdb9afa72bda3d75be838f709ef8ad}{insert}} (\mbox{\hyperlink{classSemantisedTriangleMesh_1_1Node}{Node}}$<$ T $>$ $\ast$new\+Node)
+\item 
+bool \mbox{\hyperlink{classSemantisedTriangleMesh_1_1QuadTree_a826900ad84970269611837c2a6b5411e}{contains}} (\mbox{\hyperlink{classSemantisedTriangleMesh_1_1Point}{Point}} pos)
+\item 
+\mbox{\hyperlink{classSemantisedTriangleMesh_1_1Node}{Node}}$<$ T $>$ $\ast$ \mbox{\hyperlink{classSemantisedTriangleMesh_1_1QuadTree_a6dcf3898cfd3e6d4f794e4c6b505f3f0}{get\+Closest}} (\mbox{\hyperlink{classSemantisedTriangleMesh_1_1Node}{Node}}$<$ T $>$ $\ast$query\+Node)
+\item 
+void \mbox{\hyperlink{classSemantisedTriangleMesh_1_1QuadTree_a7c14f2876db1b4a1a858f996d1e81145}{draw\+For\+Matlab}} (std\+::ofstream \&stream)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classSemantisedTriangleMesh_1_1QuadTree_a26d0d00178ae42366b44cb6e75a3b33a}\label{classSemantisedTriangleMesh_1_1QuadTree_a26d0d00178ae42366b44cb6e75a3b33a}} 
+\index{SemantisedTriangleMesh::QuadTree$<$ T $>$@{SemantisedTriangleMesh::QuadTree$<$ T $>$}!QuadTree@{QuadTree}}
+\index{QuadTree@{QuadTree}!SemantisedTriangleMesh::QuadTree$<$ T $>$@{SemantisedTriangleMesh::QuadTree$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{QuadTree()}{QuadTree()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+\mbox{\hyperlink{classSemantisedTriangleMesh_1_1QuadTree}{Semantised\+Triangle\+Mesh\+::\+Quad\+Tree}}$<$ T $>$\+::\mbox{\hyperlink{classSemantisedTriangleMesh_1_1QuadTree}{Quad\+Tree}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classSemantisedTriangleMesh_1_1QuadTree_a889878f97db2d08a5d387bf20bcbc1b9}\label{classSemantisedTriangleMesh_1_1QuadTree_a889878f97db2d08a5d387bf20bcbc1b9}} 
+\index{SemantisedTriangleMesh::QuadTree$<$ T $>$@{SemantisedTriangleMesh::QuadTree$<$ T $>$}!````~QuadTree@{$\sim$QuadTree}}
+\index{````~QuadTree@{$\sim$QuadTree}!SemantisedTriangleMesh::QuadTree$<$ T $>$@{SemantisedTriangleMesh::QuadTree$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{$\sim$QuadTree()}{~QuadTree()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+\mbox{\hyperlink{classSemantisedTriangleMesh_1_1QuadTree}{Semantised\+Triangle\+Mesh\+::\+Quad\+Tree}}$<$ T $>$\+::$\sim$\mbox{\hyperlink{classSemantisedTriangleMesh_1_1QuadTree}{Quad\+Tree}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classSemantisedTriangleMesh_1_1QuadTree_a826900ad84970269611837c2a6b5411e}\label{classSemantisedTriangleMesh_1_1QuadTree_a826900ad84970269611837c2a6b5411e}} 
+\index{SemantisedTriangleMesh::QuadTree$<$ T $>$@{SemantisedTriangleMesh::QuadTree$<$ T $>$}!contains@{contains}}
+\index{contains@{contains}!SemantisedTriangleMesh::QuadTree$<$ T $>$@{SemantisedTriangleMesh::QuadTree$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{contains()}{contains()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+bool \mbox{\hyperlink{classSemantisedTriangleMesh_1_1QuadTree}{Semantised\+Triangle\+Mesh\+::\+Quad\+Tree}}$<$ T $>$\+::contains (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classSemantisedTriangleMesh_1_1Point}{Point}}}]{pos }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classSemantisedTriangleMesh_1_1QuadTree_a7c14f2876db1b4a1a858f996d1e81145}\label{classSemantisedTriangleMesh_1_1QuadTree_a7c14f2876db1b4a1a858f996d1e81145}} 
+\index{SemantisedTriangleMesh::QuadTree$<$ T $>$@{SemantisedTriangleMesh::QuadTree$<$ T $>$}!drawForMatlab@{drawForMatlab}}
+\index{drawForMatlab@{drawForMatlab}!SemantisedTriangleMesh::QuadTree$<$ T $>$@{SemantisedTriangleMesh::QuadTree$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{drawForMatlab()}{drawForMatlab()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+void \mbox{\hyperlink{classSemantisedTriangleMesh_1_1QuadTree}{Semantised\+Triangle\+Mesh\+::\+Quad\+Tree}}$<$ T $>$\+::draw\+For\+Matlab (\begin{DoxyParamCaption}\item[{std\+::ofstream \&}]{stream }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classSemantisedTriangleMesh_1_1QuadTree_a6dcf3898cfd3e6d4f794e4c6b505f3f0}\label{classSemantisedTriangleMesh_1_1QuadTree_a6dcf3898cfd3e6d4f794e4c6b505f3f0}} 
+\index{SemantisedTriangleMesh::QuadTree$<$ T $>$@{SemantisedTriangleMesh::QuadTree$<$ T $>$}!getClosest@{getClosest}}
+\index{getClosest@{getClosest}!SemantisedTriangleMesh::QuadTree$<$ T $>$@{SemantisedTriangleMesh::QuadTree$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{getClosest()}{getClosest()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+\mbox{\hyperlink{classSemantisedTriangleMesh_1_1Node}{Node}}$<$T$>$$\ast$ \mbox{\hyperlink{classSemantisedTriangleMesh_1_1QuadTree}{Semantised\+Triangle\+Mesh\+::\+Quad\+Tree}}$<$ T $>$\+::get\+Closest (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classSemantisedTriangleMesh_1_1Node}{Node}}$<$ T $>$ $\ast$}]{query\+Node }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classSemantisedTriangleMesh_1_1QuadTree_a16116e09cd72426232cb6c0104f78518}\label{classSemantisedTriangleMesh_1_1QuadTree_a16116e09cd72426232cb6c0104f78518}} 
+\index{SemantisedTriangleMesh::QuadTree$<$ T $>$@{SemantisedTriangleMesh::QuadTree$<$ T $>$}!getFather@{getFather}}
+\index{getFather@{getFather}!SemantisedTriangleMesh::QuadTree$<$ T $>$@{SemantisedTriangleMesh::QuadTree$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{getFather()}{getFather()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+\mbox{\hyperlink{classSemantisedTriangleMesh_1_1QuadTree}{Quad\+Tree}}$\ast$ \mbox{\hyperlink{classSemantisedTriangleMesh_1_1QuadTree}{Semantised\+Triangle\+Mesh\+::\+Quad\+Tree}}$<$ T $>$\+::get\+Father (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classSemantisedTriangleMesh_1_1QuadTree_ad185e896362bcfe92702355b4aa30701}\label{classSemantisedTriangleMesh_1_1QuadTree_ad185e896362bcfe92702355b4aa30701}} 
+\index{SemantisedTriangleMesh::QuadTree$<$ T $>$@{SemantisedTriangleMesh::QuadTree$<$ T $>$}!getHeight@{getHeight}}
+\index{getHeight@{getHeight}!SemantisedTriangleMesh::QuadTree$<$ T $>$@{SemantisedTriangleMesh::QuadTree$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{getHeight()}{getHeight()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+double \mbox{\hyperlink{classSemantisedTriangleMesh_1_1QuadTree}{Semantised\+Triangle\+Mesh\+::\+Quad\+Tree}}$<$ T $>$\+::get\+Height (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classSemantisedTriangleMesh_1_1QuadTree_aa31060cf21006b5fc7bcd93eb862174e}\label{classSemantisedTriangleMesh_1_1QuadTree_aa31060cf21006b5fc7bcd93eb862174e}} 
+\index{SemantisedTriangleMesh::QuadTree$<$ T $>$@{SemantisedTriangleMesh::QuadTree$<$ T $>$}!getMaxNodes@{getMaxNodes}}
+\index{getMaxNodes@{getMaxNodes}!SemantisedTriangleMesh::QuadTree$<$ T $>$@{SemantisedTriangleMesh::QuadTree$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{getMaxNodes()}{getMaxNodes()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+int \mbox{\hyperlink{classSemantisedTriangleMesh_1_1QuadTree}{Semantised\+Triangle\+Mesh\+::\+Quad\+Tree}}$<$ T $>$\+::get\+Max\+Nodes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classSemantisedTriangleMesh_1_1QuadTree_ad886cba692a76dc7c1570789d8d555bf}\label{classSemantisedTriangleMesh_1_1QuadTree_ad886cba692a76dc7c1570789d8d555bf}} 
+\index{SemantisedTriangleMesh::QuadTree$<$ T $>$@{SemantisedTriangleMesh::QuadTree$<$ T $>$}!getNodes@{getNodes}}
+\index{getNodes@{getNodes}!SemantisedTriangleMesh::QuadTree$<$ T $>$@{SemantisedTriangleMesh::QuadTree$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{getNodes()}{getNodes()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+const std\+::vector$<$\mbox{\hyperlink{classSemantisedTriangleMesh_1_1Node}{Node}}$<$T$>$ $\ast$$>$\& \mbox{\hyperlink{classSemantisedTriangleMesh_1_1QuadTree}{Semantised\+Triangle\+Mesh\+::\+Quad\+Tree}}$<$ T $>$\+::get\+Nodes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classSemantisedTriangleMesh_1_1QuadTree_a3288245a614166b9edef4e81fa68b513}\label{classSemantisedTriangleMesh_1_1QuadTree_a3288245a614166b9edef4e81fa68b513}} 
+\index{SemantisedTriangleMesh::QuadTree$<$ T $>$@{SemantisedTriangleMesh::QuadTree$<$ T $>$}!getSubTrees@{getSubTrees}}
+\index{getSubTrees@{getSubTrees}!SemantisedTriangleMesh::QuadTree$<$ T $>$@{SemantisedTriangleMesh::QuadTree$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{getSubTrees()}{getSubTrees()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+std\+::vector$<$\mbox{\hyperlink{classSemantisedTriangleMesh_1_1QuadTree}{Quad\+Tree}}$\ast$$>$ \mbox{\hyperlink{classSemantisedTriangleMesh_1_1QuadTree}{Semantised\+Triangle\+Mesh\+::\+Quad\+Tree}}$<$ T $>$\+::get\+Sub\+Trees (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classSemantisedTriangleMesh_1_1QuadTree_a39118c6d8f8e2695f8512c197ebf112f}\label{classSemantisedTriangleMesh_1_1QuadTree_a39118c6d8f8e2695f8512c197ebf112f}} 
+\index{SemantisedTriangleMesh::QuadTree$<$ T $>$@{SemantisedTriangleMesh::QuadTree$<$ T $>$}!getTopLeft@{getTopLeft}}
+\index{getTopLeft@{getTopLeft}!SemantisedTriangleMesh::QuadTree$<$ T $>$@{SemantisedTriangleMesh::QuadTree$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{getTopLeft()}{getTopLeft()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+\mbox{\hyperlink{classSemantisedTriangleMesh_1_1Point}{Point}} \mbox{\hyperlink{classSemantisedTriangleMesh_1_1QuadTree}{Semantised\+Triangle\+Mesh\+::\+Quad\+Tree}}$<$ T $>$\+::get\+Top\+Left (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classSemantisedTriangleMesh_1_1QuadTree_ae8259fd9fc973d67030a746df11fa551}\label{classSemantisedTriangleMesh_1_1QuadTree_ae8259fd9fc973d67030a746df11fa551}} 
+\index{SemantisedTriangleMesh::QuadTree$<$ T $>$@{SemantisedTriangleMesh::QuadTree$<$ T $>$}!getWidth@{getWidth}}
+\index{getWidth@{getWidth}!SemantisedTriangleMesh::QuadTree$<$ T $>$@{SemantisedTriangleMesh::QuadTree$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{getWidth()}{getWidth()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+double \mbox{\hyperlink{classSemantisedTriangleMesh_1_1QuadTree}{Semantised\+Triangle\+Mesh\+::\+Quad\+Tree}}$<$ T $>$\+::get\+Width (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classSemantisedTriangleMesh_1_1QuadTree_a87fdb9afa72bda3d75be838f709ef8ad}\label{classSemantisedTriangleMesh_1_1QuadTree_a87fdb9afa72bda3d75be838f709ef8ad}} 
+\index{SemantisedTriangleMesh::QuadTree$<$ T $>$@{SemantisedTriangleMesh::QuadTree$<$ T $>$}!insert@{insert}}
+\index{insert@{insert}!SemantisedTriangleMesh::QuadTree$<$ T $>$@{SemantisedTriangleMesh::QuadTree$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{insert()}{insert()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+bool \mbox{\hyperlink{classSemantisedTriangleMesh_1_1QuadTree}{Semantised\+Triangle\+Mesh\+::\+Quad\+Tree}}$<$ T $>$\+::insert (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classSemantisedTriangleMesh_1_1Node}{Node}}$<$ T $>$ $\ast$}]{new\+Node }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classSemantisedTriangleMesh_1_1QuadTree_a0a3b49b61ef904c9d1112d6cd821a915}\label{classSemantisedTriangleMesh_1_1QuadTree_a0a3b49b61ef904c9d1112d6cd821a915}} 
+\index{SemantisedTriangleMesh::QuadTree$<$ T $>$@{SemantisedTriangleMesh::QuadTree$<$ T $>$}!isLeaf@{isLeaf}}
+\index{isLeaf@{isLeaf}!SemantisedTriangleMesh::QuadTree$<$ T $>$@{SemantisedTriangleMesh::QuadTree$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{isLeaf()}{isLeaf()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+bool \mbox{\hyperlink{classSemantisedTriangleMesh_1_1QuadTree}{Semantised\+Triangle\+Mesh\+::\+Quad\+Tree}}$<$ T $>$\+::is\+Leaf (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classSemantisedTriangleMesh_1_1QuadTree_ae489d1fc4e6e0b08b1062d831b0d7e16}\label{classSemantisedTriangleMesh_1_1QuadTree_ae489d1fc4e6e0b08b1062d831b0d7e16}} 
+\index{SemantisedTriangleMesh::QuadTree$<$ T $>$@{SemantisedTriangleMesh::QuadTree$<$ T $>$}!setFather@{setFather}}
+\index{setFather@{setFather}!SemantisedTriangleMesh::QuadTree$<$ T $>$@{SemantisedTriangleMesh::QuadTree$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{setFather()}{setFather()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+void \mbox{\hyperlink{classSemantisedTriangleMesh_1_1QuadTree}{Semantised\+Triangle\+Mesh\+::\+Quad\+Tree}}$<$ T $>$\+::set\+Father (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classSemantisedTriangleMesh_1_1QuadTree}{Quad\+Tree}}$<$ T $>$ $\ast$}]{new\+Father }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classSemantisedTriangleMesh_1_1QuadTree_af9e266fb4921b71a64eb5ebd0bcb3862}\label{classSemantisedTriangleMesh_1_1QuadTree_af9e266fb4921b71a64eb5ebd0bcb3862}} 
+\index{SemantisedTriangleMesh::QuadTree$<$ T $>$@{SemantisedTriangleMesh::QuadTree$<$ T $>$}!setHeight@{setHeight}}
+\index{setHeight@{setHeight}!SemantisedTriangleMesh::QuadTree$<$ T $>$@{SemantisedTriangleMesh::QuadTree$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{setHeight()}{setHeight()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+void \mbox{\hyperlink{classSemantisedTriangleMesh_1_1QuadTree}{Semantised\+Triangle\+Mesh\+::\+Quad\+Tree}}$<$ T $>$\+::set\+Height (\begin{DoxyParamCaption}\item[{double}]{new\+Height }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classSemantisedTriangleMesh_1_1QuadTree_ad334104782216b5b6efcbcae6ee87bcf}\label{classSemantisedTriangleMesh_1_1QuadTree_ad334104782216b5b6efcbcae6ee87bcf}} 
+\index{SemantisedTriangleMesh::QuadTree$<$ T $>$@{SemantisedTriangleMesh::QuadTree$<$ T $>$}!setMaxNodes@{setMaxNodes}}
+\index{setMaxNodes@{setMaxNodes}!SemantisedTriangleMesh::QuadTree$<$ T $>$@{SemantisedTriangleMesh::QuadTree$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{setMaxNodes()}{setMaxNodes()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+void \mbox{\hyperlink{classSemantisedTriangleMesh_1_1QuadTree}{Semantised\+Triangle\+Mesh\+::\+Quad\+Tree}}$<$ T $>$\+::set\+Max\+Nodes (\begin{DoxyParamCaption}\item[{int}]{new\+Max\+Nodes }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classSemantisedTriangleMesh_1_1QuadTree_a989f43952c8aff66e0cd5616fa310346}\label{classSemantisedTriangleMesh_1_1QuadTree_a989f43952c8aff66e0cd5616fa310346}} 
+\index{SemantisedTriangleMesh::QuadTree$<$ T $>$@{SemantisedTriangleMesh::QuadTree$<$ T $>$}!setNodes@{setNodes}}
+\index{setNodes@{setNodes}!SemantisedTriangleMesh::QuadTree$<$ T $>$@{SemantisedTriangleMesh::QuadTree$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{setNodes()}{setNodes()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+void \mbox{\hyperlink{classSemantisedTriangleMesh_1_1QuadTree}{Semantised\+Triangle\+Mesh\+::\+Quad\+Tree}}$<$ T $>$\+::set\+Nodes (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{classSemantisedTriangleMesh_1_1Node}{Node}}$<$ T $>$ $\ast$ $>$ \&}]{new\+Nodes }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classSemantisedTriangleMesh_1_1QuadTree_a838e7c2dd4cfaff8d600d979af596953}\label{classSemantisedTriangleMesh_1_1QuadTree_a838e7c2dd4cfaff8d600d979af596953}} 
+\index{SemantisedTriangleMesh::QuadTree$<$ T $>$@{SemantisedTriangleMesh::QuadTree$<$ T $>$}!setTopLeft@{setTopLeft}}
+\index{setTopLeft@{setTopLeft}!SemantisedTriangleMesh::QuadTree$<$ T $>$@{SemantisedTriangleMesh::QuadTree$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{setTopLeft()}{setTopLeft()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+void \mbox{\hyperlink{classSemantisedTriangleMesh_1_1QuadTree}{Semantised\+Triangle\+Mesh\+::\+Quad\+Tree}}$<$ T $>$\+::set\+Top\+Left (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classSemantisedTriangleMesh_1_1Point}{Point}}}]{new\+Top\+Left }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classSemantisedTriangleMesh_1_1QuadTree_a815b8c8f0cdeabcc1ea9e4f2e3d150fe}\label{classSemantisedTriangleMesh_1_1QuadTree_a815b8c8f0cdeabcc1ea9e4f2e3d150fe}} 
+\index{SemantisedTriangleMesh::QuadTree$<$ T $>$@{SemantisedTriangleMesh::QuadTree$<$ T $>$}!setWidth@{setWidth}}
+\index{setWidth@{setWidth}!SemantisedTriangleMesh::QuadTree$<$ T $>$@{SemantisedTriangleMesh::QuadTree$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{setWidth()}{setWidth()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+void \mbox{\hyperlink{classSemantisedTriangleMesh_1_1QuadTree}{Semantised\+Triangle\+Mesh\+::\+Quad\+Tree}}$<$ T $>$\+::set\+Width (\begin{DoxyParamCaption}\item[{double}]{new\+Width }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classSemantisedTriangleMesh_1_1QuadTree_a889ae093ee6ab606b1f43b52fb00dcbc}\label{classSemantisedTriangleMesh_1_1QuadTree_a889ae093ee6ab606b1f43b52fb00dcbc}} 
+\index{SemantisedTriangleMesh::QuadTree$<$ T $>$@{SemantisedTriangleMesh::QuadTree$<$ T $>$}!subdivide@{subdivide}}
+\index{subdivide@{subdivide}!SemantisedTriangleMesh::QuadTree$<$ T $>$@{SemantisedTriangleMesh::QuadTree$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{subdivide()}{subdivide()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+void \mbox{\hyperlink{classSemantisedTriangleMesh_1_1QuadTree}{Semantised\+Triangle\+Mesh\+::\+Quad\+Tree}}$<$ T $>$\+::subdivide (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/andreas/\+Documenti/\+Progetti/\+Semantised\+Triangle\+Mesh/include/\mbox{\hyperlink{quadtree_8hpp}{quadtree.\+hpp}}\end{DoxyCompactItemize}

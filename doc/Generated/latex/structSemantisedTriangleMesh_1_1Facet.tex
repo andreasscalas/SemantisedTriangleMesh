@@ -1,0 +1,94 @@
+\hypertarget{structSemantisedTriangleMesh_1_1Facet}{}\doxysection{Semantised\+Triangle\+Mesh\+::Facet Struct Reference}
+\label{structSemantisedTriangleMesh_1_1Facet}\index{SemantisedTriangleMesh::Facet@{SemantisedTriangleMesh::Facet}}
+
+
+{\ttfamily \#include $<$facet.\+hpp$>$}
+
+
+
+Collaboration diagram for Semantised\+Triangle\+Mesh\+::Facet\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{structSemantisedTriangleMesh_1_1Facet__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum class \mbox{\hyperlink{structSemantisedTriangleMesh_1_1Facet_aa866451026b617002a2baa306dbb6a88}{Facet\+Type}} \{ \mbox{\hyperlink{structSemantisedTriangleMesh_1_1Facet_aa866451026b617002a2baa306dbb6a88a182fa1c42a2468f8488e6dcf75a81b81}{INTERNAL}}
+, \mbox{\hyperlink{structSemantisedTriangleMesh_1_1Facet_aa866451026b617002a2baa306dbb6a88a3932d629fb5e2be9d09b3a4485b3cc9d}{EXTERNAL}}
+, \mbox{\hyperlink{structSemantisedTriangleMesh_1_1Facet_aa866451026b617002a2baa306dbb6a88a2d1339ac45994427884e12cbca7eabac}{FRACTURE}}
+, \mbox{\hyperlink{structSemantisedTriangleMesh_1_1Facet_aa866451026b617002a2baa306dbb6a88a696b031073e74bf2cb98e5ef201d4aa3}{UNKNOWN}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{structSemantisedTriangleMesh_1_1Facet_a4fdd191ba52e6245c1148ff87e0dcb8f}{label}}
+\item 
+std\+::vector$<$ std\+::vector$<$ int $>$ $>$ \mbox{\hyperlink{structSemantisedTriangleMesh_1_1Facet_a7232f0a4aeb02d3f1a72b6792774f8d5}{boundaries}}
+\item 
+std\+::vector$<$ int $>$ \mbox{\hyperlink{structSemantisedTriangleMesh_1_1Facet_a3e1bb675d8996cb7371e7b571db2a293}{inner\+Vertices}}
+\item 
+\mbox{\hyperlink{structSemantisedTriangleMesh_1_1Facet_aa866451026b617002a2baa306dbb6a88}{Facet\+Type}} \mbox{\hyperlink{structSemantisedTriangleMesh_1_1Facet_afc6f75d083b16fccbcc10bb5ec28b018}{type}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Enumeration Documentation}
+\mbox{\Hypertarget{structSemantisedTriangleMesh_1_1Facet_aa866451026b617002a2baa306dbb6a88}\label{structSemantisedTriangleMesh_1_1Facet_aa866451026b617002a2baa306dbb6a88}} 
+\index{SemantisedTriangleMesh::Facet@{SemantisedTriangleMesh::Facet}!FacetType@{FacetType}}
+\index{FacetType@{FacetType}!SemantisedTriangleMesh::Facet@{SemantisedTriangleMesh::Facet}}
+\doxysubsubsection{\texorpdfstring{FacetType}{FacetType}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{structSemantisedTriangleMesh_1_1Facet_aa866451026b617002a2baa306dbb6a88}{Semantised\+Triangle\+Mesh\+::\+Facet\+::\+Facet\+Type}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{INTERNAL@{INTERNAL}!SemantisedTriangleMesh::Facet@{SemantisedTriangleMesh::Facet}}\index{SemantisedTriangleMesh::Facet@{SemantisedTriangleMesh::Facet}!INTERNAL@{INTERNAL}}}\mbox{\Hypertarget{structSemantisedTriangleMesh_1_1Facet_aa866451026b617002a2baa306dbb6a88a182fa1c42a2468f8488e6dcf75a81b81}\label{structSemantisedTriangleMesh_1_1Facet_aa866451026b617002a2baa306dbb6a88a182fa1c42a2468f8488e6dcf75a81b81}} 
+INTERNAL&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EXTERNAL@{EXTERNAL}!SemantisedTriangleMesh::Facet@{SemantisedTriangleMesh::Facet}}\index{SemantisedTriangleMesh::Facet@{SemantisedTriangleMesh::Facet}!EXTERNAL@{EXTERNAL}}}\mbox{\Hypertarget{structSemantisedTriangleMesh_1_1Facet_aa866451026b617002a2baa306dbb6a88a3932d629fb5e2be9d09b3a4485b3cc9d}\label{structSemantisedTriangleMesh_1_1Facet_aa866451026b617002a2baa306dbb6a88a3932d629fb5e2be9d09b3a4485b3cc9d}} 
+EXTERNAL&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FRACTURE@{FRACTURE}!SemantisedTriangleMesh::Facet@{SemantisedTriangleMesh::Facet}}\index{SemantisedTriangleMesh::Facet@{SemantisedTriangleMesh::Facet}!FRACTURE@{FRACTURE}}}\mbox{\Hypertarget{structSemantisedTriangleMesh_1_1Facet_aa866451026b617002a2baa306dbb6a88a2d1339ac45994427884e12cbca7eabac}\label{structSemantisedTriangleMesh_1_1Facet_aa866451026b617002a2baa306dbb6a88a2d1339ac45994427884e12cbca7eabac}} 
+FRACTURE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UNKNOWN@{UNKNOWN}!SemantisedTriangleMesh::Facet@{SemantisedTriangleMesh::Facet}}\index{SemantisedTriangleMesh::Facet@{SemantisedTriangleMesh::Facet}!UNKNOWN@{UNKNOWN}}}\mbox{\Hypertarget{structSemantisedTriangleMesh_1_1Facet_aa866451026b617002a2baa306dbb6a88a696b031073e74bf2cb98e5ef201d4aa3}\label{structSemantisedTriangleMesh_1_1Facet_aa866451026b617002a2baa306dbb6a88a696b031073e74bf2cb98e5ef201d4aa3}} 
+UNKNOWN&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structSemantisedTriangleMesh_1_1Facet_a7232f0a4aeb02d3f1a72b6792774f8d5}\label{structSemantisedTriangleMesh_1_1Facet_a7232f0a4aeb02d3f1a72b6792774f8d5}} 
+\index{SemantisedTriangleMesh::Facet@{SemantisedTriangleMesh::Facet}!boundaries@{boundaries}}
+\index{boundaries@{boundaries}!SemantisedTriangleMesh::Facet@{SemantisedTriangleMesh::Facet}}
+\doxysubsubsection{\texorpdfstring{boundaries}{boundaries}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::vector$<$int$>$ $>$ Semantised\+Triangle\+Mesh\+::\+Facet\+::boundaries}
+
+\mbox{\Hypertarget{structSemantisedTriangleMesh_1_1Facet_a3e1bb675d8996cb7371e7b571db2a293}\label{structSemantisedTriangleMesh_1_1Facet_a3e1bb675d8996cb7371e7b571db2a293}} 
+\index{SemantisedTriangleMesh::Facet@{SemantisedTriangleMesh::Facet}!innerVertices@{innerVertices}}
+\index{innerVertices@{innerVertices}!SemantisedTriangleMesh::Facet@{SemantisedTriangleMesh::Facet}}
+\doxysubsubsection{\texorpdfstring{innerVertices}{innerVertices}}
+{\footnotesize\ttfamily std\+::vector$<$int$>$ Semantised\+Triangle\+Mesh\+::\+Facet\+::inner\+Vertices}
+
+\mbox{\Hypertarget{structSemantisedTriangleMesh_1_1Facet_a4fdd191ba52e6245c1148ff87e0dcb8f}\label{structSemantisedTriangleMesh_1_1Facet_a4fdd191ba52e6245c1148ff87e0dcb8f}} 
+\index{SemantisedTriangleMesh::Facet@{SemantisedTriangleMesh::Facet}!label@{label}}
+\index{label@{label}!SemantisedTriangleMesh::Facet@{SemantisedTriangleMesh::Facet}}
+\doxysubsubsection{\texorpdfstring{label}{label}}
+{\footnotesize\ttfamily std\+::string Semantised\+Triangle\+Mesh\+::\+Facet\+::label}
+
+\mbox{\Hypertarget{structSemantisedTriangleMesh_1_1Facet_afc6f75d083b16fccbcc10bb5ec28b018}\label{structSemantisedTriangleMesh_1_1Facet_afc6f75d083b16fccbcc10bb5ec28b018}} 
+\index{SemantisedTriangleMesh::Facet@{SemantisedTriangleMesh::Facet}!type@{type}}
+\index{type@{type}!SemantisedTriangleMesh::Facet@{SemantisedTriangleMesh::Facet}}
+\doxysubsubsection{\texorpdfstring{type}{type}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structSemantisedTriangleMesh_1_1Facet_aa866451026b617002a2baa306dbb6a88}{Facet\+Type}} Semantised\+Triangle\+Mesh\+::\+Facet\+::type}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/andreas/\+Documenti/\+Progetti/\+Semantised\+Triangle\+Mesh/include/\mbox{\hyperlink{facet_8hpp}{facet.\+hpp}}\end{DoxyCompactItemize}

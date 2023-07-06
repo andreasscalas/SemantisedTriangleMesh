@@ -1,0 +1,15 @@
+Simple C++ static KD-\/\+Tree implementation with minimal functionality.
+
+
+\begin{DoxyItemize}
+\item points are given as STL vectors (and inserted in their own STL vector) so supports n-\/dimensional points for any n
+\item makes full trees, (i.\+e. does not cut-\/off the branching at some arbitrary level) giving the nearest neighbor query have (strong) logarithmic complexity.
+\item builds the tree in one go (does not support adding nodes, the tree is built from a list of points and cannot be altered afterwards)
+\item points are assumed to be STL vectors
+\item it provides the following queries\+:
+\begin{DoxyItemize}
+\item nearest neighbor
+\item neighbors within a given distance
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{md__home_andreas_Documenti_Progetti_SemantisedTriangleMesh_KDTree_README_autotoc_md1}{}\doxysection{License and copyright}\label{md__home_andreas_Documenti_Progetti_SemantisedTriangleMesh_KDTree_README_autotoc_md1}
+© J. Frederico Carvalho Licensed under the \mbox{[}BSD3 License\mbox{]}(LICENSE) 

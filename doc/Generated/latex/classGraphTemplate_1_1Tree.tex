@@ -1,0 +1,155 @@
+\hypertarget{classGraphTemplate_1_1Tree}{}\doxysection{Graph\+Template\+::Tree$<$ T $>$ Class Template Reference}
+\label{classGraphTemplate_1_1Tree}\index{GraphTemplate::Tree$<$ T $>$@{GraphTemplate::Tree$<$ T $>$}}
+
+
+{\ttfamily \#include $<$tree.\+hpp$>$}
+
+
+
+Inheritance diagram for Graph\+Template\+::Tree$<$ T $>$\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classGraphTemplate_1_1Tree__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Graph\+Template\+::Tree$<$ T $>$\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classGraphTemplate_1_1Tree__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classGraphTemplate_1_1Tree_a815ec3499ea874af76d62ca091b7944b}{Tree}} ()
+\item 
+virtual std\+::vector$<$ \mbox{\hyperlink{classGraphTemplate_1_1Node}{Node}}$<$ T $>$ $\ast$ $>$ \mbox{\hyperlink{classGraphTemplate_1_1Tree_ad9d7d090b9a2e2ded1cd9f382e1bf08b}{depth\+First\+Visit}} (\mbox{\hyperlink{classGraphTemplate_1_1Node}{Node}}$<$ T $>$ $\ast$root) override
+\item 
+bool \mbox{\hyperlink{classGraphTemplate_1_1Tree_ab9475307b494a9ac61b2b14e82b911ca}{get\+Pre\+Order}} () const
+\item 
+void \mbox{\hyperlink{classGraphTemplate_1_1Tree_a3f31aba2eee0fb794618bf48723c3d1f}{set\+Pre\+Order}} (bool value)
+\item 
+virtual bool \mbox{\hyperlink{classGraphTemplate_1_1Tree_ad8704f32009e2f90254d83e30b5d7297}{add\+Node}} (T data) override
+\item 
+virtual bool \mbox{\hyperlink{classGraphTemplate_1_1Tree_a60734398b684e55796ef1c9123011002}{add\+Node}} (\mbox{\hyperlink{classGraphTemplate_1_1Node}{Node}}$<$ T $>$ $\ast$n) override
+\item 
+virtual bool \mbox{\hyperlink{classGraphTemplate_1_1Tree_ab4e76d80eb67ee862478ff26086c1095}{add\+Node}} (\mbox{\hyperlink{classGraphTemplate_1_1TreeNode}{Tree\+Node}}$<$ T $>$ $\ast$n)
+\item 
+virtual bool \mbox{\hyperlink{classGraphTemplate_1_1Tree_a4cdc5d3ed179d42a3e94bb29e52913b5}{add\+Arc}} (\mbox{\hyperlink{classGraphTemplate_1_1Arc}{Arc}}$<$ T $>$ $\ast$a) override
+\item 
+virtual bool \mbox{\hyperlink{classGraphTemplate_1_1Tree_a67dde3a1925dc71456405eb58571f64b}{add\+Arc}} (\mbox{\hyperlink{classGraphTemplate_1_1Node}{Node}}$<$ T $>$ $\ast$n1, \mbox{\hyperlink{classGraphTemplate_1_1Node}{Node}}$<$ T $>$ $\ast$n2, double weight, bool directed) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classGraphTemplate_1_1Tree_af4b3a88eaa677541ebf4da2fc64c5c41}{pre\+Order}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classGraphTemplate_1_1Tree_a815ec3499ea874af76d62ca091b7944b}\label{classGraphTemplate_1_1Tree_a815ec3499ea874af76d62ca091b7944b}} 
+\index{GraphTemplate::Tree$<$ T $>$@{GraphTemplate::Tree$<$ T $>$}!Tree@{Tree}}
+\index{Tree@{Tree}!GraphTemplate::Tree$<$ T $>$@{GraphTemplate::Tree$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{Tree()}{Tree()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{classGraphTemplate_1_1Tree}{Graph\+Template\+::\+Tree}}$<$ T $>$\+::\mbox{\hyperlink{classGraphTemplate_1_1Tree}{Tree}}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classGraphTemplate_1_1Tree_a4cdc5d3ed179d42a3e94bb29e52913b5}\label{classGraphTemplate_1_1Tree_a4cdc5d3ed179d42a3e94bb29e52913b5}} 
+\index{GraphTemplate::Tree$<$ T $>$@{GraphTemplate::Tree$<$ T $>$}!addArc@{addArc}}
+\index{addArc@{addArc}!GraphTemplate::Tree$<$ T $>$@{GraphTemplate::Tree$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{addArc()}{addArc()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+bool \mbox{\hyperlink{classGraphTemplate_1_1Tree}{Graph\+Template\+::\+Tree}}$<$ T $>$\+::add\+Arc (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classGraphTemplate_1_1Arc}{Arc}}$<$ T $>$ $\ast$}]{a }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classGraphTemplate_1_1Graph_a2d1b23fce79b97824185c3bd86765c11}{Graph\+Template\+::\+Graph$<$ T $>$}}.
+
+\mbox{\Hypertarget{classGraphTemplate_1_1Tree_a67dde3a1925dc71456405eb58571f64b}\label{classGraphTemplate_1_1Tree_a67dde3a1925dc71456405eb58571f64b}} 
+\index{GraphTemplate::Tree$<$ T $>$@{GraphTemplate::Tree$<$ T $>$}!addArc@{addArc}}
+\index{addArc@{addArc}!GraphTemplate::Tree$<$ T $>$@{GraphTemplate::Tree$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{addArc()}{addArc()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+bool \mbox{\hyperlink{classGraphTemplate_1_1Tree}{Graph\+Template\+::\+Tree}}$<$ T $>$\+::add\+Arc (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classGraphTemplate_1_1Node}{Node}}$<$ T $>$ $\ast$}]{n1,  }\item[{\mbox{\hyperlink{classGraphTemplate_1_1Node}{Node}}$<$ T $>$ $\ast$}]{n2,  }\item[{double}]{weight,  }\item[{bool}]{directed }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classGraphTemplate_1_1Graph_a1ab93237e79facfe37a2432e0201da25}{Graph\+Template\+::\+Graph$<$ T $>$}}.
+
+\mbox{\Hypertarget{classGraphTemplate_1_1Tree_a60734398b684e55796ef1c9123011002}\label{classGraphTemplate_1_1Tree_a60734398b684e55796ef1c9123011002}} 
+\index{GraphTemplate::Tree$<$ T $>$@{GraphTemplate::Tree$<$ T $>$}!addNode@{addNode}}
+\index{addNode@{addNode}!GraphTemplate::Tree$<$ T $>$@{GraphTemplate::Tree$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{addNode()}{addNode()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+bool \mbox{\hyperlink{classGraphTemplate_1_1Tree}{Graph\+Template\+::\+Tree}}$<$ T $>$\+::add\+Node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classGraphTemplate_1_1Node}{Node}}$<$ T $>$ $\ast$}]{n }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classGraphTemplate_1_1Graph_a70f14e4e5fea7315ee9ff91793d9644b}{Graph\+Template\+::\+Graph$<$ T $>$}}.
+
+\mbox{\Hypertarget{classGraphTemplate_1_1Tree_ad8704f32009e2f90254d83e30b5d7297}\label{classGraphTemplate_1_1Tree_ad8704f32009e2f90254d83e30b5d7297}} 
+\index{GraphTemplate::Tree$<$ T $>$@{GraphTemplate::Tree$<$ T $>$}!addNode@{addNode}}
+\index{addNode@{addNode}!GraphTemplate::Tree$<$ T $>$@{GraphTemplate::Tree$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{addNode()}{addNode()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+bool \mbox{\hyperlink{classGraphTemplate_1_1Tree}{Graph\+Template\+::\+Tree}}$<$ T $>$\+::add\+Node (\begin{DoxyParamCaption}\item[{T}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classGraphTemplate_1_1Graph_a5ad2338b17a26bcc553693309aa82ace}{Graph\+Template\+::\+Graph$<$ T $>$}}.
+
+\mbox{\Hypertarget{classGraphTemplate_1_1Tree_ab4e76d80eb67ee862478ff26086c1095}\label{classGraphTemplate_1_1Tree_ab4e76d80eb67ee862478ff26086c1095}} 
+\index{GraphTemplate::Tree$<$ T $>$@{GraphTemplate::Tree$<$ T $>$}!addNode@{addNode}}
+\index{addNode@{addNode}!GraphTemplate::Tree$<$ T $>$@{GraphTemplate::Tree$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{addNode()}{addNode()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+bool \mbox{\hyperlink{classGraphTemplate_1_1Tree}{Graph\+Template\+::\+Tree}}$<$ T $>$\+::add\+Node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classGraphTemplate_1_1TreeNode}{Tree\+Node}}$<$ T $>$ $\ast$}]{n }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\mbox{\Hypertarget{classGraphTemplate_1_1Tree_ad9d7d090b9a2e2ded1cd9f382e1bf08b}\label{classGraphTemplate_1_1Tree_ad9d7d090b9a2e2ded1cd9f382e1bf08b}} 
+\index{GraphTemplate::Tree$<$ T $>$@{GraphTemplate::Tree$<$ T $>$}!depthFirstVisit@{depthFirstVisit}}
+\index{depthFirstVisit@{depthFirstVisit}!GraphTemplate::Tree$<$ T $>$@{GraphTemplate::Tree$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{depthFirstVisit()}{depthFirstVisit()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+std\+::vector$<$ \mbox{\hyperlink{classGraphTemplate_1_1Node}{Node}}$<$ T $>$ $\ast$ $>$ \mbox{\hyperlink{classGraphTemplate_1_1Tree}{Graph\+Template\+::\+Tree}}$<$ T $>$\+::depth\+First\+Visit (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classGraphTemplate_1_1Node}{Node}}$<$ T $>$ $\ast$}]{root }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classGraphTemplate_1_1Graph_ac879f4a4fbcfba1d132465f16598e589}{Graph\+Template\+::\+Graph$<$ T $>$}}.
+
+\mbox{\Hypertarget{classGraphTemplate_1_1Tree_ab9475307b494a9ac61b2b14e82b911ca}\label{classGraphTemplate_1_1Tree_ab9475307b494a9ac61b2b14e82b911ca}} 
+\index{GraphTemplate::Tree$<$ T $>$@{GraphTemplate::Tree$<$ T $>$}!getPreOrder@{getPreOrder}}
+\index{getPreOrder@{getPreOrder}!GraphTemplate::Tree$<$ T $>$@{GraphTemplate::Tree$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{getPreOrder()}{getPreOrder()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+bool \mbox{\hyperlink{classGraphTemplate_1_1Tree}{Graph\+Template\+::\+Tree}}$<$ T $>$\+::get\+Pre\+Order}
+
+\mbox{\Hypertarget{classGraphTemplate_1_1Tree_a3f31aba2eee0fb794618bf48723c3d1f}\label{classGraphTemplate_1_1Tree_a3f31aba2eee0fb794618bf48723c3d1f}} 
+\index{GraphTemplate::Tree$<$ T $>$@{GraphTemplate::Tree$<$ T $>$}!setPreOrder@{setPreOrder}}
+\index{setPreOrder@{setPreOrder}!GraphTemplate::Tree$<$ T $>$@{GraphTemplate::Tree$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{setPreOrder()}{setPreOrder()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void \mbox{\hyperlink{classGraphTemplate_1_1Tree}{Graph\+Template\+::\+Tree}}$<$ T $>$\+::set\+Pre\+Order (\begin{DoxyParamCaption}\item[{bool}]{value }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classGraphTemplate_1_1Tree_af4b3a88eaa677541ebf4da2fc64c5c41}\label{classGraphTemplate_1_1Tree_af4b3a88eaa677541ebf4da2fc64c5c41}} 
+\index{GraphTemplate::Tree$<$ T $>$@{GraphTemplate::Tree$<$ T $>$}!preOrder@{preOrder}}
+\index{preOrder@{preOrder}!GraphTemplate::Tree$<$ T $>$@{GraphTemplate::Tree$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{preOrder}{preOrder}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+bool \mbox{\hyperlink{classGraphTemplate_1_1Tree}{Graph\+Template\+::\+Tree}}$<$ T $>$\+::pre\+Order\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/andreas/\+Documenti/\+Progetti/\+Semantised\+Triangle\+Mesh/\+Data\+Structures/include/\mbox{\hyperlink{tree_8hpp}{tree.\+hpp}}\end{DoxyCompactItemize}

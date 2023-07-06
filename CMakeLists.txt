@@ -62,6 +62,29 @@ set(DataStructuresHdrs
     ${DATA_STRUCTURES}/include/arc.hpp
     ${DATA_STRUCTURES}/include/graph.hpp
     ${DATA_STRUCTURES}/include/tree.hpp )
+
+
+set( Docs ${CMAKE_CURRENT_SOURCE_DIR}/doc/Doxyfile.in)
+find_package(Doxygen)
+if (DOXYGEN_FOUND)
+    # set input and output files
+    set(DOXYGEN_IN ${CMAKE_CURRENT_SOURCE_DIR}/doc/Doxyfile.in)
+    set(DOXYGEN_OUT ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile)
+
+    # request to configure the file
+    configure_file(${DOXYGEN_IN} ${DOXYGEN_OUT} @ONLY)
+    message("Doxygen build started")
+
+    # note the option ALL which allows to build the docs together with the application
+    add_custom_target( doc_doxygen ALL
+        COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYGEN_OUT}
+        WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+        COMMENT "Generating API documentation with Doxygen"
+        VERBATIM )
+else (DOXYGEN_FOUND)
+  message("Doxygen need to be installed to generate the doxygen documentation")
+endif (DOXYGEN_FOUND)
+
 add_library(${PROJECT_NAME} ${Srcs} ${Hdrs})
 target_include_directories(${PROJECT_NAME} PUBLIC $<BUILD_INTERFACE:${SEMANTISED_TRIANGLE_MESH}/include/> $<BUILD_INTERFACE:${TRIANGLE}/> $<BUILD_INTERFACE:${DATA_STRUCTURES}/include/> )
 target_link_libraries(${PROJECT_NAME} PUBLIC Triangle-lib DataStructures-lib)

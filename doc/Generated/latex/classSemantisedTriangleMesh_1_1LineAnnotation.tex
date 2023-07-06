@@ -1,0 +1,234 @@
+\hypertarget{classSemantisedTriangleMesh_1_1LineAnnotation}{}\doxysection{Semantised\+Triangle\+Mesh\+::Line\+Annotation Class Reference}
+\label{classSemantisedTriangleMesh_1_1LineAnnotation}\index{SemantisedTriangleMesh::LineAnnotation@{SemantisedTriangleMesh::LineAnnotation}}
+
+
+{\ttfamily \#include $<$lineannotation.\+hpp$>$}
+
+
+
+Inheritance diagram for Semantised\+Triangle\+Mesh\+::Line\+Annotation\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classSemantisedTriangleMesh_1_1LineAnnotation__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Semantised\+Triangle\+Mesh\+::Line\+Annotation\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classSemantisedTriangleMesh_1_1LineAnnotation__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classSemantisedTriangleMesh_1_1LineAnnotation_a7614076bcbb89f8e36638d768ef8314f}{Line\+Annotation}} ()
+\item 
+\mbox{\hyperlink{classSemantisedTriangleMesh_1_1LineAnnotation_adae92c144ca5de03c996c5bf7880ae19}{Line\+Annotation}} (\mbox{\hyperlink{classSemantisedTriangleMesh_1_1TriangleMesh}{Triangle\+Mesh}} $\ast$, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classSemantisedTriangleMesh_1_1LineAnnotation}{Line\+Annotation}} $>$ other)
+\item 
+virtual \mbox{\hyperlink{classSemantisedTriangleMesh_1_1LineAnnotation_a0b28c69f98b662ba6f8e5d23cfaad615}{$\sim$\+Line\+Annotation}} () override
+\item 
+virtual void \mbox{\hyperlink{classSemantisedTriangleMesh_1_1LineAnnotation_ab1293a10654bdb6a45f20a7f86df1d98}{print}} (std\+::ostream \&) override
+\begin{DoxyCompactList}\small\item\em print Prints main information related to the annotation (id, tag and attributes) \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classSemantisedTriangleMesh_1_1LineAnnotation_a86b2429692a49aeba7c8d3a46babe207}{print\+Json}} (rapidjson\+::\+Pretty\+Writer$<$ rapidjson\+::\+String\+Buffer $>$ \&) override
+\begin{DoxyCompactList}\small\item\em print Prints main information related to the annotation (id, tag and attributes) in JSON format. \end{DoxyCompactList}\item 
+virtual std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classSemantisedTriangleMesh_1_1Vertex}{Vertex}} $>$ $>$ \mbox{\hyperlink{classSemantisedTriangleMesh_1_1LineAnnotation_a9d58bb3107fe45b6eaf0930aca3848af}{get\+Involved\+Vertices}} () override
+\begin{DoxyCompactList}\small\item\em get\+Involved\+Vertices abstract method for obtaining the vertices involved in the annotation (vertices are the only always-\/present geometric entity of an annotation) \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classSemantisedTriangleMesh_1_1LineAnnotation_a556e8ed9ce8044a672c6549ccf5516d1}{is\+Point\+In\+Annotation}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classSemantisedTriangleMesh_1_1Vertex}{Vertex}} $>$ \mbox{\hyperlink{triangle_8cpp_aa862a7a8c77324d40edf912084b60e33}{p}}) override
+\begin{DoxyCompactList}\small\item\em is\+Point\+In\+Annotation checks if a given vertex is involved in this annotation \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSemantisedTriangleMesh_1_1LineAnnotation_ac0cb4a7155fdf235daf448df2b78022f}{add\+Poly\+Line}} (std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classSemantisedTriangleMesh_1_1Vertex}{Vertex}} $>$ $>$ \&value)
+\item 
+std\+::vector$<$ std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classSemantisedTriangleMesh_1_1Vertex}{Vertex}} $>$ $>$ $>$ \mbox{\hyperlink{classSemantisedTriangleMesh_1_1LineAnnotation_ae473c78163a6de1a6bed0a64a17a14f0}{get\+Poly\+Lines}} () const
+\item 
+void \mbox{\hyperlink{classSemantisedTriangleMesh_1_1LineAnnotation_af742da36883d54708de049fbe2d7f1c6}{set\+Poly\+Lines}} (const std\+::vector$<$ std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classSemantisedTriangleMesh_1_1Vertex}{Vertex}} $>$ $>$ $>$ \&value)
+\item 
+void \mbox{\hyperlink{classSemantisedTriangleMesh_1_1LineAnnotation_a2ebf2138020322b67504cef633418a1d}{clear\+Polylines}} ()
+\item 
+virtual \mbox{\hyperlink{classSemantisedTriangleMesh_1_1Point}{Point}} $\ast$ \mbox{\hyperlink{classSemantisedTriangleMesh_1_1LineAnnotation_aaf98dc6fbfc0156159b9115d82cc843c}{get\+Center}} () override
+\item 
+virtual \mbox{\hyperlink{classSemantisedTriangleMesh_1_1Point}{Point}} $\ast$ \mbox{\hyperlink{classSemantisedTriangleMesh_1_1LineAnnotation_adfce081f051f4e6052a806994070b1a3}{get\+Orientation}} () override
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classSemantisedTriangleMesh_1_1Vertex}{Vertex}} $>$ $>$ $>$ \mbox{\hyperlink{classSemantisedTriangleMesh_1_1LineAnnotation_aea505ffead49a2bf4d4958fca6a7472f}{poly\+Lines}}
+\item 
+const short \mbox{\hyperlink{classSemantisedTriangleMesh_1_1LineAnnotation_ace8087e97e098bdf1ba25bb829c91029}{BBOX\+\_\+\+SPHERE\+\_\+\+RATIO}} = 1000
+\item 
+const bool \mbox{\hyperlink{classSemantisedTriangleMesh_1_1LineAnnotation_a9da776a670958b36a448cc98dc424182}{POST\+\_\+\+PROCESSING}} = true
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classSemantisedTriangleMesh_1_1LineAnnotation_a7614076bcbb89f8e36638d768ef8314f}\label{classSemantisedTriangleMesh_1_1LineAnnotation_a7614076bcbb89f8e36638d768ef8314f}} 
+\index{SemantisedTriangleMesh::LineAnnotation@{SemantisedTriangleMesh::LineAnnotation}!LineAnnotation@{LineAnnotation}}
+\index{LineAnnotation@{LineAnnotation}!SemantisedTriangleMesh::LineAnnotation@{SemantisedTriangleMesh::LineAnnotation}}
+\doxysubsubsection{\texorpdfstring{LineAnnotation()}{LineAnnotation()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Semantised\+Triangle\+Mesh\+::\+Line\+Annotation\+::\+Line\+Annotation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classSemantisedTriangleMesh_1_1LineAnnotation_adae92c144ca5de03c996c5bf7880ae19}\label{classSemantisedTriangleMesh_1_1LineAnnotation_adae92c144ca5de03c996c5bf7880ae19}} 
+\index{SemantisedTriangleMesh::LineAnnotation@{SemantisedTriangleMesh::LineAnnotation}!LineAnnotation@{LineAnnotation}}
+\index{LineAnnotation@{LineAnnotation}!SemantisedTriangleMesh::LineAnnotation@{SemantisedTriangleMesh::LineAnnotation}}
+\doxysubsubsection{\texorpdfstring{LineAnnotation()}{LineAnnotation()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Semantised\+Triangle\+Mesh\+::\+Line\+Annotation\+::\+Line\+Annotation (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classSemantisedTriangleMesh_1_1TriangleMesh}{Triangle\+Mesh}} $\ast$}]{,  }\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classSemantisedTriangleMesh_1_1LineAnnotation}{Line\+Annotation}} $>$}]{other }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classSemantisedTriangleMesh_1_1LineAnnotation_a0b28c69f98b662ba6f8e5d23cfaad615}\label{classSemantisedTriangleMesh_1_1LineAnnotation_a0b28c69f98b662ba6f8e5d23cfaad615}} 
+\index{SemantisedTriangleMesh::LineAnnotation@{SemantisedTriangleMesh::LineAnnotation}!````~LineAnnotation@{$\sim$LineAnnotation}}
+\index{````~LineAnnotation@{$\sim$LineAnnotation}!SemantisedTriangleMesh::LineAnnotation@{SemantisedTriangleMesh::LineAnnotation}}
+\doxysubsubsection{\texorpdfstring{$\sim$LineAnnotation()}{~LineAnnotation()}}
+{\footnotesize\ttfamily virtual Semantised\+Triangle\+Mesh\+::\+Line\+Annotation\+::$\sim$\+Line\+Annotation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classSemantisedTriangleMesh_1_1LineAnnotation_ac0cb4a7155fdf235daf448df2b78022f}\label{classSemantisedTriangleMesh_1_1LineAnnotation_ac0cb4a7155fdf235daf448df2b78022f}} 
+\index{SemantisedTriangleMesh::LineAnnotation@{SemantisedTriangleMesh::LineAnnotation}!addPolyLine@{addPolyLine}}
+\index{addPolyLine@{addPolyLine}!SemantisedTriangleMesh::LineAnnotation@{SemantisedTriangleMesh::LineAnnotation}}
+\doxysubsubsection{\texorpdfstring{addPolyLine()}{addPolyLine()}}
+{\footnotesize\ttfamily void Semantised\+Triangle\+Mesh\+::\+Line\+Annotation\+::add\+Poly\+Line (\begin{DoxyParamCaption}\item[{std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classSemantisedTriangleMesh_1_1Vertex}{Vertex}} $>$ $>$ \&}]{value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classSemantisedTriangleMesh_1_1LineAnnotation_a2ebf2138020322b67504cef633418a1d}\label{classSemantisedTriangleMesh_1_1LineAnnotation_a2ebf2138020322b67504cef633418a1d}} 
+\index{SemantisedTriangleMesh::LineAnnotation@{SemantisedTriangleMesh::LineAnnotation}!clearPolylines@{clearPolylines}}
+\index{clearPolylines@{clearPolylines}!SemantisedTriangleMesh::LineAnnotation@{SemantisedTriangleMesh::LineAnnotation}}
+\doxysubsubsection{\texorpdfstring{clearPolylines()}{clearPolylines()}}
+{\footnotesize\ttfamily void Semantised\+Triangle\+Mesh\+::\+Line\+Annotation\+::clear\+Polylines (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classSemantisedTriangleMesh_1_1LineAnnotation_aaf98dc6fbfc0156159b9115d82cc843c}\label{classSemantisedTriangleMesh_1_1LineAnnotation_aaf98dc6fbfc0156159b9115d82cc843c}} 
+\index{SemantisedTriangleMesh::LineAnnotation@{SemantisedTriangleMesh::LineAnnotation}!getCenter@{getCenter}}
+\index{getCenter@{getCenter}!SemantisedTriangleMesh::LineAnnotation@{SemantisedTriangleMesh::LineAnnotation}}
+\doxysubsubsection{\texorpdfstring{getCenter()}{getCenter()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classSemantisedTriangleMesh_1_1Point}{Point}}$\ast$ Semantised\+Triangle\+Mesh\+::\+Line\+Annotation\+::get\+Center (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classSemantisedTriangleMesh_1_1Annotation_a56caa20b3cf0e39b64aa7384cba27b68}{Semantised\+Triangle\+Mesh\+::\+Annotation}}.
+
+\mbox{\Hypertarget{classSemantisedTriangleMesh_1_1LineAnnotation_a9d58bb3107fe45b6eaf0930aca3848af}\label{classSemantisedTriangleMesh_1_1LineAnnotation_a9d58bb3107fe45b6eaf0930aca3848af}} 
+\index{SemantisedTriangleMesh::LineAnnotation@{SemantisedTriangleMesh::LineAnnotation}!getInvolvedVertices@{getInvolvedVertices}}
+\index{getInvolvedVertices@{getInvolvedVertices}!SemantisedTriangleMesh::LineAnnotation@{SemantisedTriangleMesh::LineAnnotation}}
+\doxysubsubsection{\texorpdfstring{getInvolvedVertices()}{getInvolvedVertices()}}
+{\footnotesize\ttfamily virtual std\+::vector$<$std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classSemantisedTriangleMesh_1_1Vertex}{Vertex}}$>$ $>$ Semantised\+Triangle\+Mesh\+::\+Line\+Annotation\+::get\+Involved\+Vertices (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+get\+Involved\+Vertices abstract method for obtaining the vertices involved in the annotation (vertices are the only always-\/present geometric entity of an annotation) 
+
+\begin{DoxyReturn}{Returns}
+a vector containing pointers to the involved vertices. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classSemantisedTriangleMesh_1_1Annotation_a623ebff7360a73a2a181d81608ac55ef}{Semantised\+Triangle\+Mesh\+::\+Annotation}}.
+
+\mbox{\Hypertarget{classSemantisedTriangleMesh_1_1LineAnnotation_adfce081f051f4e6052a806994070b1a3}\label{classSemantisedTriangleMesh_1_1LineAnnotation_adfce081f051f4e6052a806994070b1a3}} 
+\index{SemantisedTriangleMesh::LineAnnotation@{SemantisedTriangleMesh::LineAnnotation}!getOrientation@{getOrientation}}
+\index{getOrientation@{getOrientation}!SemantisedTriangleMesh::LineAnnotation@{SemantisedTriangleMesh::LineAnnotation}}
+\doxysubsubsection{\texorpdfstring{getOrientation()}{getOrientation()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classSemantisedTriangleMesh_1_1Point}{Point}}$\ast$ Semantised\+Triangle\+Mesh\+::\+Line\+Annotation\+::get\+Orientation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classSemantisedTriangleMesh_1_1Annotation_a1a19ebba7f22d0b964d04f60f69f2130}{Semantised\+Triangle\+Mesh\+::\+Annotation}}.
+
+\mbox{\Hypertarget{classSemantisedTriangleMesh_1_1LineAnnotation_ae473c78163a6de1a6bed0a64a17a14f0}\label{classSemantisedTriangleMesh_1_1LineAnnotation_ae473c78163a6de1a6bed0a64a17a14f0}} 
+\index{SemantisedTriangleMesh::LineAnnotation@{SemantisedTriangleMesh::LineAnnotation}!getPolyLines@{getPolyLines}}
+\index{getPolyLines@{getPolyLines}!SemantisedTriangleMesh::LineAnnotation@{SemantisedTriangleMesh::LineAnnotation}}
+\doxysubsubsection{\texorpdfstring{getPolyLines()}{getPolyLines()}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::vector$<$std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classSemantisedTriangleMesh_1_1Vertex}{Vertex}}$>$ $>$ $>$ Semantised\+Triangle\+Mesh\+::\+Line\+Annotation\+::get\+Poly\+Lines (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classSemantisedTriangleMesh_1_1LineAnnotation_a556e8ed9ce8044a672c6549ccf5516d1}\label{classSemantisedTriangleMesh_1_1LineAnnotation_a556e8ed9ce8044a672c6549ccf5516d1}} 
+\index{SemantisedTriangleMesh::LineAnnotation@{SemantisedTriangleMesh::LineAnnotation}!isPointInAnnotation@{isPointInAnnotation}}
+\index{isPointInAnnotation@{isPointInAnnotation}!SemantisedTriangleMesh::LineAnnotation@{SemantisedTriangleMesh::LineAnnotation}}
+\doxysubsubsection{\texorpdfstring{isPointInAnnotation()}{isPointInAnnotation()}}
+{\footnotesize\ttfamily virtual bool Semantised\+Triangle\+Mesh\+::\+Line\+Annotation\+::is\+Point\+In\+Annotation (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classSemantisedTriangleMesh_1_1Vertex}{Vertex}} $>$}]{p }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+is\+Point\+In\+Annotation checks if a given vertex is involved in this annotation 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & the vertex that needs to be checked \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the vertex is involved, false otherwise. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classSemantisedTriangleMesh_1_1Annotation_ae63598a8dd76d6d709315331d7f769c1}{Semantised\+Triangle\+Mesh\+::\+Annotation}}.
+
+\mbox{\Hypertarget{classSemantisedTriangleMesh_1_1LineAnnotation_ab1293a10654bdb6a45f20a7f86df1d98}\label{classSemantisedTriangleMesh_1_1LineAnnotation_ab1293a10654bdb6a45f20a7f86df1d98}} 
+\index{SemantisedTriangleMesh::LineAnnotation@{SemantisedTriangleMesh::LineAnnotation}!print@{print}}
+\index{print@{print}!SemantisedTriangleMesh::LineAnnotation@{SemantisedTriangleMesh::LineAnnotation}}
+\doxysubsubsection{\texorpdfstring{print()}{print()}}
+{\footnotesize\ttfamily virtual void Semantised\+Triangle\+Mesh\+::\+Line\+Annotation\+::print (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+print Prints main information related to the annotation (id, tag and attributes) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em os} & The stream onto which the information should be written \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classSemantisedTriangleMesh_1_1Annotation_a67fcd06d68919790ce8c9a820e5b3edb}{Semantised\+Triangle\+Mesh\+::\+Annotation}}.
+
+\mbox{\Hypertarget{classSemantisedTriangleMesh_1_1LineAnnotation_a86b2429692a49aeba7c8d3a46babe207}\label{classSemantisedTriangleMesh_1_1LineAnnotation_a86b2429692a49aeba7c8d3a46babe207}} 
+\index{SemantisedTriangleMesh::LineAnnotation@{SemantisedTriangleMesh::LineAnnotation}!printJson@{printJson}}
+\index{printJson@{printJson}!SemantisedTriangleMesh::LineAnnotation@{SemantisedTriangleMesh::LineAnnotation}}
+\doxysubsubsection{\texorpdfstring{printJson()}{printJson()}}
+{\footnotesize\ttfamily virtual void Semantised\+Triangle\+Mesh\+::\+Line\+Annotation\+::print\+Json (\begin{DoxyParamCaption}\item[{rapidjson\+::\+Pretty\+Writer$<$ rapidjson\+::\+String\+Buffer $>$ \&}]{writer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+print Prints main information related to the annotation (id, tag and attributes) in JSON format. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em writer} & The interface with the Rapid\+JSON library for writing the information in JSON format \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classSemantisedTriangleMesh_1_1Annotation_acb9ad9afe2dcbb4882040fb8f957571b}{Semantised\+Triangle\+Mesh\+::\+Annotation}}.
+
+\mbox{\Hypertarget{classSemantisedTriangleMesh_1_1LineAnnotation_af742da36883d54708de049fbe2d7f1c6}\label{classSemantisedTriangleMesh_1_1LineAnnotation_af742da36883d54708de049fbe2d7f1c6}} 
+\index{SemantisedTriangleMesh::LineAnnotation@{SemantisedTriangleMesh::LineAnnotation}!setPolyLines@{setPolyLines}}
+\index{setPolyLines@{setPolyLines}!SemantisedTriangleMesh::LineAnnotation@{SemantisedTriangleMesh::LineAnnotation}}
+\doxysubsubsection{\texorpdfstring{setPolyLines()}{setPolyLines()}}
+{\footnotesize\ttfamily void Semantised\+Triangle\+Mesh\+::\+Line\+Annotation\+::set\+Poly\+Lines (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classSemantisedTriangleMesh_1_1Vertex}{Vertex}} $>$ $>$ $>$ \&}]{value }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classSemantisedTriangleMesh_1_1LineAnnotation_ace8087e97e098bdf1ba25bb829c91029}\label{classSemantisedTriangleMesh_1_1LineAnnotation_ace8087e97e098bdf1ba25bb829c91029}} 
+\index{SemantisedTriangleMesh::LineAnnotation@{SemantisedTriangleMesh::LineAnnotation}!BBOX\_SPHERE\_RATIO@{BBOX\_SPHERE\_RATIO}}
+\index{BBOX\_SPHERE\_RATIO@{BBOX\_SPHERE\_RATIO}!SemantisedTriangleMesh::LineAnnotation@{SemantisedTriangleMesh::LineAnnotation}}
+\doxysubsubsection{\texorpdfstring{BBOX\_SPHERE\_RATIO}{BBOX\_SPHERE\_RATIO}}
+{\footnotesize\ttfamily const short Semantised\+Triangle\+Mesh\+::\+Line\+Annotation\+::\+BBOX\+\_\+\+SPHERE\+\_\+\+RATIO = 1000\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classSemantisedTriangleMesh_1_1LineAnnotation_aea505ffead49a2bf4d4958fca6a7472f}\label{classSemantisedTriangleMesh_1_1LineAnnotation_aea505ffead49a2bf4d4958fca6a7472f}} 
+\index{SemantisedTriangleMesh::LineAnnotation@{SemantisedTriangleMesh::LineAnnotation}!polyLines@{polyLines}}
+\index{polyLines@{polyLines}!SemantisedTriangleMesh::LineAnnotation@{SemantisedTriangleMesh::LineAnnotation}}
+\doxysubsubsection{\texorpdfstring{polyLines}{polyLines}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::vector$<$std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classSemantisedTriangleMesh_1_1Vertex}{Vertex}}$>$ $>$ $>$ Semantised\+Triangle\+Mesh\+::\+Line\+Annotation\+::poly\+Lines\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classSemantisedTriangleMesh_1_1LineAnnotation_a9da776a670958b36a448cc98dc424182}\label{classSemantisedTriangleMesh_1_1LineAnnotation_a9da776a670958b36a448cc98dc424182}} 
+\index{SemantisedTriangleMesh::LineAnnotation@{SemantisedTriangleMesh::LineAnnotation}!POST\_PROCESSING@{POST\_PROCESSING}}
+\index{POST\_PROCESSING@{POST\_PROCESSING}!SemantisedTriangleMesh::LineAnnotation@{SemantisedTriangleMesh::LineAnnotation}}
+\doxysubsubsection{\texorpdfstring{POST\_PROCESSING}{POST\_PROCESSING}}
+{\footnotesize\ttfamily const bool Semantised\+Triangle\+Mesh\+::\+Line\+Annotation\+::\+POST\+\_\+\+PROCESSING = true\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/andreas/\+Documenti/\+Progetti/\+Semantised\+Triangle\+Mesh/include/\mbox{\hyperlink{lineannotation_8hpp}{lineannotation.\+hpp}}\end{DoxyCompactItemize}

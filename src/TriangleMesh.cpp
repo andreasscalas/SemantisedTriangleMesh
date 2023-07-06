@@ -181,7 +181,7 @@ std::shared_ptr<Vertex> TriangleMesh::addNewVertex(std::shared_ptr<Vertex> v)
     return vertices.back();
 }
 
-std::shared_ptr<Vertex> TriangleMesh::getVertex(unsigned int pos)
+std::shared_ptr<Vertex> TriangleMesh::getVertex(uint pos)
 {
     if(pos >= vertices.size())
         return nullptr;
@@ -225,7 +225,7 @@ bool TriangleMesh::removeVertex(std::string vid)
     return true;
 }
 
-std::shared_ptr<Edge> TriangleMesh::getEdge(unsigned int pos)
+std::shared_ptr<Edge> TriangleMesh::getEdge(uint pos)
 {
     if(pos >= edges.size())
         return nullptr;
@@ -237,7 +237,7 @@ std::shared_ptr<Edge> TriangleMesh::getEdge(std::string id)
     return getEdge(stoi(id));
 }
 
-std::shared_ptr<Triangle> TriangleMesh::getTriangle(unsigned int pos)
+std::shared_ptr<Triangle> TriangleMesh::getTriangle(uint pos)
 {
     if(pos >= triangles.size())
         return nullptr;
@@ -413,6 +413,8 @@ void TriangleMesh::clearRelationships()
 
 int TriangleMesh::load(std::string filename)
 {
+    if(filename.compare("") == 0)
+        return -std::numeric_limits<int>::max();
     int retValue = loadPLY(filename);
     if(retValue == 0)
     {
@@ -489,27 +491,15 @@ int TriangleMesh::save(std::string filename, unsigned int precision)
 
 unsigned int TriangleMesh::removeIsolatedVertices()
 {
-//    unsigned int removed = 0;
-//    std::vector<std::shared_ptr<Vertex> > cleant_vertices;
-//    for(unsigned int i = 0; i < vertices.size(); i++)
-//    {
-//        if(vertices.at(i)->getE0() != nullptr)
-//        {
-//            cleant_vertices.push_back(vertices.at(i));
-//        }
-//    }
-//    removed = vertices.size() - cleant_vertices.size();
-//    vertices = cleant_vertices;
-//    return removed;
-    uint removed = 0;
+    uint numberOfRemovedVertices = vertices.size();
     for(uint i = 0; i < vertices.size(); i++)
         if(vertices.at(i)->getE0() == nullptr)
         {
-            removed++;
             vertices.erase(vertices.begin() + i);
             i--;
         }
-    return removed;
+    numberOfRemovedVertices -= vertices.size();
+    return numberOfRemovedVertices;
 }
 
 std::shared_ptr<Edge> TriangleMesh::searchEdgeContainingVertex(std::vector<std::shared_ptr<Edge> > list, std::shared_ptr<Vertex> v)
@@ -666,6 +656,8 @@ void TriangleMesh::clearAnnotations()
 void TriangleMesh::setAnnotations(const std::vector<std::shared_ptr<Annotation> > &newAnnotations)
 {
     annotations = newAnnotations;
+    if(relationshipsGraph == nullptr)
+        return;
     for(auto ann : annotations)
         relationshipsGraph->addNode(ann);
 }
@@ -713,6 +705,8 @@ bool TriangleMesh::removeAnnotation(unsigned int id)
         return false;
     auto a = annotations.at(id);
     annotations.erase(annotations.begin() + id);
+    if(relationshipsGraph == nullptr)
+        return true;
     auto n = relationshipsGraph->getNodeFromData(a);
     auto outgoingRelationships = relationshipsGraph->getArcsFromFletching(n);
     auto incomingRelationships = relationshipsGraph->getArcsFromTip(n);
@@ -724,7 +718,9 @@ bool TriangleMesh::removeAnnotation(unsigned int id)
     }
 
     relationshipsGraph->removeNode(n);
+
     delete n;
+
     return true;
 }
 
@@ -1082,225 +1078,6 @@ Point TriangleMesh::getMax() const
     return max;
 }
 
-
-int TriangleMesh::triangulate(std::vector<std::vector<std::vector<std::shared_ptr<Point> > > > &boundaries, std::vector<std::vector<std::shared_ptr<Point> > > &constraints)
-{
-    if(boundaries.size() < 1)
-        return -1;
-
-    std::vector<double*> points;
-    std::vector<std::vector<unsigned int> > polylines;
-    std::map<std::shared_ptr<Vertex>, std::vector<std::shared_ptr<Edge> > > vertices_edges;
-    unsigned int vertices_id = vertices.size();
-    unsigned int edges_id = edges.size();
-    unsigned int triangles_id = triangles.size();
-    /**The first boundary is the exterior boundary**/
-
-    std::vector<unsigned int> exterior_boundary_polyline;
-
-    for(unsigned int i = 0; i < boundaries.at(0).at(0).size(); i++)
-    {
-        std::vector<std::shared_ptr<Edge> > incident;
-        std::shared_ptr<Point> tmp = boundaries.at(0).at(0).at(i);
-        boundaries.at(0).at(0).at(i) = addNewVertex(*tmp);
-        points.push_back(boundaries.at(0).at(0).at(i)->toDoubleArray());
-        tmp.reset();
-        exterior_boundary_polyline.push_back(vertices_id);
-        vertices.back()->setId(std::to_string(vertices_id++));
-        vertices_edges.insert(std::make_pair(vertices.back(), incident));
-    }
-    exterior_boundary_polyline.push_back(0);
-    polylines.push_back(exterior_boundary_polyline);
-
-    /**The remaining boundaries are holes**/
-    std::vector<double*> holes_seeds;
-
-
-    for(unsigned int i = 1; i < boundaries.size(); i++)
-    {
-        std::vector<std::shared_ptr<Point> > outline = boundaries.at(i).at(0);
-
-        double v[2] = {(outline[1]->getX() - outline[0]->getX()) * 1E-2, (outline[1]->getY() - outline[0]->getY()) * 1E-2};
-        double vec[2] = {-v[1], v[0]};
-        double middle[2] = {(outline[1]->getX() + outline[0]->getX()) / 2, (outline[1]->getY() + outline[0]->getY()) / 2};
-        double* innerpoint = new double(2);
-        innerpoint[0] = vec[0] + middle[0];
-        innerpoint[1] = vec[1] + middle[1];
-
-        holes_seeds.push_back(innerpoint);
-
-        for(unsigned int j = 0; j < boundaries.at(i).size(); j++)
-        {
-            unsigned int counter = 0;
-            std::vector<unsigned int> polyline;
-            for(unsigned int k = 0; k < boundaries.at(i).at(j).size() - 1; k++)
-            {
-                std::vector<std::shared_ptr<Vertex> >::iterator it = std::find_if(vertices.begin(), vertices.end(),
-                          [boundaries, i, j, k](std::shared_ptr<Vertex> p)
-                {
-                    return *boundaries.at(i).at(j).at(k) == *p;
-                });
-
-                if(it != vertices.end())
-                {
-                    counter++;
-                    std::shared_ptr<Point> tmp = boundaries.at(i).at(j).at(k);
-                    boundaries.at(i).at(j).at(k) = *it;
-                    tmp.reset();
-                }
-
-                if(it == vertices.end())
-                {
-                    std::vector<std::shared_ptr<Edge> > incident;
-                    std::shared_ptr<Point> tmp = boundaries.at(i).at(j).at(k);
-                    std::shared_ptr<Vertex> v = addNewVertex(*tmp);
-                    points.push_back(v->toDoubleArray());
-                    boundaries.at(i).at(j).at(k) = v;
-                    tmp.reset();
-                    v->setId(std::to_string(vertices_id++));
-                    vertices_edges.insert(std::make_pair(v, incident));
-                } else if(k > 0 && *boundaries.at(i).at(j).at(k) == *boundaries.at(i).at(j).at(k - 1))
-                {
-                    boundaries.at(i).at(j).erase(boundaries.at(i).at(j).begin() + k);
-                    k--;
-                }
-
-                polyline.push_back(static_cast<unsigned int>(std::stoi(std::static_pointer_cast<Vertex>(boundaries.at(i).at(j).at(k))->getId())));
-            }
-
-            std::shared_ptr<Point> tmp = boundaries.at(i).at(j).back();
-            boundaries.at(i).at(j).back() = boundaries.at(i).at(j).at(0);
-            tmp.reset();
-            polyline.push_back(static_cast<unsigned int>(std::stoi(std::static_pointer_cast<Vertex>(boundaries.at(i).at(j).at(0))->getId())));
-            polylines.push_back(polyline);
-
-        }
-    }
-
-    for(unsigned int i = 0; i < constraints.size(); i++)
-    {
-        std::vector<unsigned int> polyline;
-        for(unsigned int j = 0; j < constraints.at(i).size(); j++)
-        {
-            std::vector<std::shared_ptr<Vertex> >::iterator it = std::find_if(vertices.begin(), vertices.end(),
-                      [constraints, i, j](std::shared_ptr<Vertex> p)
-            {
-                return *constraints.at(i).at(j) == *p;
-            });
-
-            if(it != vertices.end())
-            {
-                std::shared_ptr<Point> tmp = constraints.at(i).at(j);
-                constraints.at(i).at(j) = *it;
-                tmp.reset();
-            }
-
-            if(it == vertices.end())
-            {
-                std::vector<std::shared_ptr<Edge> > incident;
-                std::shared_ptr<Point> tmp = constraints.at(i).at(j);
-                std::shared_ptr<Vertex> v = addNewVertex(*tmp);
-                points.push_back(v->toDoubleArray());
-                constraints.at(i).at(j) = v;
-                tmp.reset();
-                v->setId(std::to_string(vertices_id++));
-                vertices_edges.insert(std::make_pair(v, incident));
-            } else if(j > 0 && *constraints.at(i).at(j) == *constraints.at(i).at(j - 1))
-            {
-               constraints.at(i).erase(constraints.at(i).begin() + j);
-               j--;
-               continue;
-            }
-            polyline.push_back(static_cast<unsigned int>(std::stoi(std::static_pointer_cast<Vertex>(constraints.at(i).at(j))->getId())));
-        }
-        polylines.push_back(polyline);
-    }
-
-    std::cout << "Starting triangulation " << std::endl;
-    TriHelper::TriangleHelper helper(points, polylines, holes_seeds, true);
-
-
-    std::vector<unsigned int> generated_triangles = helper.getTriangles();
-    std::vector<double*> generated_points = helper.getAddedPoints();
-    for(unsigned int i = 0; i < generated_points.size(); i++)
-    {
-        std::vector<std::shared_ptr<Edge> > incident;
-        std::shared_ptr<Vertex> v = addNewVertex(generated_points.at(i)[0], generated_points.at(i)[1], 0);
-        v->setId(std::to_string(vertices_id++));
-        vertices_edges.insert(std::make_pair(vertices.back(), incident));
-    }
-
-    std::cout << "Ended! Created " << generated_triangles.size() / 3 << " triangles." << std::endl << "Building mesh structure:" << std::endl;
-    for(unsigned int i = 0; i < generated_triangles.size() / 3; i++)
-    {
-        unsigned int v1 = generated_triangles.at(i * 3), v2 = generated_triangles.at(i * 3 + 1), v3 = generated_triangles.at(i * 3 + 2);
-        std::shared_ptr<Edge> e1, e2, e3;
-
-        e1 = searchEdgeContainingVertex(vertices_edges.at(vertices.at(v1)), vertices.at(v2));
-        if(e1 == nullptr)
-            e1 = searchEdgeContainingVertex(vertices_edges.at(vertices.at(v2)), vertices.at(v1));
-        if(e1 == nullptr)
-        {
-            addNewEdge(vertices.at(v1), vertices.at(v2));
-            e1 = edges.back();
-            e1->setId(std::to_string(edges_id++));
-            vertices_edges.at(vertices.at(v1)).push_back(e1);
-        }
-        vertices.at(v1)->setE0(e1);
-        e2 = searchEdgeContainingVertex(vertices_edges.at(vertices.at(v2)), vertices.at(v3));
-        if(e2 == nullptr)
-            e2 = searchEdgeContainingVertex(vertices_edges.at(vertices.at(v3)), vertices.at(v2));
-        if(e2 == nullptr)
-        {
-            addNewEdge(vertices.at(v2), vertices.at(v3));
-            e2 = edges.back();
-            e2->setId(std::to_string(edges_id++));
-            vertices_edges.at(vertices.at(v2)).push_back(e2);
-        }
-        vertices.at(v2)->setE0(e2);
-        e3 = searchEdgeContainingVertex(vertices_edges.at(vertices.at(v3)), vertices.at(v1));
-        if(e3 == nullptr)
-            e3 = searchEdgeContainingVertex(vertices_edges.at(vertices.at(v1)), vertices.at(v3));
-        if(e3 == nullptr)
-        {
-            addNewEdge(vertices.at(v3), vertices.at(v1));
-            e3 = edges.back();
-            e3->setId(std::to_string(edges_id++));
-            vertices_edges.at(vertices.at(v3)).push_back(e3);
-        }
-        vertices.at(v3)->setE0(e3);
-
-        addNewTriangle(e1, e2, e3);
-        triangles.back()->setId(std::to_string(triangles_id++));
-        if(e1->getT1() == nullptr)
-           e1->setT1(triangles.back());
-        else if(e1->getT2() == nullptr)
-            e1->setT2(triangles.back());
-        else
-            return 9;
-        if(e2->getT1() == nullptr)
-            e2->setT1(triangles.back());
-        else if(e2->getT2() == nullptr)
-            e2->setT2(triangles.back());
-        else
-            return 9;
-        if(e3->getT1() == nullptr)
-            e3->setT1(triangles.back());
-        else if(e3->getT2() == nullptr)
-            e3->setT2(triangles.back());
-        else
-            return 9;
-
-        if(i % 100 == 0)
-            std::cout << i * 100 / generated_triangles.size() << "%\r" << std::flush;;
-
-    }
-
-    std::cout << "Ended!" << std::endl;
-    return 0;
-
-}
-
 int TriangleMesh::triangulate(std::vector<std::vector<std::vector<std::shared_ptr<Vertex> > > > &boundaries, std::vector<std::vector<std::shared_ptr<Vertex> > > &constraints, std::vector<std::shared_ptr<Vertex> > constraintVertices)
 {
     if(boundaries.size() < 1)
@@ -1542,6 +1319,7 @@ int TriangleMesh::loadPLY(std::string filename)
         if(line.compare("ply") != 0)
         {
             std::cerr << "Current implementation only deals with PLY file format!" << std::endl;
+            fileStream.close();
             return 1;
         }
         std::getline(fileStream, line);
@@ -1551,6 +1329,7 @@ int TriangleMesh::loadPLY(std::string filename)
             if(line.substr(0, 14).compare("element vertex") != 0)
             {
                 std::cerr << "File has to start with vertices specification!" << std::endl;
+                fileStream.close();
                 return 2;
             }
             vertices_number = stoi(line.substr(15, line.size() - 15));
@@ -1558,18 +1337,21 @@ int TriangleMesh::loadPLY(std::string filename)
             if(line.substr(0, 8).compare("property") != 0)
             {
                 std::cerr << "X coordinate format needs to be specified!" << std::endl;
+                fileStream.close();
                 return 3;
             }
             while(std::getline(fileStream, line) && line.substr(0, 7).compare("comment") == 0); //removing all comments
             if(line.substr(0, 8).compare("property") != 0)
             {
                 std::cerr << "Y coordinate format needs to be specified!" << std::endl;
+                fileStream.close();
                 return 3;
             }
             while(std::getline(fileStream, line) && line.substr(0, 7).compare("comment") == 0); //removing all comments
             if(line.substr(0, 8).compare("property") != 0)
             {
                 std::cerr << "Z coordinate format needs to be specified!" << std::endl;
+                fileStream.close();
                 return 3;
             }
             while(std::getline(fileStream, line) &&
@@ -1581,6 +1363,7 @@ int TriangleMesh::loadPLY(std::string filename)
             if(line.substr(0, 12).compare("element face") != 0)
             {
                 std::cerr << "After vertices specification there must be faces specification!" << std::endl;
+                fileStream.close();
                 return 4;
             }
             triangles_number = stoi(line.substr(13, line.size() - 13));
@@ -1588,6 +1371,7 @@ int TriangleMesh::loadPLY(std::string filename)
             if(line.compare("property list uchar int vertex_indices") != 0)
             {
                 std::cerr << "Current implementation only manages faces defined as \"property list uchar int vertex_indices\"" << std::endl;
+                fileStream.close();
                 return 5;
             }
             while(std::getline(fileStream, line) &&
@@ -1600,13 +1384,17 @@ int TriangleMesh::loadPLY(std::string filename)
             if(line.compare("end_header") != 0)
             {
                 std::cerr << "At this point the header must be closed." << std::endl;
+                fileStream.close();
                 return 6;
             }
             std::cout << "Loading vertices: " << std::endl;
             for(unsigned int i = 0; i < vertices_number; i++)
             {
                 if(!std::getline(fileStream, line))
+                {
+                    fileStream.close();
                     return 7;
+                }
                 std::stringstream sstream(line);
                 double x, y, z;
                 sstream >> x;
@@ -1625,6 +1413,7 @@ int TriangleMesh::loadPLY(std::string filename)
                 if(!std::getline(fileStream, line))
                 {
                     std::cerr << "Unexpected end of file." << std::endl;
+                    fileStream.close();
                     return 8;
                 }
                 std::stringstream sstream(line);
@@ -1677,19 +1466,28 @@ int TriangleMesh::loadPLY(std::string filename)
                 else if(e1->getT2() == nullptr)
                     e1->setT2(triangles.back());
                 else
+                {
+                    fileStream.close();
                     return 9;
+                }
                 if(e2->getT1() == nullptr)
                     e2->setT1(triangles.back());
                 else if(e2->getT2() == nullptr)
                     e2->setT2(triangles.back());
                 else
+                {
+                    fileStream.close();
                     return 9;
+                }
                 if(e3->getT1() == nullptr)
                     e3->setT1(triangles.back());
                 else if(e3->getT2() == nullptr)
                     e3->setT2(triangles.back());
                 else
+                {
+                    fileStream.close();
                     return 9;
+                }
 
                 if(i % 100 == 0)
                     std::cout << i * 100 / triangles_number << "%\r" << std::flush;;
@@ -1697,6 +1495,10 @@ int TriangleMesh::loadPLY(std::string filename)
             }
             std::cout << "Ended! Loaded " << triangles_number << " triangles." << std::endl;
 
+        } else
+        {
+            std::cerr << "This file format is currently not supported" << std::endl;
+            return 10;
         }
         fileStream.close();
         return 0;

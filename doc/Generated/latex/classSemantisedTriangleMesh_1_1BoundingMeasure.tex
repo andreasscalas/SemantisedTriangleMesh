@@ -1,0 +1,156 @@
+\hypertarget{classSemantisedTriangleMesh_1_1BoundingMeasure}{}\doxysection{Semantised\+Triangle\+Mesh\+::Bounding\+Measure Class Reference}
+\label{classSemantisedTriangleMesh_1_1BoundingMeasure}\index{SemantisedTriangleMesh::BoundingMeasure@{SemantisedTriangleMesh::BoundingMeasure}}
+
+
+{\ttfamily \#include $<$boundingmeasure.\+hpp$>$}
+
+
+
+Inheritance diagram for Semantised\+Triangle\+Mesh\+::Bounding\+Measure\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classSemantisedTriangleMesh_1_1BoundingMeasure__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Semantised\+Triangle\+Mesh\+::Bounding\+Measure\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classSemantisedTriangleMesh_1_1BoundingMeasure__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classSemantisedTriangleMesh_1_1BoundingMeasure_a1a0850cc1f0996dc37a5f57846a21b01}{Bounding\+Measure}} ()
+\item 
+\mbox{\hyperlink{classSemantisedTriangleMesh_1_1BoundingMeasure_a6334a301bc80612cb9a299f2efdbd68d}{$\sim$\+Bounding\+Measure}} ()
+\item 
+virtual void \mbox{\hyperlink{classSemantisedTriangleMesh_1_1BoundingMeasure_a78dbc326b0856cf7c654ebafa2e536be}{print}} (std\+::ostream \&) override
+\item 
+virtual void \mbox{\hyperlink{classSemantisedTriangleMesh_1_1BoundingMeasure_ab903953f90afc9e5697f28162ae4590f}{print\+Json}} (rapidjson\+::\+Pretty\+Writer$<$ rapidjson\+::\+String\+Buffer $>$ \&) override
+\item 
+const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classSemantisedTriangleMesh_1_1Point}{Semantised\+Triangle\+Mesh\+::\+Point}} $>$ \& \mbox{\hyperlink{classSemantisedTriangleMesh_1_1BoundingMeasure_a906995c21c64f0e9ad56ee94c3d3ede8}{get\+Origin}} () const
+\item 
+void \mbox{\hyperlink{classSemantisedTriangleMesh_1_1BoundingMeasure_af49bfedfefa882c283bf27729fd1ec19}{set\+Origin}} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classSemantisedTriangleMesh_1_1Point}{Semantised\+Triangle\+Mesh\+::\+Point}} $>$ \&new\+Origin)
+\item 
+const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classSemantisedTriangleMesh_1_1Point}{Semantised\+Triangle\+Mesh\+::\+Point}} $>$ \& \mbox{\hyperlink{classSemantisedTriangleMesh_1_1BoundingMeasure_a23a229ecfd0eace441f9278e8327b534}{get\+Direction}} () const
+\item 
+void \mbox{\hyperlink{classSemantisedTriangleMesh_1_1BoundingMeasure_a49aae925d961c48a0412a711ab35f7c8}{set\+Direction}} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classSemantisedTriangleMesh_1_1Point}{Semantised\+Triangle\+Mesh\+::\+Point}} $>$ \&new\+Direction)
+\item 
+void \mbox{\hyperlink{classSemantisedTriangleMesh_1_1BoundingMeasure_a3bbcd736c173a2e8047f221bdbe2c4e8}{set\+Direction}} (const \mbox{\hyperlink{classSemantisedTriangleMesh_1_1Point}{Semantised\+Triangle\+Mesh\+::\+Point}} \&new\+Direction)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classSemantisedTriangleMesh_1_1Point}{Semantised\+Triangle\+Mesh\+::\+Point}} $>$ \mbox{\hyperlink{classSemantisedTriangleMesh_1_1BoundingMeasure_a04e6b9aebce5c0309f1c5c7185ad7862}{origin}}
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classSemantisedTriangleMesh_1_1Point}{Semantised\+Triangle\+Mesh\+::\+Point}} $>$ \mbox{\hyperlink{classSemantisedTriangleMesh_1_1BoundingMeasure_a760faea4d7b1d341a15b01b47537dc4c}{direction}}
+\item 
+\mbox{\hyperlink{classSemantisedTriangleMesh_1_1Point}{Semantised\+Triangle\+Mesh\+::\+Point}} \mbox{\hyperlink{classSemantisedTriangleMesh_1_1BoundingMeasure_ac92ceb7b4946084d7cafc8cb2c09dd04}{extreme0}}
+\item 
+\mbox{\hyperlink{classSemantisedTriangleMesh_1_1Point}{Semantised\+Triangle\+Mesh\+::\+Point}} \mbox{\hyperlink{classSemantisedTriangleMesh_1_1BoundingMeasure_afaad7f6e944a909183d95c129da8c2b1}{extreme1}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classSemantisedTriangleMesh_1_1BoundingMeasure_a1a0850cc1f0996dc37a5f57846a21b01}\label{classSemantisedTriangleMesh_1_1BoundingMeasure_a1a0850cc1f0996dc37a5f57846a21b01}} 
+\index{SemantisedTriangleMesh::BoundingMeasure@{SemantisedTriangleMesh::BoundingMeasure}!BoundingMeasure@{BoundingMeasure}}
+\index{BoundingMeasure@{BoundingMeasure}!SemantisedTriangleMesh::BoundingMeasure@{SemantisedTriangleMesh::BoundingMeasure}}
+\doxysubsubsection{\texorpdfstring{BoundingMeasure()}{BoundingMeasure()}}
+{\footnotesize\ttfamily Semantised\+Triangle\+Mesh\+::\+Bounding\+Measure\+::\+Bounding\+Measure (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classSemantisedTriangleMesh_1_1BoundingMeasure_a6334a301bc80612cb9a299f2efdbd68d}\label{classSemantisedTriangleMesh_1_1BoundingMeasure_a6334a301bc80612cb9a299f2efdbd68d}} 
+\index{SemantisedTriangleMesh::BoundingMeasure@{SemantisedTriangleMesh::BoundingMeasure}!````~BoundingMeasure@{$\sim$BoundingMeasure}}
+\index{````~BoundingMeasure@{$\sim$BoundingMeasure}!SemantisedTriangleMesh::BoundingMeasure@{SemantisedTriangleMesh::BoundingMeasure}}
+\doxysubsubsection{\texorpdfstring{$\sim$BoundingMeasure()}{~BoundingMeasure()}}
+{\footnotesize\ttfamily Semantised\+Triangle\+Mesh\+::\+Bounding\+Measure\+::$\sim$\+Bounding\+Measure (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classSemantisedTriangleMesh_1_1BoundingMeasure_a23a229ecfd0eace441f9278e8327b534}\label{classSemantisedTriangleMesh_1_1BoundingMeasure_a23a229ecfd0eace441f9278e8327b534}} 
+\index{SemantisedTriangleMesh::BoundingMeasure@{SemantisedTriangleMesh::BoundingMeasure}!getDirection@{getDirection}}
+\index{getDirection@{getDirection}!SemantisedTriangleMesh::BoundingMeasure@{SemantisedTriangleMesh::BoundingMeasure}}
+\doxysubsubsection{\texorpdfstring{getDirection()}{getDirection()}}
+{\footnotesize\ttfamily const std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classSemantisedTriangleMesh_1_1Point}{Semantised\+Triangle\+Mesh\+::\+Point}}$>$\& Semantised\+Triangle\+Mesh\+::\+Bounding\+Measure\+::get\+Direction (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classSemantisedTriangleMesh_1_1BoundingMeasure_a906995c21c64f0e9ad56ee94c3d3ede8}\label{classSemantisedTriangleMesh_1_1BoundingMeasure_a906995c21c64f0e9ad56ee94c3d3ede8}} 
+\index{SemantisedTriangleMesh::BoundingMeasure@{SemantisedTriangleMesh::BoundingMeasure}!getOrigin@{getOrigin}}
+\index{getOrigin@{getOrigin}!SemantisedTriangleMesh::BoundingMeasure@{SemantisedTriangleMesh::BoundingMeasure}}
+\doxysubsubsection{\texorpdfstring{getOrigin()}{getOrigin()}}
+{\footnotesize\ttfamily const std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classSemantisedTriangleMesh_1_1Point}{Semantised\+Triangle\+Mesh\+::\+Point}}$>$\& Semantised\+Triangle\+Mesh\+::\+Bounding\+Measure\+::get\+Origin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classSemantisedTriangleMesh_1_1BoundingMeasure_a78dbc326b0856cf7c654ebafa2e536be}\label{classSemantisedTriangleMesh_1_1BoundingMeasure_a78dbc326b0856cf7c654ebafa2e536be}} 
+\index{SemantisedTriangleMesh::BoundingMeasure@{SemantisedTriangleMesh::BoundingMeasure}!print@{print}}
+\index{print@{print}!SemantisedTriangleMesh::BoundingMeasure@{SemantisedTriangleMesh::BoundingMeasure}}
+\doxysubsubsection{\texorpdfstring{print()}{print()}}
+{\footnotesize\ttfamily virtual void Semantised\+Triangle\+Mesh\+::\+Bounding\+Measure\+::print (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classSemantisedTriangleMesh_1_1GeometricAttribute_a957b5072891b9dffb1bc554ae88f0a70}{Semantised\+Triangle\+Mesh\+::\+Geometric\+Attribute}}.
+
+\mbox{\Hypertarget{classSemantisedTriangleMesh_1_1BoundingMeasure_ab903953f90afc9e5697f28162ae4590f}\label{classSemantisedTriangleMesh_1_1BoundingMeasure_ab903953f90afc9e5697f28162ae4590f}} 
+\index{SemantisedTriangleMesh::BoundingMeasure@{SemantisedTriangleMesh::BoundingMeasure}!printJson@{printJson}}
+\index{printJson@{printJson}!SemantisedTriangleMesh::BoundingMeasure@{SemantisedTriangleMesh::BoundingMeasure}}
+\doxysubsubsection{\texorpdfstring{printJson()}{printJson()}}
+{\footnotesize\ttfamily virtual void Semantised\+Triangle\+Mesh\+::\+Bounding\+Measure\+::print\+Json (\begin{DoxyParamCaption}\item[{rapidjson\+::\+Pretty\+Writer$<$ rapidjson\+::\+String\+Buffer $>$ \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classSemantisedTriangleMesh_1_1GeometricAttribute_a1532e35e5e50f3a96dcb9bee5e2efd94}{Semantised\+Triangle\+Mesh\+::\+Geometric\+Attribute}}.
+
+\mbox{\Hypertarget{classSemantisedTriangleMesh_1_1BoundingMeasure_a3bbcd736c173a2e8047f221bdbe2c4e8}\label{classSemantisedTriangleMesh_1_1BoundingMeasure_a3bbcd736c173a2e8047f221bdbe2c4e8}} 
+\index{SemantisedTriangleMesh::BoundingMeasure@{SemantisedTriangleMesh::BoundingMeasure}!setDirection@{setDirection}}
+\index{setDirection@{setDirection}!SemantisedTriangleMesh::BoundingMeasure@{SemantisedTriangleMesh::BoundingMeasure}}
+\doxysubsubsection{\texorpdfstring{setDirection()}{setDirection()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Semantised\+Triangle\+Mesh\+::\+Bounding\+Measure\+::set\+Direction (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classSemantisedTriangleMesh_1_1Point}{Semantised\+Triangle\+Mesh\+::\+Point}} \&}]{new\+Direction }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classSemantisedTriangleMesh_1_1BoundingMeasure_a49aae925d961c48a0412a711ab35f7c8}\label{classSemantisedTriangleMesh_1_1BoundingMeasure_a49aae925d961c48a0412a711ab35f7c8}} 
+\index{SemantisedTriangleMesh::BoundingMeasure@{SemantisedTriangleMesh::BoundingMeasure}!setDirection@{setDirection}}
+\index{setDirection@{setDirection}!SemantisedTriangleMesh::BoundingMeasure@{SemantisedTriangleMesh::BoundingMeasure}}
+\doxysubsubsection{\texorpdfstring{setDirection()}{setDirection()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Semantised\+Triangle\+Mesh\+::\+Bounding\+Measure\+::set\+Direction (\begin{DoxyParamCaption}\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classSemantisedTriangleMesh_1_1Point}{Semantised\+Triangle\+Mesh\+::\+Point}} $>$ \&}]{new\+Direction }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classSemantisedTriangleMesh_1_1BoundingMeasure_af49bfedfefa882c283bf27729fd1ec19}\label{classSemantisedTriangleMesh_1_1BoundingMeasure_af49bfedfefa882c283bf27729fd1ec19}} 
+\index{SemantisedTriangleMesh::BoundingMeasure@{SemantisedTriangleMesh::BoundingMeasure}!setOrigin@{setOrigin}}
+\index{setOrigin@{setOrigin}!SemantisedTriangleMesh::BoundingMeasure@{SemantisedTriangleMesh::BoundingMeasure}}
+\doxysubsubsection{\texorpdfstring{setOrigin()}{setOrigin()}}
+{\footnotesize\ttfamily void Semantised\+Triangle\+Mesh\+::\+Bounding\+Measure\+::set\+Origin (\begin{DoxyParamCaption}\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classSemantisedTriangleMesh_1_1Point}{Semantised\+Triangle\+Mesh\+::\+Point}} $>$ \&}]{new\+Origin }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classSemantisedTriangleMesh_1_1BoundingMeasure_a760faea4d7b1d341a15b01b47537dc4c}\label{classSemantisedTriangleMesh_1_1BoundingMeasure_a760faea4d7b1d341a15b01b47537dc4c}} 
+\index{SemantisedTriangleMesh::BoundingMeasure@{SemantisedTriangleMesh::BoundingMeasure}!direction@{direction}}
+\index{direction@{direction}!SemantisedTriangleMesh::BoundingMeasure@{SemantisedTriangleMesh::BoundingMeasure}}
+\doxysubsubsection{\texorpdfstring{direction}{direction}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classSemantisedTriangleMesh_1_1Point}{Semantised\+Triangle\+Mesh\+::\+Point}}$>$ Semantised\+Triangle\+Mesh\+::\+Bounding\+Measure\+::direction\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classSemantisedTriangleMesh_1_1BoundingMeasure_ac92ceb7b4946084d7cafc8cb2c09dd04}\label{classSemantisedTriangleMesh_1_1BoundingMeasure_ac92ceb7b4946084d7cafc8cb2c09dd04}} 
+\index{SemantisedTriangleMesh::BoundingMeasure@{SemantisedTriangleMesh::BoundingMeasure}!extreme0@{extreme0}}
+\index{extreme0@{extreme0}!SemantisedTriangleMesh::BoundingMeasure@{SemantisedTriangleMesh::BoundingMeasure}}
+\doxysubsubsection{\texorpdfstring{extreme0}{extreme0}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classSemantisedTriangleMesh_1_1Point}{Semantised\+Triangle\+Mesh\+::\+Point}} Semantised\+Triangle\+Mesh\+::\+Bounding\+Measure\+::extreme0\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classSemantisedTriangleMesh_1_1BoundingMeasure_afaad7f6e944a909183d95c129da8c2b1}\label{classSemantisedTriangleMesh_1_1BoundingMeasure_afaad7f6e944a909183d95c129da8c2b1}} 
+\index{SemantisedTriangleMesh::BoundingMeasure@{SemantisedTriangleMesh::BoundingMeasure}!extreme1@{extreme1}}
+\index{extreme1@{extreme1}!SemantisedTriangleMesh::BoundingMeasure@{SemantisedTriangleMesh::BoundingMeasure}}
+\doxysubsubsection{\texorpdfstring{extreme1}{extreme1}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classSemantisedTriangleMesh_1_1Point}{Semantised\+Triangle\+Mesh\+::\+Point}} Semantised\+Triangle\+Mesh\+::\+Bounding\+Measure\+::extreme1\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classSemantisedTriangleMesh_1_1BoundingMeasure_a04e6b9aebce5c0309f1c5c7185ad7862}\label{classSemantisedTriangleMesh_1_1BoundingMeasure_a04e6b9aebce5c0309f1c5c7185ad7862}} 
+\index{SemantisedTriangleMesh::BoundingMeasure@{SemantisedTriangleMesh::BoundingMeasure}!origin@{origin}}
+\index{origin@{origin}!SemantisedTriangleMesh::BoundingMeasure@{SemantisedTriangleMesh::BoundingMeasure}}
+\doxysubsubsection{\texorpdfstring{origin}{origin}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classSemantisedTriangleMesh_1_1Point}{Semantised\+Triangle\+Mesh\+::\+Point}}$>$ Semantised\+Triangle\+Mesh\+::\+Bounding\+Measure\+::origin\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/andreas/\+Documenti/\+Progetti/\+Semantised\+Triangle\+Mesh/include/\mbox{\hyperlink{boundingmeasure_8hpp}{boundingmeasure.\+hpp}}\end{DoxyCompactItemize}

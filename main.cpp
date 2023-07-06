@@ -163,6 +163,8 @@ int main(int argc, char* argv[])
 ////    mesh->save("prova_triangulation.ply");
 ////    mesh.reset();
     std::shared_ptr<TriangleMesh> original = std::make_shared<TriangleMesh>();
+    if(argc < 3)
+        return -1;
     original->load(argv[1]);
 //    TriangleMesh* target = new TriangleMesh();
 //    target->load(argv[2]);

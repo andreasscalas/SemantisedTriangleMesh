@@ -1,0 +1,210 @@
+\hypertarget{classSemantisedTriangleMesh_1_1PointAnnotation}{}\doxysection{Semantised\+Triangle\+Mesh\+::Point\+Annotation Class Reference}
+\label{classSemantisedTriangleMesh_1_1PointAnnotation}\index{SemantisedTriangleMesh::PointAnnotation@{SemantisedTriangleMesh::PointAnnotation}}
+
+
+{\ttfamily \#include $<$pointannotation.\+hpp$>$}
+
+
+
+Inheritance diagram for Semantised\+Triangle\+Mesh\+::Point\+Annotation\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classSemantisedTriangleMesh_1_1PointAnnotation__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Semantised\+Triangle\+Mesh\+::Point\+Annotation\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classSemantisedTriangleMesh_1_1PointAnnotation__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classSemantisedTriangleMesh_1_1PointAnnotation_a2169e3967d1e8331e1e18d61d3aa5389}{Point\+Annotation}} ()
+\item 
+\mbox{\hyperlink{classSemantisedTriangleMesh_1_1PointAnnotation_aea68a5192dd7819b9c9d2cbf4b67d626}{Point\+Annotation}} (\mbox{\hyperlink{classSemantisedTriangleMesh_1_1TriangleMesh}{Triangle\+Mesh}} $\ast$\mbox{\hyperlink{structmesh}{mesh}}, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classSemantisedTriangleMesh_1_1PointAnnotation}{Point\+Annotation}} $>$ other)
+\item 
+virtual \mbox{\hyperlink{classSemantisedTriangleMesh_1_1PointAnnotation_a38b2dcc79281389d1010b362303e4085}{$\sim$\+Point\+Annotation}} () override
+\item 
+virtual void \mbox{\hyperlink{classSemantisedTriangleMesh_1_1PointAnnotation_a52114b669d07de426daea3de5d3ce3ca}{print}} (std\+::ostream \&) override
+\begin{DoxyCompactList}\small\item\em print Prints main information related to the annotation (id, tag and attributes) \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classSemantisedTriangleMesh_1_1PointAnnotation_a493ef02a6e62147023b71a9afd3f2cd0}{print\+Json}} (rapidjson\+::\+Pretty\+Writer$<$ rapidjson\+::\+String\+Buffer $>$ \&) override
+\begin{DoxyCompactList}\small\item\em print Prints main information related to the annotation (id, tag and attributes) in JSON format. \end{DoxyCompactList}\item 
+virtual std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classSemantisedTriangleMesh_1_1Vertex}{Vertex}} $>$ $>$ \mbox{\hyperlink{classSemantisedTriangleMesh_1_1PointAnnotation_ab108e67a966fcd933379d957045b4810}{get\+Involved\+Vertices}} () override
+\begin{DoxyCompactList}\small\item\em get\+Involved\+Vertices abstract method for obtaining the vertices involved in the annotation (vertices are the only always-\/present geometric entity of an annotation) \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classSemantisedTriangleMesh_1_1PointAnnotation_a3df37683188175cc320473cbd1addb85}{is\+Point\+In\+Annotation}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classSemantisedTriangleMesh_1_1Vertex}{Vertex}} $>$ annotated\+Point) override
+\begin{DoxyCompactList}\small\item\em is\+Point\+In\+Annotation checks if a given vertex is involved in this annotation \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classSemantisedTriangleMesh_1_1Vertex}{Vertex}} $>$ $>$ \mbox{\hyperlink{classSemantisedTriangleMesh_1_1PointAnnotation_aa17f9595f8ba6d57d4f01a2266e98b65}{get\+Points}} () const
+\item 
+void \mbox{\hyperlink{classSemantisedTriangleMesh_1_1PointAnnotation_aeba7c83f6c6478c7b46c84584c5d6ea3}{set\+Points}} (const std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classSemantisedTriangleMesh_1_1Vertex}{Vertex}} $>$$>$ \&value)
+\item 
+void \mbox{\hyperlink{classSemantisedTriangleMesh_1_1PointAnnotation_a05698af5b0edcb399359a7ee16f4f8be}{add\+Point}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classSemantisedTriangleMesh_1_1Vertex}{Vertex}} $>$ value)
+\item 
+virtual \mbox{\hyperlink{classSemantisedTriangleMesh_1_1Point}{Point}} $\ast$ \mbox{\hyperlink{classSemantisedTriangleMesh_1_1PointAnnotation_a5cd46ff78ad939a5a51ef027d7f95c15}{get\+Center}} () override
+\item 
+virtual \mbox{\hyperlink{classSemantisedTriangleMesh_1_1Point}{Point}} $\ast$ \mbox{\hyperlink{classSemantisedTriangleMesh_1_1PointAnnotation_aed2a06c9238c0ddb306b3acbe80bfb0b}{get\+Orientation}} () override
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classSemantisedTriangleMesh_1_1Vertex}{Vertex}} $>$ $>$ \mbox{\hyperlink{classSemantisedTriangleMesh_1_1PointAnnotation_a4b93ea48fa3f0b7f66c57b3f704ee913}{points}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classSemantisedTriangleMesh_1_1PointAnnotation_a2169e3967d1e8331e1e18d61d3aa5389}\label{classSemantisedTriangleMesh_1_1PointAnnotation_a2169e3967d1e8331e1e18d61d3aa5389}} 
+\index{SemantisedTriangleMesh::PointAnnotation@{SemantisedTriangleMesh::PointAnnotation}!PointAnnotation@{PointAnnotation}}
+\index{PointAnnotation@{PointAnnotation}!SemantisedTriangleMesh::PointAnnotation@{SemantisedTriangleMesh::PointAnnotation}}
+\doxysubsubsection{\texorpdfstring{PointAnnotation()}{PointAnnotation()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Semantised\+Triangle\+Mesh\+::\+Point\+Annotation\+::\+Point\+Annotation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classSemantisedTriangleMesh_1_1PointAnnotation_aea68a5192dd7819b9c9d2cbf4b67d626}\label{classSemantisedTriangleMesh_1_1PointAnnotation_aea68a5192dd7819b9c9d2cbf4b67d626}} 
+\index{SemantisedTriangleMesh::PointAnnotation@{SemantisedTriangleMesh::PointAnnotation}!PointAnnotation@{PointAnnotation}}
+\index{PointAnnotation@{PointAnnotation}!SemantisedTriangleMesh::PointAnnotation@{SemantisedTriangleMesh::PointAnnotation}}
+\doxysubsubsection{\texorpdfstring{PointAnnotation()}{PointAnnotation()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Semantised\+Triangle\+Mesh\+::\+Point\+Annotation\+::\+Point\+Annotation (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classSemantisedTriangleMesh_1_1TriangleMesh}{Triangle\+Mesh}} $\ast$}]{mesh,  }\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classSemantisedTriangleMesh_1_1PointAnnotation}{Point\+Annotation}} $>$}]{other }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classSemantisedTriangleMesh_1_1PointAnnotation_a38b2dcc79281389d1010b362303e4085}\label{classSemantisedTriangleMesh_1_1PointAnnotation_a38b2dcc79281389d1010b362303e4085}} 
+\index{SemantisedTriangleMesh::PointAnnotation@{SemantisedTriangleMesh::PointAnnotation}!````~PointAnnotation@{$\sim$PointAnnotation}}
+\index{````~PointAnnotation@{$\sim$PointAnnotation}!SemantisedTriangleMesh::PointAnnotation@{SemantisedTriangleMesh::PointAnnotation}}
+\doxysubsubsection{\texorpdfstring{$\sim$PointAnnotation()}{~PointAnnotation()}}
+{\footnotesize\ttfamily virtual Semantised\+Triangle\+Mesh\+::\+Point\+Annotation\+::$\sim$\+Point\+Annotation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classSemantisedTriangleMesh_1_1PointAnnotation_a05698af5b0edcb399359a7ee16f4f8be}\label{classSemantisedTriangleMesh_1_1PointAnnotation_a05698af5b0edcb399359a7ee16f4f8be}} 
+\index{SemantisedTriangleMesh::PointAnnotation@{SemantisedTriangleMesh::PointAnnotation}!addPoint@{addPoint}}
+\index{addPoint@{addPoint}!SemantisedTriangleMesh::PointAnnotation@{SemantisedTriangleMesh::PointAnnotation}}
+\doxysubsubsection{\texorpdfstring{addPoint()}{addPoint()}}
+{\footnotesize\ttfamily void Semantised\+Triangle\+Mesh\+::\+Point\+Annotation\+::add\+Point (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classSemantisedTriangleMesh_1_1Vertex}{Vertex}} $>$}]{value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classSemantisedTriangleMesh_1_1PointAnnotation_a5cd46ff78ad939a5a51ef027d7f95c15}\label{classSemantisedTriangleMesh_1_1PointAnnotation_a5cd46ff78ad939a5a51ef027d7f95c15}} 
+\index{SemantisedTriangleMesh::PointAnnotation@{SemantisedTriangleMesh::PointAnnotation}!getCenter@{getCenter}}
+\index{getCenter@{getCenter}!SemantisedTriangleMesh::PointAnnotation@{SemantisedTriangleMesh::PointAnnotation}}
+\doxysubsubsection{\texorpdfstring{getCenter()}{getCenter()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classSemantisedTriangleMesh_1_1Point}{Point}}$\ast$ Semantised\+Triangle\+Mesh\+::\+Point\+Annotation\+::get\+Center (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classSemantisedTriangleMesh_1_1Annotation_a56caa20b3cf0e39b64aa7384cba27b68}{Semantised\+Triangle\+Mesh\+::\+Annotation}}.
+
+\mbox{\Hypertarget{classSemantisedTriangleMesh_1_1PointAnnotation_ab108e67a966fcd933379d957045b4810}\label{classSemantisedTriangleMesh_1_1PointAnnotation_ab108e67a966fcd933379d957045b4810}} 
+\index{SemantisedTriangleMesh::PointAnnotation@{SemantisedTriangleMesh::PointAnnotation}!getInvolvedVertices@{getInvolvedVertices}}
+\index{getInvolvedVertices@{getInvolvedVertices}!SemantisedTriangleMesh::PointAnnotation@{SemantisedTriangleMesh::PointAnnotation}}
+\doxysubsubsection{\texorpdfstring{getInvolvedVertices()}{getInvolvedVertices()}}
+{\footnotesize\ttfamily virtual std\+::vector$<$std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classSemantisedTriangleMesh_1_1Vertex}{Vertex}}$>$ $>$ Semantised\+Triangle\+Mesh\+::\+Point\+Annotation\+::get\+Involved\+Vertices (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+get\+Involved\+Vertices abstract method for obtaining the vertices involved in the annotation (vertices are the only always-\/present geometric entity of an annotation) 
+
+\begin{DoxyReturn}{Returns}
+a vector containing pointers to the involved vertices. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classSemantisedTriangleMesh_1_1Annotation_a623ebff7360a73a2a181d81608ac55ef}{Semantised\+Triangle\+Mesh\+::\+Annotation}}.
+
+\mbox{\Hypertarget{classSemantisedTriangleMesh_1_1PointAnnotation_aed2a06c9238c0ddb306b3acbe80bfb0b}\label{classSemantisedTriangleMesh_1_1PointAnnotation_aed2a06c9238c0ddb306b3acbe80bfb0b}} 
+\index{SemantisedTriangleMesh::PointAnnotation@{SemantisedTriangleMesh::PointAnnotation}!getOrientation@{getOrientation}}
+\index{getOrientation@{getOrientation}!SemantisedTriangleMesh::PointAnnotation@{SemantisedTriangleMesh::PointAnnotation}}
+\doxysubsubsection{\texorpdfstring{getOrientation()}{getOrientation()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classSemantisedTriangleMesh_1_1Point}{Point}}$\ast$ Semantised\+Triangle\+Mesh\+::\+Point\+Annotation\+::get\+Orientation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classSemantisedTriangleMesh_1_1Annotation_a1a19ebba7f22d0b964d04f60f69f2130}{Semantised\+Triangle\+Mesh\+::\+Annotation}}.
+
+\mbox{\Hypertarget{classSemantisedTriangleMesh_1_1PointAnnotation_aa17f9595f8ba6d57d4f01a2266e98b65}\label{classSemantisedTriangleMesh_1_1PointAnnotation_aa17f9595f8ba6d57d4f01a2266e98b65}} 
+\index{SemantisedTriangleMesh::PointAnnotation@{SemantisedTriangleMesh::PointAnnotation}!getPoints@{getPoints}}
+\index{getPoints@{getPoints}!SemantisedTriangleMesh::PointAnnotation@{SemantisedTriangleMesh::PointAnnotation}}
+\doxysubsubsection{\texorpdfstring{getPoints()}{getPoints()}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classSemantisedTriangleMesh_1_1Vertex}{Vertex}}$>$ $>$ Semantised\+Triangle\+Mesh\+::\+Point\+Annotation\+::get\+Points (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classSemantisedTriangleMesh_1_1PointAnnotation_a3df37683188175cc320473cbd1addb85}\label{classSemantisedTriangleMesh_1_1PointAnnotation_a3df37683188175cc320473cbd1addb85}} 
+\index{SemantisedTriangleMesh::PointAnnotation@{SemantisedTriangleMesh::PointAnnotation}!isPointInAnnotation@{isPointInAnnotation}}
+\index{isPointInAnnotation@{isPointInAnnotation}!SemantisedTriangleMesh::PointAnnotation@{SemantisedTriangleMesh::PointAnnotation}}
+\doxysubsubsection{\texorpdfstring{isPointInAnnotation()}{isPointInAnnotation()}}
+{\footnotesize\ttfamily virtual bool Semantised\+Triangle\+Mesh\+::\+Point\+Annotation\+::is\+Point\+In\+Annotation (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classSemantisedTriangleMesh_1_1Vertex}{Vertex}} $>$}]{p }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+is\+Point\+In\+Annotation checks if a given vertex is involved in this annotation 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & the vertex that needs to be checked \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the vertex is involved, false otherwise. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classSemantisedTriangleMesh_1_1Annotation_ae63598a8dd76d6d709315331d7f769c1}{Semantised\+Triangle\+Mesh\+::\+Annotation}}.
+
+\mbox{\Hypertarget{classSemantisedTriangleMesh_1_1PointAnnotation_a52114b669d07de426daea3de5d3ce3ca}\label{classSemantisedTriangleMesh_1_1PointAnnotation_a52114b669d07de426daea3de5d3ce3ca}} 
+\index{SemantisedTriangleMesh::PointAnnotation@{SemantisedTriangleMesh::PointAnnotation}!print@{print}}
+\index{print@{print}!SemantisedTriangleMesh::PointAnnotation@{SemantisedTriangleMesh::PointAnnotation}}
+\doxysubsubsection{\texorpdfstring{print()}{print()}}
+{\footnotesize\ttfamily virtual void Semantised\+Triangle\+Mesh\+::\+Point\+Annotation\+::print (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+print Prints main information related to the annotation (id, tag and attributes) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em os} & The stream onto which the information should be written \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classSemantisedTriangleMesh_1_1Annotation_a67fcd06d68919790ce8c9a820e5b3edb}{Semantised\+Triangle\+Mesh\+::\+Annotation}}.
+
+\mbox{\Hypertarget{classSemantisedTriangleMesh_1_1PointAnnotation_a493ef02a6e62147023b71a9afd3f2cd0}\label{classSemantisedTriangleMesh_1_1PointAnnotation_a493ef02a6e62147023b71a9afd3f2cd0}} 
+\index{SemantisedTriangleMesh::PointAnnotation@{SemantisedTriangleMesh::PointAnnotation}!printJson@{printJson}}
+\index{printJson@{printJson}!SemantisedTriangleMesh::PointAnnotation@{SemantisedTriangleMesh::PointAnnotation}}
+\doxysubsubsection{\texorpdfstring{printJson()}{printJson()}}
+{\footnotesize\ttfamily virtual void Semantised\+Triangle\+Mesh\+::\+Point\+Annotation\+::print\+Json (\begin{DoxyParamCaption}\item[{rapidjson\+::\+Pretty\+Writer$<$ rapidjson\+::\+String\+Buffer $>$ \&}]{writer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+print Prints main information related to the annotation (id, tag and attributes) in JSON format. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em writer} & The interface with the Rapid\+JSON library for writing the information in JSON format \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classSemantisedTriangleMesh_1_1Annotation_acb9ad9afe2dcbb4882040fb8f957571b}{Semantised\+Triangle\+Mesh\+::\+Annotation}}.
+
+\mbox{\Hypertarget{classSemantisedTriangleMesh_1_1PointAnnotation_aeba7c83f6c6478c7b46c84584c5d6ea3}\label{classSemantisedTriangleMesh_1_1PointAnnotation_aeba7c83f6c6478c7b46c84584c5d6ea3}} 
+\index{SemantisedTriangleMesh::PointAnnotation@{SemantisedTriangleMesh::PointAnnotation}!setPoints@{setPoints}}
+\index{setPoints@{setPoints}!SemantisedTriangleMesh::PointAnnotation@{SemantisedTriangleMesh::PointAnnotation}}
+\doxysubsubsection{\texorpdfstring{setPoints()}{setPoints()}}
+{\footnotesize\ttfamily void Semantised\+Triangle\+Mesh\+::\+Point\+Annotation\+::set\+Points (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classSemantisedTriangleMesh_1_1Vertex}{Vertex}} $>$$>$ \&}]{value }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classSemantisedTriangleMesh_1_1PointAnnotation_a4b93ea48fa3f0b7f66c57b3f704ee913}\label{classSemantisedTriangleMesh_1_1PointAnnotation_a4b93ea48fa3f0b7f66c57b3f704ee913}} 
+\index{SemantisedTriangleMesh::PointAnnotation@{SemantisedTriangleMesh::PointAnnotation}!points@{points}}
+\index{points@{points}!SemantisedTriangleMesh::PointAnnotation@{SemantisedTriangleMesh::PointAnnotation}}
+\doxysubsubsection{\texorpdfstring{points}{points}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classSemantisedTriangleMesh_1_1Vertex}{Vertex}}$>$ $>$ Semantised\+Triangle\+Mesh\+::\+Point\+Annotation\+::points\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/andreas/\+Documenti/\+Progetti/\+Semantised\+Triangle\+Mesh/include/\mbox{\hyperlink{pointannotation_8hpp}{pointannotation.\+hpp}}\end{DoxyCompactItemize}

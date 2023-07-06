@@ -1,0 +1,189 @@
+\hypertarget{classGraphTemplate_1_1Node}{}\doxysection{Graph\+Template\+::Node$<$ T $>$ Class Template Reference}
+\label{classGraphTemplate_1_1Node}\index{GraphTemplate::Node$<$ T $>$@{GraphTemplate::Node$<$ T $>$}}
+
+
+{\ttfamily \#include $<$node.\+hpp$>$}
+
+
+
+Inheritance diagram for Graph\+Template\+::Node$<$ T $>$\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=251pt]{classGraphTemplate_1_1Node__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Graph\+Template\+::Node$<$ T $>$\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=317pt]{classGraphTemplate_1_1Node__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classGraphTemplate_1_1Node_aecf21efe8a5aa59d2b2e37a070ec5993}{Node}} ()
+\item 
+\mbox{\hyperlink{classGraphTemplate_1_1Node_acf1f4f7586b57e3f86d1a4be69f91480}{Node}} (const T \mbox{\hyperlink{classGraphTemplate_1_1Node_a05d99ce38a9e3f1ed1039e208ecbc380}{data}})
+\item 
+T \mbox{\hyperlink{classGraphTemplate_1_1Node_a1b13611d0e72440219ae0439c0e654a4}{get\+Data}} () const
+\item 
+void \mbox{\hyperlink{classGraphTemplate_1_1Node_afe79b32c46ac19a2c311cb5b02d44a97}{set\+Data}} (T value)
+\item 
+bool \mbox{\hyperlink{classGraphTemplate_1_1Node_a3d52708d1dcf177ac120aa7996d84105}{is\+Visited}} () const
+\item 
+void \mbox{\hyperlink{classGraphTemplate_1_1Node_a6a54336392f0280b86b565c9efd90aac}{set\+Visited}} (bool value)
+\item 
+std\+::vector$<$ \mbox{\hyperlink{classGraphTemplate_1_1Arc}{Arc}}$<$ T $>$ $\ast$ $>$ \mbox{\hyperlink{classGraphTemplate_1_1Node_af75d1340b1f0528ce066897ee30e39df}{get\+Typed\+Arcs}} (std\+::string type) const
+\item 
+std\+::vector$<$ \mbox{\hyperlink{classGraphTemplate_1_1Arc}{Arc}}$<$ T $>$ $\ast$ $>$ \mbox{\hyperlink{classGraphTemplate_1_1Node_a51bd23be496b4d082999e24dc17ca257}{get\+Arcs}} () const
+\item 
+void \mbox{\hyperlink{classGraphTemplate_1_1Node_a2ec2bd42ca4ba3b03aa53a0bcbfd5a88}{add\+Arc}} (\mbox{\hyperlink{classGraphTemplate_1_1Arc}{Arc}}$<$ T $>$ $\ast$value)
+\item 
+void \mbox{\hyperlink{classGraphTemplate_1_1Node_a82b240b9d431c6bf8bf3ca81420efedc}{remove\+Arc}} (\mbox{\hyperlink{classGraphTemplate_1_1Arc}{Arc}}$<$ T $>$ $\ast$value)
+\item 
+void \mbox{\hyperlink{classGraphTemplate_1_1Node_ad91d0323c809cddd7e202bd02dfd5436}{set\+Arcs}} (const std\+::vector$<$ \mbox{\hyperlink{classGraphTemplate_1_1Arc}{Arc}}$<$ T $>$ $\ast$ $>$ \&value)
+\item 
+void \mbox{\hyperlink{classGraphTemplate_1_1Node_a804fbe989ec7c7a28f3ed7f0d0f6f87b}{clear\+Arcs}} ()
+\item 
+\mbox{\hyperlink{classGraphTemplate_1_1Arc}{Arc}}$<$ T $>$ $\ast$ \mbox{\hyperlink{classGraphTemplate_1_1Node_ace74343e45cd8c797f232ee716874c6b}{get\+Arc}} (\mbox{\hyperlink{classGraphTemplate_1_1Node}{Node}}$<$ T $>$ $\ast$n)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+T \mbox{\hyperlink{classGraphTemplate_1_1Node_a05d99ce38a9e3f1ed1039e208ecbc380}{data}}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{classGraphTemplate_1_1Arc}{Arc}}$<$ T $>$ $\ast$ $>$ \mbox{\hyperlink{classGraphTemplate_1_1Node_af743b4db660ac699d1a18590575d9b3f}{arcs}}
+\item 
+bool \mbox{\hyperlink{classGraphTemplate_1_1Node_a080839d6601b2b3d8e25e03c62ef8d04}{visited}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classGraphTemplate_1_1Node_aecf21efe8a5aa59d2b2e37a070ec5993}\label{classGraphTemplate_1_1Node_aecf21efe8a5aa59d2b2e37a070ec5993}} 
+\index{GraphTemplate::Node$<$ T $>$@{GraphTemplate::Node$<$ T $>$}!Node@{Node}}
+\index{Node@{Node}!GraphTemplate::Node$<$ T $>$@{GraphTemplate::Node$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{Node()}{Node()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+\mbox{\hyperlink{classGraphTemplate_1_1Node}{Graph\+Template\+::\+Node}}$<$ T $>$\+::\mbox{\hyperlink{classGraphTemplate_1_1Node}{Node}}}
+
+\mbox{\Hypertarget{classGraphTemplate_1_1Node_acf1f4f7586b57e3f86d1a4be69f91480}\label{classGraphTemplate_1_1Node_acf1f4f7586b57e3f86d1a4be69f91480}} 
+\index{GraphTemplate::Node$<$ T $>$@{GraphTemplate::Node$<$ T $>$}!Node@{Node}}
+\index{Node@{Node}!GraphTemplate::Node$<$ T $>$@{GraphTemplate::Node$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{Node()}{Node()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+\mbox{\hyperlink{classGraphTemplate_1_1Node}{Graph\+Template\+::\+Node}}$<$ T $>$\+::\mbox{\hyperlink{classGraphTemplate_1_1Node}{Node}} (\begin{DoxyParamCaption}\item[{const T}]{data }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classGraphTemplate_1_1Node_a2ec2bd42ca4ba3b03aa53a0bcbfd5a88}\label{classGraphTemplate_1_1Node_a2ec2bd42ca4ba3b03aa53a0bcbfd5a88}} 
+\index{GraphTemplate::Node$<$ T $>$@{GraphTemplate::Node$<$ T $>$}!addArc@{addArc}}
+\index{addArc@{addArc}!GraphTemplate::Node$<$ T $>$@{GraphTemplate::Node$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{addArc()}{addArc()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+void \mbox{\hyperlink{classGraphTemplate_1_1Node}{Graph\+Template\+::\+Node}}$<$ T $>$\+::add\+Arc (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classGraphTemplate_1_1Arc}{Arc}}$<$ T $>$ $\ast$}]{value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classGraphTemplate_1_1Node_a804fbe989ec7c7a28f3ed7f0d0f6f87b}\label{classGraphTemplate_1_1Node_a804fbe989ec7c7a28f3ed7f0d0f6f87b}} 
+\index{GraphTemplate::Node$<$ T $>$@{GraphTemplate::Node$<$ T $>$}!clearArcs@{clearArcs}}
+\index{clearArcs@{clearArcs}!GraphTemplate::Node$<$ T $>$@{GraphTemplate::Node$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{clearArcs()}{clearArcs()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+void \mbox{\hyperlink{classGraphTemplate_1_1Node}{Graph\+Template\+::\+Node}}$<$ T $>$\+::clear\+Arcs}
+
+\mbox{\Hypertarget{classGraphTemplate_1_1Node_ace74343e45cd8c797f232ee716874c6b}\label{classGraphTemplate_1_1Node_ace74343e45cd8c797f232ee716874c6b}} 
+\index{GraphTemplate::Node$<$ T $>$@{GraphTemplate::Node$<$ T $>$}!getArc@{getArc}}
+\index{getArc@{getArc}!GraphTemplate::Node$<$ T $>$@{GraphTemplate::Node$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{getArc()}{getArc()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+\mbox{\hyperlink{classGraphTemplate_1_1Arc}{Arc}}$<$ T $>$ $\ast$ \mbox{\hyperlink{classGraphTemplate_1_1Node}{Graph\+Template\+::\+Node}}$<$ T $>$\+::get\+Arc (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classGraphTemplate_1_1Node}{Node}}$<$ T $>$ $\ast$}]{n }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classGraphTemplate_1_1Node_a51bd23be496b4d082999e24dc17ca257}\label{classGraphTemplate_1_1Node_a51bd23be496b4d082999e24dc17ca257}} 
+\index{GraphTemplate::Node$<$ T $>$@{GraphTemplate::Node$<$ T $>$}!getArcs@{getArcs}}
+\index{getArcs@{getArcs}!GraphTemplate::Node$<$ T $>$@{GraphTemplate::Node$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{getArcs()}{getArcs()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+std\+::vector$<$ \mbox{\hyperlink{classGraphTemplate_1_1Arc}{Arc}}$<$ T $>$ $\ast$ $>$ \mbox{\hyperlink{classGraphTemplate_1_1Node}{Graph\+Template\+::\+Node}}$<$ T $>$\+::get\+Arcs}
+
+\mbox{\Hypertarget{classGraphTemplate_1_1Node_a1b13611d0e72440219ae0439c0e654a4}\label{classGraphTemplate_1_1Node_a1b13611d0e72440219ae0439c0e654a4}} 
+\index{GraphTemplate::Node$<$ T $>$@{GraphTemplate::Node$<$ T $>$}!getData@{getData}}
+\index{getData@{getData}!GraphTemplate::Node$<$ T $>$@{GraphTemplate::Node$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{getData()}{getData()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+T \mbox{\hyperlink{classGraphTemplate_1_1Node}{Graph\+Template\+::\+Node}}$<$ T $>$\+::get\+Data}
+
+\mbox{\Hypertarget{classGraphTemplate_1_1Node_af75d1340b1f0528ce066897ee30e39df}\label{classGraphTemplate_1_1Node_af75d1340b1f0528ce066897ee30e39df}} 
+\index{GraphTemplate::Node$<$ T $>$@{GraphTemplate::Node$<$ T $>$}!getTypedArcs@{getTypedArcs}}
+\index{getTypedArcs@{getTypedArcs}!GraphTemplate::Node$<$ T $>$@{GraphTemplate::Node$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{getTypedArcs()}{getTypedArcs()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+std\+::vector$<$ \mbox{\hyperlink{classGraphTemplate_1_1Arc}{Arc}}$<$ T $>$ $\ast$ $>$ \mbox{\hyperlink{classGraphTemplate_1_1Node}{Graph\+Template\+::\+Node}}$<$ T $>$\+::get\+Typed\+Arcs (\begin{DoxyParamCaption}\item[{std\+::string}]{type }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classGraphTemplate_1_1Node_a3d52708d1dcf177ac120aa7996d84105}\label{classGraphTemplate_1_1Node_a3d52708d1dcf177ac120aa7996d84105}} 
+\index{GraphTemplate::Node$<$ T $>$@{GraphTemplate::Node$<$ T $>$}!isVisited@{isVisited}}
+\index{isVisited@{isVisited}!GraphTemplate::Node$<$ T $>$@{GraphTemplate::Node$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{isVisited()}{isVisited()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+bool \mbox{\hyperlink{classGraphTemplate_1_1Node}{Graph\+Template\+::\+Node}}$<$ T $>$\+::is\+Visited}
+
+\mbox{\Hypertarget{classGraphTemplate_1_1Node_a82b240b9d431c6bf8bf3ca81420efedc}\label{classGraphTemplate_1_1Node_a82b240b9d431c6bf8bf3ca81420efedc}} 
+\index{GraphTemplate::Node$<$ T $>$@{GraphTemplate::Node$<$ T $>$}!removeArc@{removeArc}}
+\index{removeArc@{removeArc}!GraphTemplate::Node$<$ T $>$@{GraphTemplate::Node$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{removeArc()}{removeArc()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+void \mbox{\hyperlink{classGraphTemplate_1_1Node}{Graph\+Template\+::\+Node}}$<$ T $>$\+::remove\+Arc (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classGraphTemplate_1_1Arc}{Arc}}$<$ T $>$ $\ast$}]{value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classGraphTemplate_1_1Node_ad91d0323c809cddd7e202bd02dfd5436}\label{classGraphTemplate_1_1Node_ad91d0323c809cddd7e202bd02dfd5436}} 
+\index{GraphTemplate::Node$<$ T $>$@{GraphTemplate::Node$<$ T $>$}!setArcs@{setArcs}}
+\index{setArcs@{setArcs}!GraphTemplate::Node$<$ T $>$@{GraphTemplate::Node$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{setArcs()}{setArcs()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+void \mbox{\hyperlink{classGraphTemplate_1_1Node}{Graph\+Template\+::\+Node}}$<$ T $>$\+::set\+Arcs (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{classGraphTemplate_1_1Arc}{Arc}}$<$ T $>$ $\ast$ $>$ \&}]{value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classGraphTemplate_1_1Node_afe79b32c46ac19a2c311cb5b02d44a97}\label{classGraphTemplate_1_1Node_afe79b32c46ac19a2c311cb5b02d44a97}} 
+\index{GraphTemplate::Node$<$ T $>$@{GraphTemplate::Node$<$ T $>$}!setData@{setData}}
+\index{setData@{setData}!GraphTemplate::Node$<$ T $>$@{GraphTemplate::Node$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{setData()}{setData()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+void \mbox{\hyperlink{classGraphTemplate_1_1Node}{Graph\+Template\+::\+Node}}$<$ T $>$\+::set\+Data (\begin{DoxyParamCaption}\item[{T}]{value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classGraphTemplate_1_1Node_a6a54336392f0280b86b565c9efd90aac}\label{classGraphTemplate_1_1Node_a6a54336392f0280b86b565c9efd90aac}} 
+\index{GraphTemplate::Node$<$ T $>$@{GraphTemplate::Node$<$ T $>$}!setVisited@{setVisited}}
+\index{setVisited@{setVisited}!GraphTemplate::Node$<$ T $>$@{GraphTemplate::Node$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{setVisited()}{setVisited()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+void \mbox{\hyperlink{classGraphTemplate_1_1Node}{Graph\+Template\+::\+Node}}$<$ T $>$\+::set\+Visited (\begin{DoxyParamCaption}\item[{bool}]{value }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classGraphTemplate_1_1Node_af743b4db660ac699d1a18590575d9b3f}\label{classGraphTemplate_1_1Node_af743b4db660ac699d1a18590575d9b3f}} 
+\index{GraphTemplate::Node$<$ T $>$@{GraphTemplate::Node$<$ T $>$}!arcs@{arcs}}
+\index{arcs@{arcs}!GraphTemplate::Node$<$ T $>$@{GraphTemplate::Node$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{arcs}{arcs}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+std\+::vector$<$\mbox{\hyperlink{classGraphTemplate_1_1Arc}{Arc}}$<$T$>$$\ast$ $>$ \mbox{\hyperlink{classGraphTemplate_1_1Node}{Graph\+Template\+::\+Node}}$<$ T $>$\+::arcs\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classGraphTemplate_1_1Node_a05d99ce38a9e3f1ed1039e208ecbc380}\label{classGraphTemplate_1_1Node_a05d99ce38a9e3f1ed1039e208ecbc380}} 
+\index{GraphTemplate::Node$<$ T $>$@{GraphTemplate::Node$<$ T $>$}!data@{data}}
+\index{data@{data}!GraphTemplate::Node$<$ T $>$@{GraphTemplate::Node$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{data}{data}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+T \mbox{\hyperlink{classGraphTemplate_1_1Node}{Graph\+Template\+::\+Node}}$<$ T $>$\+::data\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classGraphTemplate_1_1Node_a080839d6601b2b3d8e25e03c62ef8d04}\label{classGraphTemplate_1_1Node_a080839d6601b2b3d8e25e03c62ef8d04}} 
+\index{GraphTemplate::Node$<$ T $>$@{GraphTemplate::Node$<$ T $>$}!visited@{visited}}
+\index{visited@{visited}!GraphTemplate::Node$<$ T $>$@{GraphTemplate::Node$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{visited}{visited}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+bool \mbox{\hyperlink{classGraphTemplate_1_1Node}{Graph\+Template\+::\+Node}}$<$ T $>$\+::visited\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/andreas/\+Documenti/\+Progetti/\+Semantised\+Triangle\+Mesh/\+Data\+Structures/include/\mbox{\hyperlink{arc_8hpp}{arc.\+hpp}}\item 
+/home/andreas/\+Documenti/\+Progetti/\+Semantised\+Triangle\+Mesh/\+Data\+Structures/include/\mbox{\hyperlink{node_8hpp}{node.\+hpp}}\end{DoxyCompactItemize}
