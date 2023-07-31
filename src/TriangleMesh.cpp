@@ -20,7 +20,7 @@ TriangleMesh::TriangleMesh()
     maxEdgeLength = -std::numeric_limits<double>::max();
 }
 
-TriangleMesh::TriangleMesh(const std::shared_ptr<TriangleMesh> other)
+TriangleMesh::TriangleMesh(const std::shared_ptr<TriangleMesh> &other)
 {
 
     for(uint i = 0; i < other->getVerticesNumber(); i++)
@@ -838,6 +838,8 @@ double TriangleMesh::getMaxEdgeLength()
 
 std::vector<std::shared_ptr<Vertex> > TriangleMesh::getNearestNeighbours(Point queryPt, uint maxNumber, double radius)
 {
+    if(kdtree == nullptr)
+        initialiseKDTree();
     std::vector<double> point = {queryPt.getX(), queryPt.getY(), queryPt.getZ()};
     std::vector<std::pair<size_t, double> > neighbors_distances;
     std::vector<std::shared_ptr<Vertex> > neighbors;
@@ -854,6 +856,8 @@ std::vector<std::shared_ptr<Vertex> > TriangleMesh::getNearestNeighbours(Point q
 
 std::shared_ptr<Vertex> TriangleMesh::getClosestPoint(Point queryPt)
 {
+    if(kdtree == nullptr)
+        initialiseKDTree();
     std::vector<double> point = {queryPt.getX(), queryPt.getY(), queryPt.getZ()};
     auto index = kdtree->nearest_index(point);
     return vertices.at(index);

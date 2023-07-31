@@ -17,7 +17,7 @@ set( Srcs
     ${SEMANTISED_TRIANGLE_MESH}/src/Edge.cpp
     ${SEMANTISED_TRIANGLE_MESH}/src/Triangle.cpp
     ${SEMANTISED_TRIANGLE_MESH}/src/TriangleMesh.cpp
-    ${SEMANTISED_TRIANGLE_MESH}/src/annotationfilemanager.cpp
+    ${SEMANTISED_TRIANGLE_MESH}/src/semanticsfilemanager.cpp
     ${SEMANTISED_TRIANGLE_MESH}/src/annotation.cpp
     ${SEMANTISED_TRIANGLE_MESH}/src/pointannotation.cpp
     ${SEMANTISED_TRIANGLE_MESH}/src/lineannotation.cpp
@@ -37,7 +37,7 @@ set( Hdrs
     ${SEMANTISED_TRIANGLE_MESH}/include/Edge.hpp
     ${SEMANTISED_TRIANGLE_MESH}/include/Triangle.hpp
     ${SEMANTISED_TRIANGLE_MESH}/include/TriangleMesh.hpp
-    ${SEMANTISED_TRIANGLE_MESH}/include/annotationfilemanager.hpp
+    ${SEMANTISED_TRIANGLE_MESH}/include/semanticsfilemanager.hpp
     ${SEMANTISED_TRIANGLE_MESH}/include/annotation.hpp
     ${SEMANTISED_TRIANGLE_MESH}/include/pointannotation.hpp
     ${SEMANTISED_TRIANGLE_MESH}/include/lineannotation.hpp
@@ -49,7 +49,6 @@ set( Hdrs
     ${SEMANTISED_TRIANGLE_MESH}/include/geometricattribute.hpp
     ${SEMANTISED_TRIANGLE_MESH}/include/semanticattribute.hpp
     ${SEMANTISED_TRIANGLE_MESH}/include/CommonDefinitions.hpp
-    ${SEMANTISED_TRIANGLE_MESH}/include/quadtree.hpp
     ${SEMANTISED_TRIANGLE_MESH}/include/KDTree.hpp
     ${SEMANTISED_TRIANGLE_MESH}/include/relationship.hpp
 )

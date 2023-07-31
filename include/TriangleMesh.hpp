@@ -30,7 +30,7 @@ namespace SemantisedTriangleMesh {
         //Default constructor
         TriangleMesh();
         //Copy-constructor (copies attributes values)
-        TriangleMesh(std::shared_ptr<TriangleMesh>);
+        TriangleMesh(const std::shared_ptr<TriangleMesh>&);
         //Default destructor
         ~TriangleMesh();
 
@@ -172,10 +172,10 @@ namespace SemantisedTriangleMesh {
 
         /**
          * @brief getTriangle method that returns an triangle by id.
-         * @param eid string id of the triangle (represents a number)
+         * @param tid string id of the triangle (represents a number)
          * @return nullptr if the triangle does not exist (eid not found in triangles list), otherwise a pointer to the found triangle
          */
-        std::shared_ptr<Triangle> getTriangle(std::string);
+        std::shared_ptr<Triangle> getTriangle(std::string tid);
 
         /**
          * @brief getTriangles method that compiles a list of triangles composed by the vertices contained in the parameter list (at least one vertex).
@@ -197,7 +197,7 @@ namespace SemantisedTriangleMesh {
          * @param e3 third edge of the triangle
          * @return the added triangle
          */
-        std::shared_ptr<Triangle> addNewTriangle(std::shared_ptr<Edge>,std::shared_ptr<Edge>, std::shared_ptr<Edge>);
+        std::shared_ptr<Triangle> addNewTriangle(std::shared_ptr<Edge> e1, std::shared_ptr<Edge> e2, std::shared_ptr<Edge> e3);
 
 
         /**
@@ -382,7 +382,7 @@ namespace SemantisedTriangleMesh {
          * @brief smooth method for smoothing the mesh using Laplacian smooth. Currently mean weights and Cotangent weights are supported.
          * @param type
          * @param iterations
-         * @param t
+         * @param step
          */
         void smooth(WeightType type, uint iterations, double step);
 
@@ -519,6 +519,7 @@ namespace SemantisedTriangleMesh {
          * @brief extractStraightestVertex support method for the Dijkstra algorithm. Given a list of vertices in the frontier, it extracts the one which is most in the direction of the target
          * @param frontier the list of vertices to be checked
          * @param start the previous vertex (for computing direction)
+         * @param direction the vector defining the direction
          * @return the closest vertex
          */
         uint extractStraightestVertex(std::vector<uint> &frontier, std::shared_ptr<Vertex> start, Vector direction);

@@ -20,11 +20,9 @@ Vertex::Vertex(double x, double y, double z) : Point(x,y,z)
     associated_flags.clear();
 }
 
-Vertex::Vertex(double *p) : Point(p[0], p[1], p[2])
+Vertex::Vertex(double p[]) : Point(p[0], p[1], p[2])
 {
-    e0 = nullptr;
-    id = "";
-    associated_flags.clear();
+
 }
 
 Vertex::Vertex(Point p) : Point(p.getX(), p.getY(), p.getZ())

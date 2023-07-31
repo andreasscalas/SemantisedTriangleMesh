@@ -280,7 +280,8 @@ vector<vector<std::shared_ptr<Vertex>> > SurfaceAnnotation::getOutlines() const{
     return outlines;
 }
 
-void SurfaceAnnotation::setOutlines(const vector<vector<std::shared_ptr<Vertex>> > value){
+void SurfaceAnnotation::setOutlines(const std::vector<std::vector<std::shared_ptr<Vertex> > > &value)
+{
     outlines.clear();
     outlines.insert(outlines.end(), value.begin(), value.end());
 }
@@ -319,42 +320,6 @@ std::vector<std::string> SurfaceAnnotation::getTrianglesIds()
     }
 
     return annotationTrianglesIds;
-}
-
-Point *SurfaceAnnotation::getCenter()
-{
-    vector<std::shared_ptr<Vertex>> involvedVertices = getInvolvedVertices();
-    Point* center = new Point(0,0,0);
-    for(unsigned int i = 0; i < involvedVertices.size(); i++ )
-    {
-        *center += *(involvedVertices[i]);
-    }
-
-    *center /= involvedVertices.size();
-
-    return center;
-}
-
-Point *SurfaceAnnotation::getOrientation()
-{
-    vector<std::shared_ptr<Vertex>> involvedVertices = getInvolvedVertices();
-    Eigen::MatrixXd eigenPoints;
-    eigenPoints.resize(3, static_cast<Eigen::Index>(involvedVertices.size()));
-
-    for(unsigned int i = 0; i < involvedVertices.size(); i++ )
-    {
-        Eigen::Vector3d p = {involvedVertices[i]->getX(), involvedVertices[i]->getY(), involvedVertices[i]->getZ()};
-        eigenPoints.col(i) = p;
-    }
-
-    Eigen::Vector3d mean_vector = eigenPoints.rowwise().mean();
-    eigenPoints.colwise() -= mean_vector;
-    Eigen::Matrix3d U = eigenPoints.bdcSvd(Eigen::ComputeFullU | Eigen::ComputeThinV).matrixU();
-    Point* orientation = new Point();
-    orientation->setX(U(0,2));
-    orientation->setX(U(1,2));
-    orientation->setX(U(2,2));
-    return orientation;
 }
 
 std::vector<std::shared_ptr<Triangle> > SurfaceAnnotation::regionGrowing(std::vector<std::vector<std::shared_ptr<Vertex> > > contours)

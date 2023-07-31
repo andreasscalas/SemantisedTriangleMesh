@@ -1,9 +1,7 @@
 #include <iostream>
 #include <fstream>
-#include <annotationfilemanager.hpp>
+#include <semanticsfilemanager.hpp>
 #include "TriangleMesh.hpp"
-#include "trianglehelper.hpp"
-#include "quadtree.hpp"
 
 using namespace SemantisedTriangleMesh;
 const int MAX_VALUE = 10000;
@@ -168,7 +166,7 @@ int main(int argc, char* argv[])
     original->load(argv[1]);
 //    TriangleMesh* target = new TriangleMesh();
 //    target->load(argv[2]);
-    AnnotationFileManager manager;
+    SemanticsFileManager manager;
     manager.setMesh(original);
     auto annotations = manager.readAndStoreAnnotations(argv[2]);
     //original->tr
