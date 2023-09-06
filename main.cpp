@@ -186,6 +186,8 @@ int main(int argc, char* argv[])
 //        p->print(std::cout);
     original->setAnnotations(annotations);
     auto mesh1 = std::make_shared<TriangleMesh>(original);
+    for(auto a : annotations)
+        a->print(std::cout);
     return 0;
 }
 

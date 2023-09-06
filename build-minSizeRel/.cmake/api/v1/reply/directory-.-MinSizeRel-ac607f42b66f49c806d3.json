@@ -1,0 +1,158 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"install"
+		],
+		"files" : 
+		[
+			"CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 96,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 97,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 101,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 112,
+				"parent" : 0
+			}
+		]
+	},
+	"installers" : 
+	[
+		{
+			"backtrace" : 1,
+			"component" : "Unspecified",
+			"destination" : "include/SemantisedTriangleMesh-1.0",
+			"paths" : 
+			[
+				"include/Vertex.hpp",
+				"include/Point.hpp",
+				"include/Edge.hpp",
+				"include/Triangle.hpp",
+				"include/TriangleMesh.hpp",
+				"include/semanticsfilemanager.hpp",
+				"include/annotation.hpp",
+				"include/pointannotation.hpp",
+				"include/lineannotation.hpp",
+				"include/surfaceannotation.hpp",
+				"include/attribute.hpp",
+				"include/euclideanmeasure.hpp",
+				"include/geodesicmeasure.hpp",
+				"include/boundingmeasure.hpp",
+				"include/geometricattribute.hpp",
+				"include/semanticattribute.hpp",
+				"include/CommonDefinitions.hpp",
+				"include/KDTree.hpp",
+				"include/relationship.hpp",
+				"triangle/shewchuk_triangle.hpp",
+				"triangle/trianglehelper.hpp",
+				"DataStructures/include/node.hpp",
+				"DataStructures/include/arc.hpp",
+				"DataStructures/include/graph.hpp",
+				"DataStructures/include/tree.hpp"
+			],
+			"type" : "file"
+		},
+		{
+			"backtrace" : 2,
+			"component" : "Unspecified",
+			"destination" : "lib/SemantisedTriangleMesh-1.0",
+			"paths" : 
+			[
+				"libSemantisedTriangleMesh.a"
+			],
+			"targetId" : "SemantisedTriangleMesh::@6890427a1f51a3e7e1df",
+			"targetIndex" : 1,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 2,
+			"component" : "Unspecified",
+			"destination" : "lib/SemantisedTriangleMesh-1.0",
+			"paths" : 
+			[
+				"triangle/libTriangle-lib.a"
+			],
+			"targetId" : "Triangle-lib::@b111b4ee102bb71d3be9",
+			"targetIndex" : 3,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 2,
+			"component" : "Unspecified",
+			"destination" : "lib/SemantisedTriangleMesh-1.0",
+			"paths" : 
+			[
+				"DataStructures/libDataStructures-lib.a"
+			],
+			"targetId" : "DataStructures-lib::@4deb20c28f55fc7ab6d9",
+			"targetIndex" : 0,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 3,
+			"component" : "Unspecified",
+			"destination" : "lib/SemantisedTriangleMesh-1.0",
+			"exportName" : "SemantisedTriangleMesh-targets",
+			"exportTargets" : 
+			[
+				{
+					"id" : "SemantisedTriangleMesh::@6890427a1f51a3e7e1df",
+					"index" : 1
+				},
+				{
+					"id" : "Triangle-lib::@b111b4ee102bb71d3be9",
+					"index" : 3
+				},
+				{
+					"id" : "DataStructures-lib::@4deb20c28f55fc7ab6d9",
+					"index" : 0
+				}
+			],
+			"paths" : 
+			[
+				"CMakeFiles/Export/lib/SemantisedTriangleMesh-1.0/SemantisedTriangleMesh-targets.cmake"
+			],
+			"type" : "export"
+		},
+		{
+			"backtrace" : 4,
+			"component" : "Unspecified",
+			"destination" : "lib/SemantisedTriangleMesh-1.0",
+			"paths" : 
+			[
+				"build-minSizeRel/pkg/semantisedtrianglemesh-config.cmake",
+				"build-minSizeRel/pkg/semantisedtrianglemesh-config-version.cmake"
+			],
+			"type" : "file"
+		}
+	],
+	"paths" : 
+	{
+		"build" : ".",
+		"source" : "."
+	}
+}

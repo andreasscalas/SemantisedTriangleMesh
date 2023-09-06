@@ -11,7 +11,7 @@ Triangle::Triangle()
     e3 = nullptr;
 }
 
-Triangle::Triangle(std::shared_ptr<Edge> e1, std::shared_ptr<Edge> e2, std::shared_ptr<Edge> e3)
+Triangle::Triangle(const std::shared_ptr<Edge> &e1, const std::shared_ptr<Edge> &e2, const std::shared_ptr<Edge> &e3)
 {
     setId("-1");
     setE1(e1);
@@ -19,7 +19,7 @@ Triangle::Triangle(std::shared_ptr<Edge> e1, std::shared_ptr<Edge> e2, std::shar
     setE3(e3);
 }
 
-Triangle::Triangle(std::shared_ptr<Triangle> t)
+Triangle::Triangle(const std::shared_ptr<Triangle> &t)
 {
     setId(t->getId());
     setE1(e1);
@@ -41,7 +41,7 @@ std::shared_ptr<Edge> Triangle::getE1() const
     return e1;
 }
 
-void Triangle::setE1(std::shared_ptr<Edge> newE1)
+void Triangle::setE1(const std::shared_ptr<Edge>& newE1)
 {
     e1 = newE1;
 }
@@ -51,7 +51,7 @@ std::shared_ptr<Edge> Triangle::getE2() const
     return e2;
 }
 
-void Triangle::setE2(std::shared_ptr<Edge> newE2)
+void Triangle::setE2(const std::shared_ptr<Edge>& newE2)
 {
     e2 = newE2;
 }
@@ -61,12 +61,12 @@ std::shared_ptr<Edge> Triangle::getE3() const
     return e3;
 }
 
-void Triangle::setE3(std::shared_ptr<Edge> newE3)
+void Triangle::setE3(const std::shared_ptr<Edge>& newE3)
 {
     e3 = newE3;
 }
 
-bool Triangle::setEdge(std::shared_ptr<Edge> e, std::shared_ptr<Edge> newE)
+bool Triangle::setEdge(const std::shared_ptr<Edge> &e, const std::shared_ptr<Edge> &newE)
 {
     if(e1->getId().compare(e->getId()) == 0)
     {
@@ -435,7 +435,7 @@ std::string Triangle::getId() const
     return id;
 }
 
-void Triangle::setId(std::string newId)
+void Triangle::setId(const std::string& newId)
 {
     id = newId;
 }

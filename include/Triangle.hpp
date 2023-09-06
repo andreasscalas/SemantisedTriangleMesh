@@ -34,13 +34,13 @@ namespace SemantisedTriangleMesh {
          * @param e2 A shared pointer to the second edge of the triangle.
          * @param e3 A shared pointer to the third edge of the triangle.
          */
-        Triangle(std::shared_ptr<Edge> e1, std::shared_ptr<Edge> e2, std::shared_ptr<Edge> e3);
+        Triangle(const std::shared_ptr<Edge>& e1, const std::shared_ptr<Edge>& e2, const std::shared_ptr<Edge>& e3);
 
         /**
          * @brief Constructor for creating a Triangle object with a shared pointer to another Triangle object.
          * @param t A shared pointer to the Triangle object to initialize this triangle from.
          */
-        Triangle(std::shared_ptr<Triangle> t);
+        Triangle(const std::shared_ptr<Triangle>& t);
 
         /**
          * @brief Destructor for the Triangle object.
@@ -59,7 +59,7 @@ namespace SemantisedTriangleMesh {
          * @brief Set the ID of the triangle.
          * @param newId The new ID to set for the triangle.
          */
-        void setId(std::string newId);
+        void setId(const std::string& newId);
 
         /**
          * @brief Get the first vertex of the triangle.
@@ -89,7 +89,7 @@ namespace SemantisedTriangleMesh {
          * @brief Set the first edge of the triangle.
          * @param newE1 A shared pointer to the new first edge to be set.
          */
-        void setE1(std::shared_ptr<Edge> newE1);
+        void setE1(const std::shared_ptr<Edge>& newE1);
 
         /**
          * @brief Get the second edge of the triangle.
@@ -101,7 +101,7 @@ namespace SemantisedTriangleMesh {
          * @brief Set the second edge of the triangle.
          * @param newE2 A shared pointer to the new second edge to be set.
          */
-        void setE2(std::shared_ptr<Edge> newE2);
+        void setE2(const std::shared_ptr<Edge>& newE2);
 
         /**
          * @brief Get the third edge of the triangle.
@@ -113,15 +113,15 @@ namespace SemantisedTriangleMesh {
          * @brief Set the third edge of the triangle.
          * @param newE3 A shared pointer to the new third edge to be set.
          */
-        void setE3(std::shared_ptr<Edge> newE3);
+        void setE3(const std::shared_ptr<Edge>& newE3);
 
         /**
-         * @brief Set two edges of the triangle with the given edges.
-         * @param e1 A shared pointer to the first edge to set.
-         * @param e2 A shared pointer to the second edge to set.
-         * @return True if the edges were successfully set, false otherwise.
+         * @brief Set an edge of the triangle with the given edge.
+         * @param oldE A shared pointer to the edge to set.
+         * @param newE A shared pointer to the new edge.
+         * @return True if the edge was successfully set, false otherwise.
          */
-        bool setEdge(std::shared_ptr<Edge> e1, std::shared_ptr<Edge> e2);
+        bool setEdge(const std::shared_ptr<Edge>& oldE, const std::shared_ptr<Edge>& newE);
 
         /**
          * @brief Get the previous vertex of the given vertex in the triangle.

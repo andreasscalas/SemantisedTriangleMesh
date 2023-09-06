@@ -14,6 +14,7 @@ add_subdirectory(${DATA_STRUCTURES})
 add_subdirectory(${TRIANGLE})
 set( Srcs
     ${SEMANTISED_TRIANGLE_MESH}/src/Vertex.cpp
+    ${SEMANTISED_TRIANGLE_MESH}/src/Point.cpp
     ${SEMANTISED_TRIANGLE_MESH}/src/Edge.cpp
     ${SEMANTISED_TRIANGLE_MESH}/src/Triangle.cpp
     ${SEMANTISED_TRIANGLE_MESH}/src/TriangleMesh.cpp

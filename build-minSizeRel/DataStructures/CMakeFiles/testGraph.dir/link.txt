@@ -1,0 +1,1 @@
+/usr/bin/g++ -Os -DNDEBUG -rdynamic CMakeFiles/testGraph.dir/src/testGraph.cpp.o -o testGraph 

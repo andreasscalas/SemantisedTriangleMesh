@@ -1,0 +1,2 @@
+/usr/bin/ar qc libTriangle-lib.a CMakeFiles/Triangle-lib.dir/shewchuk_triangle.cpp.o CMakeFiles/Triangle-lib.dir/trianglehelper.cpp.o
+/usr/bin/ranlib libTriangle-lib.a

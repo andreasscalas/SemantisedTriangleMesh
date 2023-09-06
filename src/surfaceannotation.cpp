@@ -424,10 +424,6 @@ std::vector<std::shared_ptr<Triangle> > SurfaceAnnotation::regionGrowing(std::ve
             //t has 3 edges, so we will perform the analysis 3 times
             for(int i = 0; i < 3; i++){
                 //If e is not on the boundary
-                if((e->getV1()->getId().compare("92253") == 0 && e->getV2()->getId().compare("92254") == 0) ||
-                   (e->getV2()->getId().compare("92253") == 0 && e->getV1()->getId().compare("92254") == 0) ||
-                   (e->getV1()->getId().compare("92265") == 0 || e->getV2()->getId().compare("92265") == 0))
-                    std::cout << std::endl;
                 if(e->searchFlag(FlagType::ON_BOUNDARY) == -1){
                     //We take the triangle (t_) on the opposite side of e with respect to t.
                     std::shared_ptr<Triangle> t_ = e->getOppositeTriangle(t);

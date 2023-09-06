@@ -1,0 +1,166 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						2
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-MinSizeRel-ac607f42b66f49c806d3.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "2.8.8"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						1,
+						2
+					]
+				},
+				{
+					"build" : "DataStructures",
+					"jsonFile" : "directory-DataStructures-MinSizeRel-b8832547966f22a00548.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "2.8.8"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 1,
+					"source" : "DataStructures",
+					"targetIndexes" : 
+					[
+						0,
+						4,
+						5
+					]
+				},
+				{
+					"build" : "triangle",
+					"jsonFile" : "directory-triangle-MinSizeRel-b24f5f5328614f6012f5.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "2.8.8"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 2,
+					"source" : "triangle",
+					"targetIndexes" : 
+					[
+						3
+					]
+				}
+			],
+			"name" : "MinSizeRel",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1,
+						2
+					],
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "SemantisedTriangleMesh",
+					"targetIndexes" : 
+					[
+						1,
+						2
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						1
+					],
+					"name" : "DataStructures",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						0,
+						4,
+						5
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						2
+					],
+					"name" : "Triangle",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						3
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 1,
+					"id" : "DataStructures-lib::@4deb20c28f55fc7ab6d9",
+					"jsonFile" : "target-DataStructures-lib-MinSizeRel-fd66b47b9919f39575fb.json",
+					"name" : "DataStructures-lib",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "SemantisedTriangleMesh::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-SemantisedTriangleMesh-MinSizeRel-1d85317d0d4ac6a7c15b.json",
+					"name" : "SemantisedTriangleMesh",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "SemantisedTriangleMesh-test::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-SemantisedTriangleMesh-test-MinSizeRel-b9578ecb1fdce3b1acfc.json",
+					"name" : "SemantisedTriangleMesh-test",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "Triangle-lib::@b111b4ee102bb71d3be9",
+					"jsonFile" : "target-Triangle-lib-MinSizeRel-99c98e90f8f50ee51f76.json",
+					"name" : "Triangle-lib",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "testGraph::@4deb20c28f55fc7ab6d9",
+					"jsonFile" : "target-testGraph-MinSizeRel-f8dc58c2a570da263e4a.json",
+					"name" : "testGraph",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "testTree::@4deb20c28f55fc7ab6d9",
+					"jsonFile" : "target-testTree-MinSizeRel-ddf7961041120d6923a1.json",
+					"name" : "testTree",
+					"projectIndex" : 1
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/andreas/Documenti/Progetti/SemantisedTriangleMesh/build-minSizeRel",
+		"source" : "/home/andreas/Documenti/Progetti/SemantisedTriangleMesh"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}
