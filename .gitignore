@@ -1,4 +1,4 @@
-/build-minSizeRelease/*
+/build-minSizeRel/*
 /build-debug/*
 /doc/Generated/*
 *.user

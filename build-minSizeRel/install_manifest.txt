@@ -17,6 +17,7 @@
 /usr/local/include/SemantisedTriangleMesh-1.0/CommonDefinitions.hpp
 /usr/local/include/SemantisedTriangleMesh-1.0/KDTree.hpp
 /usr/local/include/SemantisedTriangleMesh-1.0/relationship.hpp
+/usr/local/include/SemantisedTriangleMesh-1.0/utils.hpp
 /usr/local/include/SemantisedTriangleMesh-1.0/shewchuk_triangle.hpp
 /usr/local/include/SemantisedTriangleMesh-1.0/trianglehelper.hpp
 /usr/local/include/SemantisedTriangleMesh-1.0/node.hpp

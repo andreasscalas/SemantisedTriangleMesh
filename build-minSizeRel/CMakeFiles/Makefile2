@@ -63,6 +63,7 @@ CMAKE_BINARY_DIR = /home/andreas/Documenti/Progetti/SemantisedTriangleMesh/build
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
+all: CMakeFiles/doc_doxygen.dir/all
 all: CMakeFiles/SemantisedTriangleMesh.dir/all
 all: CMakeFiles/SemantisedTriangleMesh-test.dir/all
 all: DataStructures/all
@@ -75,6 +76,7 @@ preinstall: triangle/preinstall
 .PHONY : preinstall
 
 # The main recursive "clean" target.
+clean: CMakeFiles/doc_doxygen.dir/clean
 clean: CMakeFiles/SemantisedTriangleMesh.dir/clean
 clean: CMakeFiles/SemantisedTriangleMesh-test.dir/clean
 clean: DataStructures/clean
@@ -114,6 +116,32 @@ triangle/preinstall:
 # Recursive "clean" directory target.
 triangle/clean: triangle/CMakeFiles/Triangle-lib.dir/clean
 .PHONY : triangle/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/doc_doxygen.dir
+
+# All Build rule for target.
+CMakeFiles/doc_doxygen.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/doc_doxygen.dir/build.make CMakeFiles/doc_doxygen.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/doc_doxygen.dir/build.make CMakeFiles/doc_doxygen.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/andreas/Documenti/Progetti/SemantisedTriangleMesh/build-minSizeRel/CMakeFiles --progress-num=44 "Built target doc_doxygen"
+.PHONY : CMakeFiles/doc_doxygen.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/doc_doxygen.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/andreas/Documenti/Progetti/SemantisedTriangleMesh/build-minSizeRel/CMakeFiles 1
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/doc_doxygen.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/andreas/Documenti/Progetti/SemantisedTriangleMesh/build-minSizeRel/CMakeFiles 0
+.PHONY : CMakeFiles/doc_doxygen.dir/rule
+
+# Convenience name for target.
+doc_doxygen: CMakeFiles/doc_doxygen.dir/rule
+.PHONY : doc_doxygen
+
+# clean rule for target.
+CMakeFiles/doc_doxygen.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/doc_doxygen.dir/build.make CMakeFiles/doc_doxygen.dir/clean
+.PHONY : CMakeFiles/doc_doxygen.dir/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/SemantisedTriangleMesh.dir
@@ -202,7 +230,7 @@ DataStructures/CMakeFiles/DataStructures-lib.dir/clean:
 DataStructures/CMakeFiles/testGraph.dir/all:
 	$(MAKE) $(MAKESILENT) -f DataStructures/CMakeFiles/testGraph.dir/build.make DataStructures/CMakeFiles/testGraph.dir/depend
 	$(MAKE) $(MAKESILENT) -f DataStructures/CMakeFiles/testGraph.dir/build.make DataStructures/CMakeFiles/testGraph.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/andreas/Documenti/Progetti/SemantisedTriangleMesh/build-minSizeRel/CMakeFiles --progress-num=44,45 "Built target testGraph"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/andreas/Documenti/Progetti/SemantisedTriangleMesh/build-minSizeRel/CMakeFiles --progress-num=45,46 "Built target testGraph"
 .PHONY : DataStructures/CMakeFiles/testGraph.dir/all
 
 # Build rule for subdir invocation for target.
@@ -228,7 +256,7 @@ DataStructures/CMakeFiles/testGraph.dir/clean:
 DataStructures/CMakeFiles/testTree.dir/all:
 	$(MAKE) $(MAKESILENT) -f DataStructures/CMakeFiles/testTree.dir/build.make DataStructures/CMakeFiles/testTree.dir/depend
 	$(MAKE) $(MAKESILENT) -f DataStructures/CMakeFiles/testTree.dir/build.make DataStructures/CMakeFiles/testTree.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/andreas/Documenti/Progetti/SemantisedTriangleMesh/build-minSizeRel/CMakeFiles --progress-num=46,47 "Built target testTree"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/andreas/Documenti/Progetti/SemantisedTriangleMesh/build-minSizeRel/CMakeFiles --progress-num=47,48 "Built target testTree"
 .PHONY : DataStructures/CMakeFiles/testTree.dir/all
 
 # Build rule for subdir invocation for target.

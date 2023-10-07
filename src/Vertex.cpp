@@ -23,10 +23,15 @@ Vertex::Vertex(double x, double y, double z) : Point(x,y,z)
 Vertex::Vertex(double p[]) : Point(p[0], p[1], p[2])
 {
 
+    e0 = nullptr;
+    id = "";
+    associated_flags.clear();
 }
 
 Vertex::Vertex(Point p) : Point(p.getX(), p.getY(), p.getZ())
 {
+    info = p.getInfo();
+    e0 = nullptr;
     id = "";
     associated_flags.clear();
 }
@@ -41,6 +46,7 @@ Vertex::Vertex(std::shared_ptr<Point> p) : Point(p->getX(), p->getY(), p->getZ()
 
 Vertex::Vertex(std::shared_ptr<Vertex> v) : Point(v->getX(), v->getY(), v->getZ())
 {
+    info = v->getInfo();
     this->e0 = v->getE0();
     this->id = v->getId();
 
@@ -53,8 +59,6 @@ Vertex::Vertex(std::shared_ptr<Vertex> v) : Point(v->getX(), v->getY(), v->getZ(
 Vertex::~Vertex()
 {
     e0.reset();
-
-
 }
 
 std::shared_ptr<Edge> Vertex::getCommonEdge(std::shared_ptr<Vertex> v)
@@ -162,6 +166,11 @@ bool Vertex::removeFlag(unsigned int position)
 
 }
 
+void Vertex::clearFlags()
+{
+    associated_flags.clear();
+}
+
 bool Vertex::addInformation(void *info)
 {
     if(std::find(information.begin(), information.end(), info) == information.end())
@@ -221,6 +230,10 @@ void Vertex::print(std::ostream &stream)
 {
     stream << "Vertex with id: " << id << " and coordinates: ";
     static_cast<Point*>(this)->print(stream, BracketsType::SQUARE, ",");
+    stream << "Flags: [" << std::endl;
+    for(auto f : associated_flags)
+        stream << flagToString(f) << "," << std::endl;
+
 }
 
 const std::vector<void *> &Vertex::getInformation() const

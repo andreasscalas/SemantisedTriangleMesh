@@ -164,18 +164,30 @@ namespace SemantisedTriangleMesh {
         bool removeEdge(std::string eid);
 
         /**
-         * @brief getTriangle method that returns an triangle positionally (should be removed, users shouldn't know the mechanisms of the class)
+         * @brief getTriangle method that returns a triangle positionally (should be removed, users shouldn't know the mechanisms of the class)
          * @param position positive value referring to the position inside the triangles array
          * @return nullptr if the triangle does not exist (parameter higher than number of triangles), otherwise a pointer to the found triangle
          */
         std::shared_ptr<Triangle> getTriangle(uint position);
 
         /**
-         * @brief getTriangle method that returns an triangle by id.
+         * @brief getTriangle method that returns a triangle by id.
          * @param tid string id of the triangle (represents a number)
-         * @return nullptr if the triangle does not exist (eid not found in triangles list), otherwise a pointer to the found triangle
+         * @return nullptr if the triangle does not exist (tid not found in triangles list), otherwise a pointer to the found triangle
          */
         std::shared_ptr<Triangle> getTriangle(std::string tid);
+
+
+        /**
+         * @brief getTriangle method that returns an triangle by the vertices defining it.
+         * @param v1 the first vertex
+         * @param v2 the second vertex
+         * @param v3 the third vertex
+         * @return nullptr if the triangle does not exist, otherwise a pointer to the found triangle
+         */
+        std::shared_ptr<Triangle> getTriangle(std::shared_ptr<Vertex> v1,
+                                              std::shared_ptr<Vertex> v2,
+                                              std::shared_ptr<Vertex> v3);
 
         /**
          * @brief getTriangles method that compiles a list of triangles composed by the vertices contained in the parameter list (at least one vertex).
@@ -277,7 +289,7 @@ namespace SemantisedTriangleMesh {
          * (doesn't work well with very geodesically distant target vertices in high curvature meshes)
          * @return the shortest path (as list of successive vertices) connecting v1 and v2
          */
-        std::vector<std::shared_ptr<Vertex> > computeShortestPath(std::shared_ptr<Vertex> v1, std::shared_ptr<Vertex> v2, const DistanceType metric, const bool directed, const bool avoidUsed);
+        std::vector<std::shared_ptr<Vertex> > computeShortestPath(std::shared_ptr<Vertex> v1, std::shared_ptr<Vertex> v2, const DistanceType metric, const bool useHeight, const bool directed, const bool avoidUsed);
 
         /**
          * @brief getAnnotations getter method for the annotations associated to the mesh.
@@ -361,7 +373,9 @@ namespace SemantisedTriangleMesh {
          * @param p the query point
          * @return the closest vertex
          */
-        std::shared_ptr<Vertex> getClosestPoint(Point p);
+        std::shared_ptr<Vertex> getClosestPoint(const Point& p);
+
+        std::vector<std::shared_ptr<Vertex> > getVerticesCloseToLine(const Point& a, const Point& b, double threshold = 0.0);
 
         /**
          * @brief regionGrowing method for applying a region growing on the mesh's surface inside a contour given a seed triangle
@@ -513,7 +527,7 @@ namespace SemantisedTriangleMesh {
          * @param distances the list of distances corresponding to the vertices in frontier
          * @return the closest vertex
          */
-        uint extractNearestVertex(std::vector<uint> &frontier, std::map<uint, double> distances);
+        int extractNearestVertex(std::vector<uint> &frontier, std::map<uint, double> distances);
 
         /**
          * @brief extractStraightestVertex support method for the Dijkstra algorithm. Given a list of vertices in the frontier, it extracts the one which is most in the direction of the target
@@ -522,7 +536,7 @@ namespace SemantisedTriangleMesh {
          * @param direction the vector defining the direction
          * @return the closest vertex
          */
-        uint extractStraightestVertex(std::vector<uint> &frontier, std::shared_ptr<Vertex> start, Vector direction);
+        int extractStraightestVertex(std::vector<uint> &frontier, std::shared_ptr<Vertex> start, Vector direction);
     };
 
 }

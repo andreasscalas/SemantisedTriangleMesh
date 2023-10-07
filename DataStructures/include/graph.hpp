@@ -52,6 +52,7 @@ public:
     void setNodes(const std::vector<Node<T> *> &value);
     void clearNodes();
     std::vector<Arc<T> *> getArcs() const;
+    std::vector<Arc<T> *> getArcs(Node<T>* n, std::string type = "") const;
     void setArcs(const std::vector<Arc<T> *> &value);
     void clearArcs();
 
@@ -61,7 +62,7 @@ protected:
     std::vector<Node<T>*> nodes;
     std::vector<Arc<T>*> arcs;
 
-    void toLowerCase(std::string&);
+    void toLowerCase(std::string&) const;
 };
 
 
@@ -409,22 +410,6 @@ std::vector<Arc<T> *> Graph<T>::getArcsFromTip(Node<T> *n, std::string type)
     return arcs;
 }
 
-/*template<class T>
-Arc<T> *Graph<T>::getArcFromEndpoints(Node<T> *n1, Node<T> *n2, std::string type)
-{
-    std::vector<Arc<T> *> arcs = getArcsFromFletching(n1);
-    toLowerCase(type);
-    for(unsigned int i = 0; i < arcs.size(); i++)
-    {
-        std::string label = this->arcs[i]->getLabel();
-        toLowerCase(label);
-        if(arcs[i]->getN2() == n2 &&
-          (type.compare("") == 0 || type.compare(label) == 0))
-            return arcs[i];
-    }
-
-    return nullptr;
-}*/
 
 template<class T>
 std::vector<Arc<T> *> Graph<T>::getArcsFromEndpoints(Node<T> *n1, Node<T> *n2, std::string type)
@@ -513,6 +498,22 @@ std::vector<Arc<T> *> Graph<T>::getArcs() const
 }
 
 template<class T>
+std::vector<Arc<T> *> Graph<T>::getArcs(Node<T> *n, std::string type) const
+{
+    std::vector<Arc<T> *> arcs;
+    toLowerCase(type);
+    for(unsigned int i = 0; i < this->arcs.size(); i++)
+    {
+        std::string label = this->arcs[i]->getLabel();
+        toLowerCase(label);
+        if((this->arcs[i]->getN1() == n || this->arcs[i]->getN1() == n) &&
+           (type.compare("") == 0 || type.compare(label) == 0))
+            arcs.push_back(this->arcs[i]);
+    }
+    return arcs;
+}
+
+template<class T>
 void Graph<T>::setArcs(const std::vector<Arc<T> *> &value)
 {
     this->arcs = value;
@@ -525,7 +526,7 @@ void Graph<T>::clearArcs()
 }
 
 template<class T>
-void Graph<T>::toLowerCase(std::string &s)
+void Graph<T>::toLowerCase(std::string &s) const
 {
     char* c_s = new char[s.size() + 1];
     for(unsigned int i = 0; i < s.size(); i++)

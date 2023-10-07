@@ -9,6 +9,7 @@
 #include <exception>
 #include <queue>
 #include <set>
+#include <utils.hpp>
 
 
 using namespace SemantisedTriangleMesh;
@@ -247,6 +248,18 @@ std::shared_ptr<Triangle> TriangleMesh::getTriangle(uint pos)
 std::shared_ptr<Triangle> TriangleMesh::getTriangle(std::string id)
 {
     return getTriangle(stoi(id));
+}
+
+std::shared_ptr<Triangle> TriangleMesh::getTriangle(std::shared_ptr<Vertex> v1, std::shared_ptr<Vertex> v2, std::shared_ptr<Vertex> v3)
+{
+    auto e = v1->getCommonEdge(v2);
+    auto t1 = e->getLeftTriangle(v1);
+    if(t1->getOppositeVertex(e)->getId().compare(v3->getId()) == 0)
+        return t1;
+    auto t2 = e->getRightTriangle(v1);
+    if(t2->getOppositeVertex(e)->getId().compare(v3->getId()) == 0)
+        return t2;
+    return nullptr;
 }
 
 std::vector<std::shared_ptr<Triangle> > TriangleMesh::getTriangles(std::vector<std::shared_ptr<Vertex> > vertices)
@@ -511,12 +524,12 @@ std::shared_ptr<Edge> TriangleMesh::searchEdgeContainingVertex(std::vector<std::
     return nullptr;
 }
 
-uint TriangleMesh::extractNearestVertex(std::vector<uint> &frontier, std::map<uint, double> distances)
+int TriangleMesh::extractNearestVertex(std::vector<uint> &frontier, std::map<uint, double> distances)
 {
 
     double minDist = std::numeric_limits<double>::max();
     int minPos = -1;
-    for(unsigned int i = 0; i < frontier.size(); i++){
+    for(uint i = 0; i < frontier.size(); i++){
         if(distances.at(frontier.at(i)) < minDist){
             minPos = i;
             minDist = distances.at(frontier.at(i));
@@ -526,7 +539,7 @@ uint TriangleMesh::extractNearestVertex(std::vector<uint> &frontier, std::map<ui
     if(minPos == -1)
         return minPos;
 
-    uint nearest = frontier.at(minPos);
+    int nearest = frontier.at(minPos);
 
     frontier.erase(frontier.begin() + minPos);
 
@@ -534,7 +547,7 @@ uint TriangleMesh::extractNearestVertex(std::vector<uint> &frontier, std::map<ui
 
 }
 
-uint TriangleMesh::extractStraightestVertex(std::vector<uint> &frontier, std::shared_ptr<Vertex> start, Vector direction)
+int TriangleMesh::extractStraightestVertex(std::vector<uint> &frontier, std::shared_ptr<Vertex> start, Vector direction)
 {
     double minAngle = std::numeric_limits<double>::max();
     int minPos = -1;
@@ -553,16 +566,17 @@ uint TriangleMesh::extractStraightestVertex(std::vector<uint> &frontier, std::sh
     if(minPos == -1)
         return minPos;
 
-    uint nearest = frontier.at(minPos);
+    int nearest = frontier.at(minPos);
 
     frontier.erase(frontier.begin() + minPos);
 
     return nearest;
 }
 
-std::vector<std::shared_ptr<Vertex> > TriangleMesh::computeShortestPath(std::shared_ptr<Vertex> v1, std::shared_ptr<Vertex> v2, const DistanceType metric, const bool directed, const bool avoidUsed)
+std::vector<std::shared_ptr<Vertex> > TriangleMesh::computeShortestPath(std::shared_ptr<Vertex> v1, std::shared_ptr<Vertex> v2, const DistanceType metric, const bool useHeight, const bool directed, const bool avoidUsed)
 {
     std::vector<uint> frontier;
+    std::vector<double> heights;
     std::map<uint, double> distances = {{std::stoi(v1->getId()), 0}};
     std::map<uint, std::shared_ptr<Vertex> > predecessors = {{std::stoi(v1->getId()), nullptr}};
     std::set<uint> v21RingNeighbors;
@@ -570,14 +584,21 @@ std::vector<std::shared_ptr<Vertex> > TriangleMesh::computeShortestPath(std::sha
     std::shared_ptr<Vertex> v = nullptr;
     bool v2visited = false;
 
-    if(((*v1) - (*v2)).norm() == 0.0){
+    if(((*v1) - (*v2)).norm() == 0.0)
         return shortestPath;
-    }
 
+
+    if(!useHeight)
+    {
+        for_each(vertices.begin(), vertices.end(), [&heights](std::shared_ptr<Vertex>& v){
+            heights.push_back(v->getZ());
+            v->setZ(0);
+        });
+    }
     frontier.push_back(std::stoi(v1->getId()));
 
     do {
-        uint vid;
+        int vid;
         if(directed && v != nullptr)
             vid = extractStraightestVertex(frontier, v, (*v2) - (*v));
         else
@@ -594,8 +615,8 @@ std::vector<std::shared_ptr<Vertex> > TriangleMesh::computeShortestPath(std::sha
             return shortestPath;
         }
 
-        auto neighbors = v->getVV();
-        for(auto n : neighbors){
+        const auto neighbors = v->getVV();
+        for(const auto& n : neighbors){
 
             auto vit = v21RingNeighbors.find(std::stoi(v->getId()));
             if(n->getId().compare(v2->getId()) == 0 && vit == v21RingNeighbors.end())
@@ -604,16 +625,18 @@ std::vector<std::shared_ptr<Vertex> > TriangleMesh::computeShortestPath(std::sha
             auto pit = predecessors.find(std::stoi(n->getId()));
             double distanceVX;
             if(!avoidUsed || n->searchFlag(FlagType::USED) == -1){
+                double newDistance = 0;
                 switch(metric){
                     case DistanceType::SEGMENT_DISTANCE:
-                        distanceVX = distances.at(std::stoi(v->getId())) + n->computePointSegmentDistance(*v1, *v2);
+                        newDistance = n->computePointSegmentDistance(*v1, *v2);
                         break;
                     case DistanceType::COMBINED_DISTANCE:
-                        distanceVX = distances.at(std::stoi(v->getId())) + (*n - *v).norm() + n->computePointSegmentDistance(*v1, *v2);
+                        newDistance = (*n - *v).norm() + n->computePointSegmentDistance(*v1, *v2);
                         break;
                     default:
-                        distanceVX = distances.at(std::stoi(v->getId())) + (*n - *v).norm();
+                        newDistance = (*n - *v).norm();
                 }
+                distanceVX = distances.at(std::stoi(v->getId())) + newDistance;
             } else
                 distanceVX = std::numeric_limits<double>::max();
 
@@ -628,11 +651,18 @@ std::vector<std::shared_ptr<Vertex> > TriangleMesh::computeShortestPath(std::sha
                 frontier.push_back(std::stoi(n->getId()));
             }
         }
-        if(v == v2)
+        if(v->getId().compare(v2->getId()) == 0)
             v2visited = true;
 
     } while(!v2visited);
 
+
+    if(!useHeight)
+    {
+        for(uint i = 0; i < heights.size(); i++)
+            vertices.at(i)->setZ(heights.at(i));
+        heights.clear();
+    }
     shortestPath.push_back(v2);
     v = predecessors.at(std::stoi(v2->getId()));
     while(v != v1){
@@ -854,7 +884,7 @@ std::vector<std::shared_ptr<Vertex> > TriangleMesh::getNearestNeighbours(Point q
 
 }
 
-std::shared_ptr<Vertex> TriangleMesh::getClosestPoint(Point queryPt)
+std::shared_ptr<Vertex> TriangleMesh::getClosestPoint(const Point &queryPt)
 {
     if(kdtree == nullptr)
         initialiseKDTree();
@@ -862,6 +892,21 @@ std::shared_ptr<Vertex> TriangleMesh::getClosestPoint(Point queryPt)
     auto index = kdtree->nearest_index(point);
     return vertices.at(index);
 }
+
+std::vector<std::shared_ptr<Vertex> > TriangleMesh::getVerticesCloseToLine(const Point &a, const Point &b, double threshold)
+{
+    double lineLength = (a - b).norm();
+    if(threshold == 0)
+        threshold = lineLength / 10;
+    std::vector<std::shared_ptr<Vertex> > list;
+    auto vertices = getNearestNeighbours((a + b) / 2, -1, lineLength);
+    for(const auto& v : vertices)
+        if(v->distanceFromLine(a,b) < threshold)
+            list.push_back(v);
+    return list;
+
+}
+
 
 std::vector<std::shared_ptr<Triangle> > TriangleMesh::regionGrowing(std::vector<std::shared_ptr<Vertex> > contour, std::shared_ptr<Triangle> seed)
 {
@@ -895,7 +940,7 @@ std::vector<std::shared_ptr<Triangle> > TriangleMesh::regionGrowing(std::vector<
         for(int i = 0; i < 3; i++){
             if(e->searchFlag(FlagType::ON_BOUNDARY) == -1){
                 auto t_ = e->getOppositeTriangle(t);
-                if(t_->searchFlag(FlagType::USED) == -1){
+                if(t_ != nullptr && t_->searchFlag(FlagType::USED) == -1){
                     internalTriangles.push_back(t_);
                     t_->addFlag(FlagType::USED);
                     neighbors.push(t_);

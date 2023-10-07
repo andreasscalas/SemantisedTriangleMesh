@@ -30,8 +30,7 @@ void Attribute::setValue(int value)
 
 void Attribute::setValue(double value)
 {
-    this->value = static_cast<void*>(new double(value));
-
+    this->value = static_cast<void*>(new double(value * 1000));
 }
 
 void Attribute::setValue(std::string value)

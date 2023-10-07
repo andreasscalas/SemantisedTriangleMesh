@@ -173,6 +173,11 @@ namespace SemantisedTriangleMesh {
         bool removeFlag(unsigned int index);
 
         /**
+         * @brief Remove all flags from those associated to the vertex.
+         */
+        void clearFlags();
+
+        /**
          * @brief Add information to associate with the vertex.
          * @param info A pointer to the information to be added.
          * @return True if the information was successfully added, false otherwise.

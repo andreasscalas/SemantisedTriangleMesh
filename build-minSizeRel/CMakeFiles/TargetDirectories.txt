@@ -1,3 +1,4 @@
+/home/andreas/Documenti/Progetti/SemantisedTriangleMesh/build-minSizeRel/CMakeFiles/doc_doxygen.dir
 /home/andreas/Documenti/Progetti/SemantisedTriangleMesh/build-minSizeRel/CMakeFiles/SemantisedTriangleMesh.dir
 /home/andreas/Documenti/Progetti/SemantisedTriangleMesh/build-minSizeRel/CMakeFiles/SemantisedTriangleMesh-test.dir
 /home/andreas/Documenti/Progetti/SemantisedTriangleMesh/build-minSizeRel/CMakeFiles/edit_cache.dir

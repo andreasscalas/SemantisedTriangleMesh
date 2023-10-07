@@ -226,7 +226,11 @@ double Point::distanceFromLine(const Point A, const Point B) const
     Point BA = B - A;
     double ba_length = BA.norm();
 
-    if (ba_length == 0.0) cerr << "distanceFromLine : Degenerate line passed !" << endl;
+    if (ba_length < EPSILON)
+    {
+        cerr << "distanceFromLine : Degenerate line passed !" << endl;
+        return std::numeric_limits<double>::max();
+    }
 
     return ((((*this) - A) & BA).norm()) / (ba_length);
 }
@@ -303,28 +307,29 @@ int Point::orientation(const Point &p, const Point &q, const Point &r)
     return 0;
 }
 
-static pair<shared_ptr<Point>, shared_ptr<Point>> findExtremePoints(const vector<shared_ptr<Point> >& points, const Point& direction)
+std::pair<std::shared_ptr<Point>, std::shared_ptr<Point> > Point::findExtremePoints(const std::vector<std::shared_ptr<Point> > &points, const Point &direction)
 {
-    double min = numeric_limits<double>::max(), max = -numeric_limits<double>::max();
-    int minPos = -1, maxPos = -1;
-    for(unsigned int i = 0; i < points.size(); i++)
-    {
-        Point projected = direction * ((*points[i]) * direction);
-        double length = projected.norm();
-        if(projected * direction < 0 )
-            length *= -1;
-        if(length > max)
+        double min = numeric_limits<double>::max(), max = -numeric_limits<double>::max();
+        int minPos = -1, maxPos = -1;
+        for(unsigned int i = 0; i < points.size(); i++)
         {
-            max = length;
-            maxPos = i;
-        }
-        if(length < min)
-        {
-            min = length;
-            minPos = i;
+            Point projected = direction * ((*points[i]) * direction);
+            double length = projected.norm();
+            if(projected * direction < 0 )
+                length *= -1;
+            if(length > max)
+            {
+                max = length;
+                maxPos = i;
+            }
+            if(length < min)
+            {
+                min = length;
+                minPos = i;
+            }
+
         }
 
-    }
-
-    return make_pair(points[minPos], points[maxPos]);
+        return make_pair(points[minPos], points[maxPos]);
 }
+

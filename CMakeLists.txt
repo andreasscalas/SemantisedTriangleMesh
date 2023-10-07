@@ -52,6 +52,7 @@ set( Hdrs
     ${SEMANTISED_TRIANGLE_MESH}/include/CommonDefinitions.hpp
     ${SEMANTISED_TRIANGLE_MESH}/include/KDTree.hpp
     ${SEMANTISED_TRIANGLE_MESH}/include/relationship.hpp
+    ${SEMANTISED_TRIANGLE_MESH}/include/utils.hpp
 )
 
 set(TriangleHdrs ${TRIANGLE}/shewchuk_triangle.hpp ${TRIANGLE}/trianglehelper.hpp)
@@ -85,7 +86,8 @@ else (DOXYGEN_FOUND)
   message("Doxygen need to be installed to generate the doxygen documentation")
 endif (DOXYGEN_FOUND)
 
-add_library(${PROJECT_NAME} ${Srcs} ${Hdrs})
+add_library(${PROJECT_NAME} ${Srcs} ${Hdrs}
+    include/utils.hpp)
 target_include_directories(${PROJECT_NAME} PUBLIC $<BUILD_INTERFACE:${SEMANTISED_TRIANGLE_MESH}/include/> $<BUILD_INTERFACE:${TRIANGLE}/> $<BUILD_INTERFACE:${DATA_STRUCTURES}/include/> )
 target_link_libraries(${PROJECT_NAME} PUBLIC Triangle-lib DataStructures-lib)
 
